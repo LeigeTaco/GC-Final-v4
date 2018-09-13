@@ -36,7 +36,7 @@ namespace GC_Final.Controllers
                    // ViewBag.zinc = jsoninfo;
                 }
             }
-           // return ();
+           return ("x");
 
         }
 
