@@ -3,5 +3,20 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Your Build</h2>
+
+@foreach (var id in ViewBag.UserBuild)  //viewbag way to move data from controller to the view
+{
+    <tr>
+        <td>@id.Builds</td>
+        <td>@id.Motherboard</td>
+        <td>@id.GPU</td>
+        <td>@id.CPU</td>
+        <td>@id.PSU</td>
+        <td>@id.Case</td>
+        <td>@id.RAM</td>
+        @*<td><a href="/Home/DeleteItem?itemid=@id.BuildID" onclick="return confirm('Are you sure?')">Delete</a></td>*@
+        <td><a href="/Create/Edit?itemid=@id.id">Edit</a></td>
+    </tr>
+}
 

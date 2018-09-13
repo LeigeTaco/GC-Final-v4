@@ -1,7 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Create";
-}
+﻿@{ViewBag.Title = "Create"; }
+
 
 <h2>Create Your Own Custom Build</h2>
 <br />
@@ -11,7 +9,7 @@
             <label>Name</label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
         </div>
         <div class="form-group">
-            @*given once created*@ <input type="hidden" value="@ViewBag.UserBuild.id" id="buildID" name="buildID" />
+            @*given once created*@ <input type="hidden" value="x" id="buildID" name="buildID" />
         </div>
         <div class="form-group">
             <label>Motherboard</label><input type="text" id="motherboard" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
@@ -33,7 +31,7 @@
         </div>
         <div class="form-group">
             @*remember me radio box with BIT, 1 for click save*@
-            <input type="submit" id="create" class="form-control" value="Create" />
+            <input type="submit" id="create" class="form-control" value="Build" />
         </div>
     </form>
 </div>
