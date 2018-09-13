@@ -2,6 +2,42 @@
 @{
     ViewBag.Title = "Create";
 }
-
 <h2>Create</h2>
+
+<h2>Create Your Own Custom Build</h2>
+
+<br />
+<div class="container">
+    <form action="~/Builds/Create" method="post">
+        <div class="form-group">
+            <label>Name: </label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            @*given once created*@ <input type="hidden" value="x" id="buildID" name="buildID" />
+        </div>
+        <div class="form-group">
+            <label>Motherboard</label><input type="text" id="motherboard" name="buildName" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            <label>GPU</label><input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            <label>CPU</label><input type="text" id="cpu" name="cpu" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            <label>PSU</label><input type="text" id="psu" name="psu" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            <label>Case</label><input type="text" id="case" name="case" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            <label>RAM</label><input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="$^[a-zA-Z]" />
+        </div>
+        <div class="form-group">
+            @*remember me radio box with BIT, 1 for click save*@
+            <input type="submit" id="create" class="form-control" value="Create" />
+        </div>
+    </form>
+</div>
+
 
