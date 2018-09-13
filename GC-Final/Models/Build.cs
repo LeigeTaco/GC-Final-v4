@@ -40,5 +40,10 @@ namespace GC_Final.Models
         public virtual Peripheral Peripheral { get; set; }
         public virtual PSU PSU1 { get; set; }
         public virtual RAM RAM1 { get; set; }
+
+        public Build(Controllers.BuildDetails bass)
+        {
+
+        }
     }
 }

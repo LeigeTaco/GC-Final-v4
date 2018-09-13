@@ -114,6 +114,11 @@ namespace GC_Final.Controllers
             Style = "";
         }
 
+        public CaseDetails(Case bass)
+        {
+
+        }
+
     }
 
     public class MotherBoardDetails : PartDetails
@@ -139,6 +144,11 @@ namespace GC_Final.Controllers
             SLI = 0;
             XFIRE = 0;
             FormFactor = "";
+
+        }
+
+        public MotherBoardDetails(Motherboard bass)
+        {
 
         }
 
@@ -170,6 +180,11 @@ namespace GC_Final.Controllers
 
         }
 
+        public CPUDetails(CPU bass)
+        {
+
+        }
+
     }
 
     public class PSUDetails
@@ -181,6 +196,68 @@ namespace GC_Final.Controllers
         public int Wattage;
 
         public PSUDetails() : base()
+        {
+
+        }
+
+        public PSUDetails(PSU bass)
+        {
+
+        }
+
+    }
+
+    public class GPUDetails : PartDetails
+    {
+        public GPUDetails(GPU bass)
+        {
+
+        }
+    }
+
+    public class RAMDetails : PartDetails
+    {
+        public RAMDetails(RAM bass)
+        {
+
+        }
+    }
+
+    public class ODDetails : PartDetails
+    {
+        public ODDetails(OpticalDriver bass)
+        {
+
+        }
+    }
+
+    public class HDDetails : PartDetails
+    {
+        public HDDetails(HardDrive bass)
+        {
+
+        }
+    }
+
+    public class MonitorDetails : PartDetails
+    {
+        public MonitorDetails(Monitor bass)
+        {
+
+        }
+    }
+
+    public class PeripheralDetails : PartDetails
+    {
+        public PeripheralDetails(Peripheral bass)
+        {
+
+        }
+    }
+
+    public class PCIDetails : PartDetails
+    {
+        public PCIDetails(PCICard bass)
         {
 
         }
