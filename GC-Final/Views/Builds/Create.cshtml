@@ -2,18 +2,16 @@
 @{
     ViewBag.Title = "Create";
 }
-<h2>Create</h2>
 
 <h2>Create Your Own Custom Build</h2>
-
 <br />
 <div class="container">
     <form action="~/Builds/Create" method="post">
         <div class="form-group">
-            <label>Name: </label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
+            <label>Name</label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
         </div>
         <div class="form-group">
-            @*given once created*@ <input type="hidden" value="x" id="buildID" name="buildID" />
+            @*given once created*@ <input type="hidden" value="@ViewBag.UserBuild.id" id="buildID" name="buildID" />
         </div>
         <div class="form-group">
             <label>Motherboard</label><input type="text" id="motherboard" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
