@@ -29,20 +29,43 @@ namespace GC_Final.Controllers
 
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram)
         {
-            BuildDetails temp = new BuildDetails();
-            temp.Name = buildName;
-            temp.BuildID = Guid.NewGuid().ToString("D");
+            //BuildDetails temp = new BuildDetails();
+            //temp.Name = buildName;
+            //temp.BuildID = Guid.NewGuid().ToString("D");
+            //Entities ORM = new Entities();
+            //temp.MB = new MotherBoardDetails(ORM.Motherboards.Where(x => x.title.ToLower() == motherboard.ToLower()).ToArray()[0]);
+            //temp.GPU = new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]);
+            //temp.CPU = new CPUDetails(ORM.CPUs.Where(x => x.title.ToLower() == cpu.ToLower()).ToArray()[0]);
+            //temp.PSU = new PSUDetails(ORM.PSUs.Where(x => x.title.ToLower() == psu.ToLower()).ToArray()[0]);
+            //temp.Case = new CaseDetails(ORM.Cases.Where(x => x.title.ToLower() == casename.ToLower()).ToArray()[0]);
+            //temp.RAM.Add(new RAMDetails(ORM.RAMs.Where(x => x.title.ToLower() == ram.ToLower()).ToArray()[0]));
+            //Build UserBuild = new Build(temp);
+            //ORM.Builds.Add(UserBuild);
+            //ORM.SaveChanges();
+            //ViewBag.UserBuild = UserBuild;
+
             Entities ORM = new Entities();
-            temp.MB = new MotherBoardDetails(ORM.Motherboards.Where(x => x.title.ToLower() == motherboard.ToLower()).ToArray()[0]);
-            temp.GPU = new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]);
-            temp.CPU = new CPUDetails(ORM.CPUs.Where(x => x.title.ToLower() == cpu.ToLower()).ToArray()[0]);
-            temp.PSU = new PSUDetails(ORM.PSUs.Where(x => x.title.ToLower() == psu.ToLower()).ToArray()[0]);
-            temp.Case = new CaseDetails(ORM.Cases.Where(x => x.title.ToLower() == casename.ToLower()).ToArray()[0]);
-            temp.RAM.Add(new RAMDetails(ORM.RAMs.Where(x => x.title.ToLower() == ram.ToLower()).ToArray()[0]));
-            Build UserBuild = new Build(temp);
+            Build UserBuild = new Build(buildName);
+            Motherboard tempMB = new Motherboard(motherboard);
+            ORM.Motherboards.Add(tempMB);
+            UserBuild.Motherboard = tempMB;
+            GPU tempGPU = new GPU(gpu);
+            ORM.GPUs.Add(tempGPU);
+            UserBuild.GPU = tempGPU;
+            CPU tempCPU = new CPU(cpu);
+            ORM.CPUs.Add(tempCPU);
+            UserBuild.CPU = tempCPU;
+            PSU tempPSU = new PSU(psu);
+            ORM.PSUs.Add(tempPSU);
+            UserBuild.PSU = tempPSU;
+            Case tempCase = new Case(casename);
+            ORM.Cases.Add(tempCase);
+            UserBuild.Case = tempCase;
+            RAM tempRAM = new RAM(ram);
+            ORM.RAMs.Add(tempRAM);
+            ORM.SaveChanges();
             ORM.Builds.Add(UserBuild);
             ORM.SaveChanges();
-            ViewBag.UserBuild = UserBuild;
 
             return RedirectToAction("_Edit", UserBuild.BuildID);
         }

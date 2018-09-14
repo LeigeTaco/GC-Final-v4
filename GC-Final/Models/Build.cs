@@ -69,5 +69,10 @@ namespace GC_Final.Models
             GPUCount = bass.GPUCount;
             
         }
+
+        public Build(string name)
+        {
+            BuildName = name;
+        }
     }
 }
