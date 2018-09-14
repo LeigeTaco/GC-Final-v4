@@ -46,10 +46,9 @@ namespace GC_Final.Controllers
             //ViewBag.UserBuild = UserBuild;
 
             Entities ORM = new Entities();
-            Build UserBuild = new Build(buildName);
-            UserBuild.OwnerID = User.Identity.GetUserId();
+            Build UserBuild = new Build();
+            UserBuild.OwnerID = User.Identity.GetUserId().ToString();
             Motherboard tempMB = new Motherboard(motherboard);
-            
             ORM.Motherboards.Add(tempMB);
             UserBuild.Motherboard = tempMB;
             GPU tempGPU = new GPU(gpu);
