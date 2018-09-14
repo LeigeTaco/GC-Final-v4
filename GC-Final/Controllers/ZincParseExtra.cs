@@ -86,9 +86,65 @@ namespace GC_Final.Controllers
         public PartBag HD { set; get; }
         public PartBag Peripherals { set; get; }
         public PartBag PCI { set; get; }
+        /*
+        public Dictionary<string, string> CheckCompatability()
+        {
+            Dictionary<string, string> Flags = new Dictionary<string, string>();
 
+            //Check Case and Board
+            bool compat = false;
+            foreach (string FF in Case.Style.Split(','))
+            {
+                if (FF == MB.FormFactor)
+                {
+                    compat = true;
+                }
+            }
+            if (!compat)
+            {
+                Flags.Add("00x01", "Case does not fit Motherboard!");
+            }
+
+            //Check Case and Drive Count
+            compat = true;
+            if (Case.Drives != (OD.Count + HD.Count).ToString())
+            {
+                Flags.Add("00x07", "Case cannot fit this many drives!");
+            }
+
+            //Split above Check into OD and HD?
+            //compat = true;
+
+            //Check Board and CPU
+            compat = true;
+            if (MB.Socket != CPU.Socket)
+            {
+                Flags.Add("01x02", "Sockets incompatible! Swap Motherboard or CPU!");
+            }
+
+            //Check Board and GPU Count
+            compat = true;
+            if(MB.SLI < GPUCount)
+            {
+                Flags.Add("01x03", "Motherboard does not support this many cards in SLI. Ignore if Crossfire.");
+            }
+            if (MB.XFIRE < GPUCount && Flags["01x03"] != null)
+            {
+                Flags.Add("01x03", "Motherboard does not support this many cards in SLI. Ignore if Crossfire.");
+            }
+            //Check GPU and GPU Count
+            //Check Board and RAM
+            //Check CPU and RAM
+            //Check PSU and Total Wattage
+            //Check GPU/MB and Monitor
+
+            return Flags;
+        }
+        */
         public BuildDetails(Build bass)
         {
+
+            Entities ORM = new Entities();
 
             Name = bass.BuildName;
             OwnerID = bass.OwnerID;
@@ -97,6 +153,37 @@ namespace GC_Final.Controllers
             CPU = new CPUDetails(bass.CPU);
             GPU = new GPUDetails(bass.GPU);
             GPUCount = (byte)bass.GPUCount;
+            PSU = new PSUDetails(bass.PSU);
+            RAM = new PartBag();
+            foreach(RAM r in ORM.BuildsRAMs.Where(x => x.BuildID == bass.BuildID).Select(x => x.RAM).ToArray())
+            {
+                RAM.Add(new RAMDetails(r));
+            }
+            Monitor = new PartBag();
+            foreach (Monitor r in ORM.BuildMonitors.Where(x => x.BuildID == bass.BuildID).Select(x => x.Monitor).ToArray())
+            {
+                Monitor.Add(new MonitorDetails(r));
+            }
+            OD = new PartBag();
+            foreach (OpticalDriver r in ORM.BuildODs.Where(x => x.BuildID == bass.BuildID).Select(x => x.OpticalDriver).ToArray())
+            {
+                OD.Add(new ODDetails(r));
+            }
+            HD = new PartBag();
+            foreach (HardDrive r in ORM.BuildDisks.Where(x => x.BuildID == bass.BuildID).Select(x => x.HardDrive).ToArray())
+            {
+                HD.Add(new HDDetails(r));
+            }
+            Peripherals = new PartBag();
+            foreach (Peripheral r in ORM.BuildsPeripherals.Where(x => x.BuildID == bass.BuildID).Select(x => x.Peripheral).ToArray())
+            {
+                Peripherals.Add(new PeripheralDetails(r));
+            }
+            PCI = new PartBag();
+            foreach (PCICard r in ORM.BuildPCIs.Where(x => x.BuildID == bass.BuildID).Select(x => x.PCICard).ToArray())
+            {
+                PCI.Add(new PCIDetails(r));
+            }
 
         }
 
@@ -174,6 +261,7 @@ namespace GC_Final.Controllers
         public string CPUID { set; get; }
         public string PID { set; get; }
         public string Cache { set; get; }
+        public string Socket { set; get; }
         public int Wattage { set { Wattage = Convert.ToInt32(value); } get { return Wattage; } }
         public bool Fan { set; get; }
         public byte Threads { set { Threads = Convert.ToByte(value); } get { return Threads; } }
