@@ -3,4 +3,20 @@
 }
 
 
-<p>@ViewBag.GPUs</p>
+<table border="1">
+    <tr>
+        <td>Title</td>
+        <td>Brand</td>
+        <td>Description</td>
+        <td>Specs Array</td>
+    </tr>
+@foreach (var x in ViewBag.GPUs)
+{
+    <tr>
+    <td>@x["title"]</td>
+    <td>@x["brand"]</td>
+    <td>@x["product_description"]</td>
+    <td>@x["product_details"]</td>
+    </tr>
+}
+</table>

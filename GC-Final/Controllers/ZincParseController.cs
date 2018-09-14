@@ -104,7 +104,7 @@ namespace GC_Final.Controllers
 
                 HttpWebRequest apiRequest1 = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
                 apiRequest1.Headers.Add("Authorization", ConfigurationManager.AppSettings["apizinc"]); //used to add keys
-                apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
+                //apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
                 apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
                 HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
