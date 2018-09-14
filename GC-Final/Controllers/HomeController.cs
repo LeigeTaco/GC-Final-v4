@@ -36,10 +36,6 @@ namespace GC_Final.Controllers
         }
         public JObject GetGPUs()
         {
-            JObject jsoninfo;
-            string info;
-            //for (int i = 1; i < 9; i++) //NEEDS- add multiple page queries
-            //{
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["apizinc"]); //used to add keys
             apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
@@ -47,16 +43,12 @@ namespace GC_Final.Controllers
 
 
             HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponse();
-            //if (apiResponse.StatusCode != HttpStatusCode.OK) //http error 200
-            //{
-            //    return (error);
-            //}
 
             StreamReader responseData = new StreamReader(apiResponse.GetResponseStream());
 
-            info = responseData.ReadToEnd();
+            string info = responseData.ReadToEnd();
 
-            jsoninfo = JObject.Parse(info);
+            JObject jsoninfo = JObject.Parse(info);
 
             return jsoninfo;
         }
@@ -74,8 +66,6 @@ namespace GC_Final.Controllers
                 apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
                 HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
-
-                //NEEDS - Add if apiresponse error
 
                 StreamReader responseData1 = new StreamReader(apiResponse1.GetResponseStream());
 
