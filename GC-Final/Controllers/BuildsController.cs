@@ -46,7 +46,7 @@ namespace GC_Final.Controllers
             //ViewBag.UserBuild = UserBuild;
 
             Entities ORM = new Entities();
-            Build UserBuild = new Build();
+            Build UserBuild = new Build(buildName);
             UserBuild.OwnerID = User.Identity.GetUserId();
             Motherboard tempMB = new Motherboard(motherboard);
             
@@ -67,26 +67,28 @@ namespace GC_Final.Controllers
             RAM tempRAM = new RAM(ram);
             ORM.RAMs.Add(tempRAM);
             ORM.SaveChanges();
-            ORM.Builds.Add(UserBuild);
             UserBuild.MBID = tempMB.MotherboardID;
             UserBuild.GPUID = tempGPU.GPUID;
             UserBuild.CPUID = tempCPU.CPUID;
             UserBuild.PSUID = tempPSU.PSUID;
             UserBuild.CaseID = tempCase.CaseID;
+            UserBuild.BuildID = Guid.NewGuid().ToString("D");
+            UserBuild.OwnerID = User.Identity.GetUserId().ToString();
+            ORM.Builds.Add(UserBuild);
             ORM.SaveChanges();
 
             return RedirectToAction("_Edit", UserBuild.BuildID);
         }
 
         ////edit when given a buildID
-        //private ActionResult _Edit(string BuildID)
-        //{
-        //    Entities ORM = new Entities();
+        private ActionResult _Edit(string BuildID)
+        {
+            Entities ORM = new Entities();
 
-        //    ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
-            
-        //    return View("Edit");
-        //}
+            ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
+
+            return View("Edit");
+        }
 
         //public ActionResult Edit(string id)
         //{
@@ -198,7 +200,7 @@ namespace GC_Final.Controllers
 
         public JObject GetMotherboards()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Motherboard&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
