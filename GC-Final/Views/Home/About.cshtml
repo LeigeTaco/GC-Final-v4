@@ -2,34 +2,3 @@
     ViewBag.Title = "About";
 }
 
-
-
-@*<form>
-    <select id="myselect">
-        <option value="cat">Option 1</option>
-        <option value="dog">Option 2</option>
-        <option value="bear">Option 3</option>
-    </select>
-</form>*@
-@*<script type="text/javascript">
-    var selectobject = document.getElementById("myselect")
-    for (var i = 0; i < selectobject.length; i++) {
-        alert(selectobject.options[i].text + " " + selectobject.options[i].value)
-    }</script>*@
-
-<br />
-<br />
-<br />
-<form>
-        <select id="GPU">
-            @foreach (var gpu in ViewBag.GPUs)
-            {
-                <option value="chosenPart">@gpu["title"]</option>
-            }
-        </select>
-    </form>
-<script type="text/javascript">
-    var selectobject = document.getElementById("myselect")
-    for (var i = 0; i < selectobject.length; i++) {
-        alert(selectobject.options[i].text + " " + selectobject.options[i].value)
-    }</script>

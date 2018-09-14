@@ -78,7 +78,7 @@ namespace GC_Final.Controllers
 
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Computer+Case&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]); //used to add keys
             //apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
@@ -164,6 +164,7 @@ namespace GC_Final.Controllers
 
             return Parts;
         }
+
         public JObject GetMotherboards()
         {
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Motherboard&page=1&retailer=amazon");
@@ -181,6 +182,7 @@ namespace GC_Final.Controllers
 
             return jsoninfo;
         }
+
         public List<JObject> GetMotherboardData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();

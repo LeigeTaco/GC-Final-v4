@@ -15,7 +15,7 @@
                 <label>Motherboard</label>
                 @*<input type="text" id="motherboard" name="motherboard" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
 
-                @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
+                <select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>   @*Get from db?*@
                 
                 <select id="Motherboard">
                 @foreach (var motherboard in ViewBag.Motherboards)
@@ -25,6 +25,7 @@
              </select>
             </div>
         </div>
+
         <div class="form-group">
             <label>GPU</label>
             @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
