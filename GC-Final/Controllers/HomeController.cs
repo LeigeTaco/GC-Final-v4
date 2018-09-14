@@ -17,7 +17,7 @@ namespace GC_Final.Controllers
     {
         public ActionResult Index()
         {
-            ViewPag.GPUs = PullGPUs();
+            ViewBag.GPUs = GetGPUData(GetGPUs());
             return View();
         }
 
@@ -34,17 +34,14 @@ namespace GC_Final.Controllers
 
             return View();
         }
-        [HttpGet]
-        private List<JObject> PullGPUs()
+        public JObject GetGPUs()
         {
             JObject jsoninfo;
             string info;
             //for (int i = 1; i < 9; i++) //NEEDS- add multiple page queries
             //{
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
-            //string svcCredentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(ConfigurationManager.AppSettings["apizinc"]));
-            Request.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]);
-
+            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["apizinc"]); //used to add keys
             apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -61,9 +58,13 @@ namespace GC_Final.Controllers
 
             jsoninfo = JObject.Parse(info);
 
-            List<JObject> GPUs = new List<JObject>();
+            return jsoninfo;
+        }
 
-            for (int i = 0; i <= 14; i++)
+        public List<JObject> GetGPUData(JObject jsoninfo)
+        {
+            List<JObject> GPUs = new List<JObject>();
+            for (int i = 0; i <= 3; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -72,9 +73,11 @@ namespace GC_Final.Controllers
                 apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
                 apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
+                HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
+
                 //NEEDS - Add if apiresponse error
 
-                StreamReader responseData1 = new StreamReader(apiResponse.GetResponseStream());
+                StreamReader responseData1 = new StreamReader(apiResponse1.GetResponseStream());
 
                 string gpuinfo = responseData1.ReadToEnd();
 
