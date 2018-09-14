@@ -46,9 +46,10 @@ namespace GC_Final.Controllers
             //ViewBag.UserBuild = UserBuild;
 
             Entities ORM = new Entities();
-            Build UserBuild = new Build(buildName);
+            Build UserBuild = new Build();
             UserBuild.OwnerID = User.Identity.GetUserId();
             Motherboard tempMB = new Motherboard(motherboard);
+            
             ORM.Motherboards.Add(tempMB);
             UserBuild.Motherboard = tempMB;
             GPU tempGPU = new GPU(gpu);
@@ -67,6 +68,11 @@ namespace GC_Final.Controllers
             ORM.RAMs.Add(tempRAM);
             ORM.SaveChanges();
             ORM.Builds.Add(UserBuild);
+            UserBuild.MBID = tempMB.MotherboardID;
+            UserBuild.GPUID = tempGPU.GPUID;
+            UserBuild.CPUID = tempCPU.CPUID;
+            UserBuild.PSUID = tempPSU.PSUID;
+            UserBuild.CaseID = tempCase.CaseID;
             ORM.SaveChanges();
 
             return RedirectToAction("_Edit", UserBuild.BuildID);
@@ -104,7 +110,7 @@ namespace GC_Final.Controllers
 
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -148,7 +154,7 @@ namespace GC_Final.Controllers
 
         public JObject GetCPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -192,7 +198,7 @@ namespace GC_Final.Controllers
 
         public JObject GetMotherboards()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
@@ -236,7 +242,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetPSUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -279,7 +285,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetRAMs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
