@@ -17,12 +17,14 @@
         alert(selectobject.options[i].text + " " + selectobject.options[i].value)
     }</script>*@
 
-
+<br />
+<br />
+<br />
 <form>
         <select id="GPU">
-            @foreach (var parts in ViewBag.Parts)
+            @foreach (var gpu in ViewBag.GPUs)
             {
-                <option value="gpu">@parts["title"]</option>
+                <option value="chosenPart">@gpu["title"]</option>
             }
         </select>
     </form>
