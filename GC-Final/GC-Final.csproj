@@ -247,6 +247,7 @@
     <Compile Include="Models\CPU.cs">
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomModelConstructors.cs" />
     <Compile Include="Models\DAPSAppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
