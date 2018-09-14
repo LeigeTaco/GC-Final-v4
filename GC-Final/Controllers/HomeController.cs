@@ -17,7 +17,7 @@ namespace GC_Final.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.GPUs = GetGPUData(GetGPUs());
+            
             return View();
         }
 
@@ -25,18 +25,20 @@ namespace GC_Final.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            ViewBag.GPUs = GetGPUData(GetGPUs());
+
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = GetGPUs();
+            //ViewBag.Message = GetGPUs();
 
             return View();
         }
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Computer+Case&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]); //used to add keys
             //apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
