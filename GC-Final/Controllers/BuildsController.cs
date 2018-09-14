@@ -55,6 +55,7 @@ namespace GC_Final.Controllers
             GPU tempGPU = new GPU(gpu);
             ORM.GPUs.Add(tempGPU);
             UserBuild.GPU = tempGPU;
+            UserBuild.GPUCount = 1;
             CPU tempCPU = new CPU(cpu);
             ORM.CPUs.Add(tempCPU);
             UserBuild.CPU = tempCPU;

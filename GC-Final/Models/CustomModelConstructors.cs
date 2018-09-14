@@ -162,6 +162,12 @@ namespace GC_Final.Models
         public Build(string name)
         {
             BuildName = name;
+            Case = new Case();
+            Motherboard = new Motherboard();
+            CPU = new CPU();
+            PSU = new PSU();
+            GPU = new GPU();
+            GPUCount = 0;
         }
     }
 }
