@@ -21,9 +21,9 @@ namespace GC_Final.Controllers
         {
             BuildDetails temp = new BuildDetails();
             temp.Name = buildName;
-            PCEntities ORM = new PCEntities();
+            Entities ORM = new Entities();
             temp.MB = new MotherBoardDetails(ORM.Motherboards.Where(x => x.title.ToLower() == motherboard.ToLower()).ToArray()[0]);
-            temp.GPU.Add(new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]));
+            temp.GPU = new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]);
             temp.CPU = new CPUDetails(ORM.CPUs.Where(x => x.title.ToLower() == cpu.ToLower()).ToArray()[0]);
             temp.PSU = new PSUDetails(ORM.PSUs.Where(x => x.title.ToLower() == psu.ToLower()).ToArray()[0]);
             temp.Case = new CaseDetails(ORM.Cases.Where(x => x.title.ToLower() == casename.ToLower()).ToArray()[0]);
@@ -39,7 +39,7 @@ namespace GC_Final.Controllers
         //edit when given a buildID
         private ActionResult _Edit(string BuildID)
         {
-            PCEntities ORM = new PCEntities();
+            Entities ORM = new Entities();
 
             ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
             
@@ -48,7 +48,7 @@ namespace GC_Final.Controllers
 
         public ActionResult Edit(string id)
         {
-            PCEntities ORM = new PCEntities();
+            Entities ORM = new Entities();
 
             if(ORM.Builds.Where(x => x.BuildID == id).ToArray()[0].OwnerID == User.Identity.GetUserId())
             {
@@ -58,7 +58,7 @@ namespace GC_Final.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Display()
+        public ActionResult Display(string id)
         {
             return View();
         }

@@ -13,6 +13,7 @@ namespace GC_Final.Controllers
     {
 
         public string Name { set; get; }
+        public string ProductID { set; get; }
         public string Desc { set; get; }
         public string Brand { set; get; }
         public double Price { set { Price = value / 100; } get { return Price; } }
@@ -22,6 +23,7 @@ namespace GC_Final.Controllers
         public PartDetails()
         {
             Name = "";
+            ProductID = "";
             Desc = "";
             Brand = "";
             Price = 0.00;
@@ -37,6 +39,7 @@ namespace GC_Final.Controllers
         private List<PartDetails> _Bag;
 
         public int Count { get { return _Bag.Count; } }
+        public List<PartDetails> AsList { get { return _Bag; } }
         public Dictionary<string, int> Quantities {
             get
             {
@@ -66,6 +69,10 @@ namespace GC_Final.Controllers
         public void Remove(PartDetails part)
         {
             _Bag.Remove(part);
+        }
+        public List<PartDetails> ToList()
+        {
+            return _Bag;
         }
     }
 
@@ -141,6 +148,27 @@ namespace GC_Final.Controllers
             return Flags;
         }
         */
+
+        public BuildDetails()
+        {
+
+            Name = "";
+            OwnerID = "";
+            Case = new CaseDetails();
+            MB = new MotherBoardDetails();
+            CPU = new CPUDetails();
+            GPU = new GPUDetails();
+            GPUCount = 0;
+            PSU = new PSUDetails();
+            RAM = new PartBag();
+            Monitor = new PartBag();
+            OD = new PartBag();
+            HD = new PartBag();
+            PCI = new PartBag();
+            Peripherals = new PartBag();
+
+        }
+
         public BuildDetails(Build bass)
         {
 
@@ -311,9 +339,16 @@ namespace GC_Final.Controllers
 
     public class GPUDetails : PartDetails
     {
+        public string GPUID;
+
         public GPUDetails(GPU bass)
         {
 
+        }
+
+        public GPUDetails() : base()
+        {
+            GPUID = "";
         }
     }
 
@@ -335,6 +370,8 @@ namespace GC_Final.Controllers
 
     public class HDDetails : PartDetails
     {
+        public string HDID;
+
         public HDDetails(HardDrive bass)
         {
 

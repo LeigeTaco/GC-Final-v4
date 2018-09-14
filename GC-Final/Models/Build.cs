@@ -11,6 +11,7 @@ namespace GC_Final.Models
 {
     using System;
     using System.Collections.Generic;
+    using GC_Final.Controllers;
     
     public partial class Build
     {
@@ -52,5 +53,20 @@ namespace GC_Final.Models
         public virtual ICollection<BuildsPeripheral> BuildsPeripherals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildsRAM> BuildsRAMs { get; set; }
+
+        public Build(BuildDetails bass)
+        {
+
+            BuildName = bass.Name;
+            OwnerID = bass.OwnerID;
+            CaseID = bass.Case.CaseID;
+            MBID = bass.MB.MBID;
+            CPUID = bass.CPU.CPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUID = bass.GPU.GPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUCount = bass.GPUCount;
+            
+        }
     }
 }

@@ -221,57 +221,75 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Build.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildDisk.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildMonitor.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildOD.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildPCI.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildsPeripheral.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildsRAM.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Case.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CPU.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPSAppModels.Context.cs">
+    <Compile Include="Models\DAPSAppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPSAppModels.Context.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPSAppModels.cs">
+    <Compile Include="Models\DAPSAppModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAPSAppModels.Designer.cs">
+    <Compile Include="Models\DAPSAppModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DAPSAppModels.edmx</DependentUpon>
+      <DependentUpon>DAPSAppModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\GPU.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HardDrive.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Monitor.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Motherboard.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OpticalDriver.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PCICard.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Peripheral.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PSU.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RAM.cs">
-      <DependentUpon>DAPSAppModels.tt</DependentUpon>
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -285,27 +303,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DAPSAppModels.Context.tt">
+    <Content Include="Models\DAPSAppModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAPSAppModels.edmx</DependentUpon>
-      <LastGenOutput>DAPSAppModels.Context.cs</LastGenOutput>
+      <DependentUpon>DAPSAppModel.edmx</DependentUpon>
+      <LastGenOutput>DAPSAppModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DAPSAppModels.tt">
+    <Content Include="Models\DAPSAppModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAPSAppModels.edmx</DependentUpon>
-      <LastGenOutput>DAPSAppModels.cs</LastGenOutput>
+      <DependentUpon>DAPSAppModel.edmx</DependentUpon>
+      <LastGenOutput>DAPSAppModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\DAPSAppModels.edmx">
+    <EntityDeploy Include="Models\DAPSAppModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DAPSAppModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>DAPSAppModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DAPSAppModels.edmx.diagram">
-      <DependentUpon>DAPSAppModels.edmx</DependentUpon>
+    <Content Include="Models\DAPSAppModel.edmx.diagram">
+      <DependentUpon>DAPSAppModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
