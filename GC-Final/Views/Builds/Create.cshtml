@@ -18,9 +18,9 @@
                 @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
                 
                 <select id="Motherboard">
-                @foreach (var motherboard in ViewBag.Motherboard as IEnumerable<Motherboad>)
+                @foreach (var motherboard in ViewBag.Motherboards)
                 {
-                    <option value="@UserBuild.Value">@motherboard["title"]</option>
+                    <option value="GPU">@motherboard["title"]</option>
                 }
              </select>
             </div>
@@ -29,7 +29,7 @@
             <label>GPU</label>
             @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select id="GPU">
-                @foreach (var gpu in ViewBag.GPU)
+                @foreach (var gpu in ViewBag.GPUs)
                 {
                     <option value="1">@gpu["title"]</option>
                 }
@@ -39,7 +39,7 @@
             <label>CPU</label>
             @*<input type="text" id="cpu" name="cpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select id="CPU">
-                @foreach (var cpu in ViewBag.CPU)
+                @foreach (var cpu in ViewBag.CPUs)
                 {
                     <option value="1">@cpu["title"]</option>
                 }
@@ -49,7 +49,7 @@
             <label>PSU</label>
             @*<input type="text" id="psu" name="psu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select id="PSU">
-                @foreach (var psu in ViewBag.PSU)
+                @foreach (var psu in ViewBag.PSUs)
                 {
                     <option value="1">@psu["title"]</option>
                 }
@@ -59,7 +59,7 @@
             <label>Case</label>
             @*<input type="text" id="case" name="casename" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select id="Case">
-                @foreach (var pccase in ViewBag.Case)
+                @foreach (var pccase in ViewBag.Cases)
                 {
                     <option value="1">@pccase["title"]</option>
                 }
@@ -69,7 +69,7 @@
             <label>RAM</label>
             @*<input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select id="RAM">
-                @foreach (var ram in ViewBag.RAM)
+                @foreach (var ram in ViewBag.RAMs)
                 {
                     <option value="1">@ram["title"]</option>
                 }
