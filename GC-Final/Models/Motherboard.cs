@@ -25,13 +25,13 @@ namespace GC_Final.Models
         public string socket { get; set; }
         public string chipset { get; set; }
         public string memory_slots { get; set; }
-        public byte sli { get; set; }
-        public byte crossfire { get; set; }
+        public Nullable<byte> sli { get; set; }
+        public Nullable<byte> crossfire { get; set; }
         public string form_factor { get; set; }
         public string title { get; set; }
         public string product_description { get; set; }
         public string brand { get; set; }
-        public int price { get; set; }
+        public Nullable<int> price { get; set; }
         public string stars { get; set; }
         public byte[] main_image { get; set; }
         public string manufacturer { get; set; }

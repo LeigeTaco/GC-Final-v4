@@ -24,11 +24,11 @@ namespace GC_Final.Models
         public string product_id { get; set; }
         public string power_source { get; set; }
         public string product_dimensions { get; set; }
-        public int wattage { get; set; }
+        public Nullable<int> wattage { get; set; }
         public string title { get; set; }
         public string product_description { get; set; }
         public string brand { get; set; }
-        public int price { get; set; }
+        public Nullable<int> price { get; set; }
         public string stars { get; set; }
         public byte[] main_image { get; set; }
         public string manufacturer { get; set; }

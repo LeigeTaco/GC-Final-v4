@@ -22,17 +22,17 @@ namespace GC_Final.Models
     
         public string CaseID { get; set; }
         public string product_id { get; set; }
-        public int size { get; set; }
-        public int product_dimensions { get; set; }
-        public byte number_of_ports { get; set; }
+        public Nullable<int> size { get; set; }
+        public Nullable<int> product_dimensions { get; set; }
+        public Nullable<byte> number_of_ports { get; set; }
         public string drives { get; set; }
-        public bool ssd_support { get; set; }
+        public Nullable<bool> ssd_support { get; set; }
         public string ports { get; set; }
         public string style { get; set; }
         public string title { get; set; }
         public string product_description { get; set; }
         public string brand { get; set; }
-        public int price { get; set; }
+        public Nullable<int> price { get; set; }
         public string stars { get; set; }
         public byte[] main_image { get; set; }
     

@@ -24,14 +24,14 @@ namespace GC_Final.Models
         public string product_id { get; set; }
         public string cache { get; set; }
         public string wattage { get; set; }
-        public bool fan { get; set; }
+        public Nullable<bool> fan { get; set; }
         public string threads { get; set; }
         public string processing_units { get; set; }
         public string frequency { get; set; }
         public string title { get; set; }
         public string product_description { get; set; }
         public string brand { get; set; }
-        public int price { get; set; }
+        public Nullable<int> price { get; set; }
         public string stars { get; set; }
         public byte[] main_image { get; set; }
         public string manufacturer { get; set; }

@@ -22,16 +22,16 @@ namespace GC_Final.Models
     
         public string RAMID { get; set; }
         public string product_id { get; set; }
-        public int memory_speed { get; set; }
-        public int total_capacity { get; set; }
+        public Nullable<int> memory_speed { get; set; }
+        public Nullable<int> total_capacity { get; set; }
         public string compatibility { get; set; }
-        public int voltage { get; set; }
-        public byte processor_count { get; set; }
-        public int stick_quantity { get; set; }
+        public Nullable<int> voltage { get; set; }
+        public Nullable<byte> processor_count { get; set; }
+        public Nullable<int> stick_quantity { get; set; }
         public string title { get; set; }
         public string product_description { get; set; }
         public string brand { get; set; }
-        public int price { get; set; }
+        public Nullable<int> price { get; set; }
         public string stars { get; set; }
         public byte[] main_image { get; set; }
         public string manufacturer { get; set; }

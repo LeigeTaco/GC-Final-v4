@@ -4,51 +4,51 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAPSFinalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DAPSFinalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BuildDisks">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="HDID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="HDID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="BuildMonitors">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="MonitorID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MonitorID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="BuildODs">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="ODID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ODID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="BuildPCIs">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="PCIID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PCIID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Builds">
           <Key>
             <PropertyRef Name="BuildID" />
           </Key>
           <Property Name="BuildName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="OwnerID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="CaseID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="MBID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="CPUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="PSUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="GPUID" Type="nchar" MaxLength="36" />
+          <Property Name="OwnerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CaseID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MBID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CPUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PSUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="GPUID" Type="nvarchar" MaxLength="128" />
           <Property Name="GPUCount" Type="tinyint" />
         </EntityType>
         <EntityType Name="BuildsPeripherals">
@@ -56,81 +56,81 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="PerID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PerID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="BuildsRAM">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="RAMID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="BuildID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RAMID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Case">
           <Key>
             <PropertyRef Name="CaseID" />
           </Key>
-          <Property Name="CaseID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="size" Type="int" Nullable="false" />
-          <Property Name="product_dimensions" Type="int" Nullable="false" />
-          <Property Name="number_of_ports" Type="tinyint" Nullable="false" />
-          <Property Name="drives" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ssd_support" Type="bit" Nullable="false" />
-          <Property Name="ports" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="style" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CaseID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nchar" MaxLength="10" />
+          <Property Name="size" Type="int" />
+          <Property Name="product_dimensions" Type="int" />
+          <Property Name="number_of_ports" Type="tinyint" />
+          <Property Name="drives" Type="nvarchar" MaxLength="500" />
+          <Property Name="ssd_support" Type="bit" />
+          <Property Name="ports" Type="nvarchar" MaxLength="500" />
+          <Property Name="style" Type="nvarchar" MaxLength="500" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
         </EntityType>
         <EntityType Name="CPU">
           <Key>
             <PropertyRef Name="CPUID" />
           </Key>
-          <Property Name="CPUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="cache" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CPUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nchar" MaxLength="10" />
+          <Property Name="cache" Type="nvarchar" MaxLength="500" />
           <Property Name="wattage" Type="nvarchar" MaxLength="500" />
-          <Property Name="fan" Type="bit" Nullable="false" />
-          <Property Name="threads" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="processing_units" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="frequency" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="fan" Type="bit" />
+          <Property Name="threads" Type="nvarchar" MaxLength="500" />
+          <Property Name="processing_units" Type="nvarchar" MaxLength="500" />
+          <Property Name="frequency" Type="nvarchar" MaxLength="500" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
-          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
+          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="GPU">
           <Key>
             <PropertyRef Name="GPUID" />
           </Key>
-          <Property Name="GPUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="graphics" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="frequency" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="thermal_solution" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="socket_type" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="processing_units" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="GPUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nchar" MaxLength="10" />
+          <Property Name="graphics" Type="nvarchar" MaxLength="500" />
+          <Property Name="frequency" Type="nvarchar" MaxLength="500" />
+          <Property Name="thermal_solution" Type="nvarchar" MaxLength="500" />
+          <Property Name="socket_type" Type="nvarchar" MaxLength="500" />
+          <Property Name="processing_units" Type="nvarchar" MaxLength="500" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
-          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
+          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="HardDrive">
           <Key>
             <PropertyRef Name="HardDriveID" />
           </Key>
-          <Property Name="HardDriveID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="HardDriveID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="interface" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="size" Type="bit" Nullable="false" />
@@ -148,33 +148,33 @@
           <Key>
             <PropertyRef Name="MonitorID" />
           </Key>
-          <Property Name="MonitorID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="MonitorID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Motherboard">
           <Key>
             <PropertyRef Name="MotherboardID" />
           </Key>
-          <Property Name="MotherboardID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="socket" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="chipset" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="memory_slots" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="sli" Type="tinyint" Nullable="false" />
-          <Property Name="crossfire" Type="tinyint" Nullable="false" />
-          <Property Name="form_factor" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MotherboardID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nvarchar" MaxLength="500" />
+          <Property Name="socket" Type="nvarchar" MaxLength="500" />
+          <Property Name="chipset" Type="nvarchar" MaxLength="500" />
+          <Property Name="memory_slots" Type="nvarchar" MaxLength="500" />
+          <Property Name="sli" Type="tinyint" />
+          <Property Name="crossfire" Type="tinyint" />
+          <Property Name="form_factor" Type="nvarchar" MaxLength="500" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
-          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
+          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="OpticalDriver">
           <Key>
             <PropertyRef Name="OpticalDriverID" />
           </Key>
-          <Property Name="OpticalDriverID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="OpticalDriverID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="rewriteable" Type="bit" Nullable="false" />
           <Property Name="drive_type" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -194,7 +194,7 @@
           <Key>
             <PropertyRef Name="PCIcardID" />
           </Key>
-          <Property Name="PCIcardID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="PCIcardID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -208,7 +208,7 @@
           <Key>
             <PropertyRef Name="PeripheralsID" />
           </Key>
-          <Property Name="PeripheralsID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="PeripheralsID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -222,38 +222,38 @@
           <Key>
             <PropertyRef Name="PSUID" />
           </Key>
-          <Property Name="PSUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="power_source" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_dimensions" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="wattage" Type="int" Nullable="false" />
+          <Property Name="PSUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nchar" MaxLength="10" />
+          <Property Name="power_source" Type="nvarchar" MaxLength="500" />
+          <Property Name="product_dimensions" Type="nvarchar" MaxLength="500" />
+          <Property Name="wattage" Type="int" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
-          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
+          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="RAM">
           <Key>
             <PropertyRef Name="RAMID" />
           </Key>
-          <Property Name="RAMID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="product_id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="memory_speed" Type="int" Nullable="false" />
-          <Property Name="total_capacity" Type="int" Nullable="false" />
-          <Property Name="compatibility" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="voltage" Type="int" Nullable="false" />
-          <Property Name="processor_count" Type="tinyint" Nullable="false" />
-          <Property Name="stick_quantity" Type="int" Nullable="false" />
+          <Property Name="RAMID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="product_id" Type="nchar" MaxLength="10" />
+          <Property Name="memory_speed" Type="int" />
+          <Property Name="total_capacity" Type="int" />
+          <Property Name="compatibility" Type="nvarchar" MaxLength="500" />
+          <Property Name="voltage" Type="int" />
+          <Property Name="processor_count" Type="tinyint" />
+          <Property Name="stick_quantity" Type="int" />
           <Property Name="title" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="product_description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="stars" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="main_image" Type="image" Nullable="false" />
-          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="product_description" Type="nvarchar" MaxLength="500" />
+          <Property Name="brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="price" Type="int" />
+          <Property Name="stars" Type="nvarchar" MaxLength="20" />
+          <Property Name="main_image" Type="image" />
+          <Property Name="manufacturer" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_BuildDisks_Builds">
           <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
@@ -547,8 +547,7 @@
             <End Role="BuildsRAM" EntitySet="BuildsRAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAPSFinalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -557,8 +556,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="HDID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HDID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildDisks_Builds" FromRole="BuildDisks" ToRole="Builds" />
           <NavigationProperty Name="HardDrive" Relationship="Self.FK_BuildDisks_HardDrive" FromRole="BuildDisks" ToRole="HardDrive" />
         </EntityType>
@@ -567,8 +566,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="MonitorID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonitorID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildMonitors_Builds" FromRole="BuildMonitors" ToRole="Builds" />
           <NavigationProperty Name="Monitor" Relationship="Self.FK_BuildMonitors_Monitor" FromRole="BuildMonitors" ToRole="Monitor" />
         </EntityType>
@@ -577,8 +576,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="ODID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ODID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildODs_Builds" FromRole="BuildODs" ToRole="Builds" />
           <NavigationProperty Name="OpticalDriver" Relationship="Self.FK_BuildODs_OpticalDriver" FromRole="BuildODs" ToRole="OpticalDriver" />
         </EntityType>
@@ -587,8 +586,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PCIID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PCIID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildPCIs_Builds" FromRole="BuildPCIs" ToRole="Builds" />
           <NavigationProperty Name="PCICard" Relationship="Self.FK_BuildPCIs_PCICards" FromRole="BuildPCIs" ToRole="PCICards" />
         </EntityType>
@@ -597,13 +596,13 @@
             <PropertyRef Name="BuildID" />
           </Key>
           <Property Name="BuildName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OwnerID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="CaseID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="MBID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="CPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PSUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="GPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
+          <Property Name="OwnerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaseID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MBID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CPUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PSUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GPUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="GPUCount" Type="Byte" />
           <NavigationProperty Name="BuildDisks" Relationship="Self.FK_BuildDisks_Builds" FromRole="Builds" ToRole="BuildDisks" />
           <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Builds" FromRole="Builds" ToRole="BuildMonitors" />
@@ -622,8 +621,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PerID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildsPeripherals_Builds" FromRole="BuildsPeripherals" ToRole="Builds" />
           <NavigationProperty Name="Peripheral" Relationship="Self.FK_BuildsPeripherals_Peripherals" FromRole="BuildsPeripherals" ToRole="Peripherals" />
         </EntityType>
@@ -632,8 +631,8 @@
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="RAMID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BuildID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RAMID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Build" Relationship="Self.FK_BuildsRAM_Builds" FromRole="BuildsRAM" ToRole="Builds" />
           <NavigationProperty Name="RAM" Relationship="Self.FK_BuildsRAM_RAM" FromRole="BuildsRAM" ToRole="RAM" />
         </EntityType>
@@ -641,69 +640,69 @@
           <Key>
             <PropertyRef Name="CaseID" />
           </Key>
-          <Property Name="CaseID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="size" Type="Int32" Nullable="false" />
-          <Property Name="product_dimensions" Type="Int32" Nullable="false" />
-          <Property Name="number_of_ports" Type="Byte" Nullable="false" />
-          <Property Name="drives" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ssd_support" Type="Boolean" Nullable="false" />
-          <Property Name="ports" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="style" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaseID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="product_dimensions" Type="Int32" />
+          <Property Name="number_of_ports" Type="Byte" />
+          <Property Name="drives" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ssd_support" Type="Boolean" />
+          <Property Name="ports" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="style" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_Case" FromRole="Case" ToRole="Builds" />
         </EntityType>
         <EntityType Name="CPU">
           <Key>
             <PropertyRef Name="CPUID" />
           </Key>
-          <Property Name="CPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="cache" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CPUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cache" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="wattage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="fan" Type="Boolean" Nullable="false" />
-          <Property Name="threads" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="processing_units" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fan" Type="Boolean" />
+          <Property Name="threads" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="processing_units" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_CPU" FromRole="CPU" ToRole="Builds" />
         </EntityType>
         <EntityType Name="GPU">
           <Key>
             <PropertyRef Name="GPUID" />
           </Key>
-          <Property Name="GPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="graphics" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="thermal_solution" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="socket_type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="processing_units" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GPUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="graphics" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="thermal_solution" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="socket_type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="processing_units" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_GPU" FromRole="GPU" ToRole="Builds" />
         </EntityType>
         <EntityType Name="HardDrive">
           <Key>
             <PropertyRef Name="HardDriveID" />
           </Key>
-          <Property Name="HardDriveID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="HardDriveID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="interface" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="size" Type="Boolean" Nullable="false" />
@@ -722,35 +721,35 @@
           <Key>
             <PropertyRef Name="MonitorID" />
           </Key>
-          <Property Name="MonitorID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MonitorID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Monitor" FromRole="Monitor" ToRole="BuildMonitors" />
         </EntityType>
         <EntityType Name="Motherboard">
           <Key>
             <PropertyRef Name="MotherboardID" />
           </Key>
-          <Property Name="MotherboardID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="socket" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="chipset" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="memory_slots" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sli" Type="Byte" Nullable="false" />
-          <Property Name="crossfire" Type="Byte" Nullable="false" />
-          <Property Name="form_factor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MotherboardID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="socket" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="chipset" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="memory_slots" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="sli" Type="Byte" />
+          <Property Name="crossfire" Type="Byte" />
+          <Property Name="form_factor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_Motherboard" FromRole="Motherboard" ToRole="Builds" />
         </EntityType>
         <EntityType Name="OpticalDriver">
           <Key>
             <PropertyRef Name="OpticalDriverID" />
           </Key>
-          <Property Name="OpticalDriverID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="OpticalDriverID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="rewriteable" Type="Boolean" Nullable="false" />
           <Property Name="drive_type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -771,7 +770,7 @@
           <Key>
             <PropertyRef Name="PCIcardID" />
           </Key>
-          <Property Name="PCIcardID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PCIcardID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -786,7 +785,7 @@
           <Key>
             <PropertyRef Name="PeripheralsID" />
           </Key>
-          <Property Name="PeripheralsID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PeripheralsID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -801,39 +800,39 @@
           <Key>
             <PropertyRef Name="PSUID" />
           </Key>
-          <Property Name="PSUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="power_source" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_dimensions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="wattage" Type="Int32" Nullable="false" />
+          <Property Name="PSUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="power_source" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="product_dimensions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="wattage" Type="Int32" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_PSU" FromRole="PSU" ToRole="Builds" />
         </EntityType>
         <EntityType Name="RAM">
           <Key>
             <PropertyRef Name="RAMID" />
           </Key>
-          <Property Name="RAMID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="memory_speed" Type="Int32" Nullable="false" />
-          <Property Name="total_capacity" Type="Int32" Nullable="false" />
-          <Property Name="compatibility" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="voltage" Type="Int32" Nullable="false" />
-          <Property Name="processor_count" Type="Byte" Nullable="false" />
-          <Property Name="stick_quantity" Type="Int32" Nullable="false" />
+          <Property Name="RAMID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memory_speed" Type="Int32" />
+          <Property Name="total_capacity" Type="Int32" />
+          <Property Name="compatibility" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="voltage" Type="Int32" />
+          <Property Name="processor_count" Type="Byte" />
+          <Property Name="stick_quantity" Type="Int32" />
           <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BuildsRAMs" Relationship="Self.FK_BuildsRAM_RAM" FromRole="RAM" ToRole="BuildsRAM" />
         </EntityType>
         <Association Name="FK_BuildDisks_Builds">
