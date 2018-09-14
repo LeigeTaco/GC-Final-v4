@@ -35,7 +35,6 @@ namespace GC_Final.Controllers
 
     public class PartBag
     {
-        private int _Count;
         private List<PartDetails> _Bag;
 
         public int Count { get { return _Bag.Count; } }
