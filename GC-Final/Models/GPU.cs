@@ -14,6 +14,12 @@ namespace GC_Final.Models
     
     public partial class GPU
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GPU()
+        {
+            this.Builds = new HashSet<Build>();
+        }
+    
         public string GPUID { get; set; }
         public string product_id { get; set; }
         public string graphics { get; set; }
@@ -28,5 +34,8 @@ namespace GC_Final.Models
         public string stars { get; set; }
         public byte[] main_image { get; set; }
         public string manufacturer { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Build> Builds { get; set; }
     }
 }

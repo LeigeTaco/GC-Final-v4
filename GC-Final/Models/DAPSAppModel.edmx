@@ -47,8 +47,8 @@
           <Property Name="CaseID" Type="nchar" MaxLength="36" Nullable="false" />
           <Property Name="MBID" Type="nchar" MaxLength="36" Nullable="false" />
           <Property Name="CPUID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="PSU" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="GPUs" Type="nchar" MaxLength="36" />
+          <Property Name="PSUID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="GPUID" Type="nchar" MaxLength="36" />
           <Property Name="GPUCount" Type="tinyint" />
         </EntityType>
         <EntityType Name="BuildsPeripherals">
@@ -375,6 +375,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Builds_GPU">
+          <End Role="GPU" Type="Self.GPU" Multiplicity="0..1" />
+          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GPU">
+              <PropertyRef Name="GPUID" />
+            </Principal>
+            <Dependent Role="Builds">
+              <PropertyRef Name="GPUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Builds_Motherboard">
           <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
           <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
@@ -395,7 +407,7 @@
               <PropertyRef Name="PSUID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="PSU" />
+              <PropertyRef Name="PSUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -506,6 +518,10 @@
             <End Role="CPU" EntitySet="CPU" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
+          <AssociationSet Name="FK_Builds_GPU" Association="Self.FK_Builds_GPU">
+            <End Role="GPU" EntitySet="GPU" />
+            <End Role="Builds" EntitySet="Builds" />
+          </AssociationSet>
           <AssociationSet Name="FK_Builds_Motherboard" Association="Self.FK_Builds_Motherboard">
             <End Role="Motherboard" EntitySet="Motherboard" />
             <End Role="Builds" EntitySet="Builds" />
@@ -586,8 +602,8 @@
           <Property Name="CaseID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="MBID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PSU" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="GPUs" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
+          <Property Name="PSUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="GPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
           <Property Name="GPUCount" Type="Byte" />
           <NavigationProperty Name="BuildDisks" Relationship="Self.FK_BuildDisks_Builds" FromRole="Builds" ToRole="BuildDisks" />
           <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Builds" FromRole="Builds" ToRole="BuildMonitors" />
@@ -595,8 +611,9 @@
           <NavigationProperty Name="BuildPCIs" Relationship="Self.FK_BuildPCIs_Builds" FromRole="Builds" ToRole="BuildPCIs" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Builds_Case" FromRole="Builds" ToRole="Case" />
           <NavigationProperty Name="CPU" Relationship="Self.FK_Builds_CPU" FromRole="Builds" ToRole="CPU" />
+          <NavigationProperty Name="GPU" Relationship="Self.FK_Builds_GPU" FromRole="Builds" ToRole="GPU" />
           <NavigationProperty Name="Motherboard" Relationship="Self.FK_Builds_Motherboard" FromRole="Builds" ToRole="Motherboard" />
-          <NavigationProperty Name="PSU1" Relationship="Self.FK_Builds_PSU" FromRole="Builds" ToRole="PSU" />
+          <NavigationProperty Name="PSU" Relationship="Self.FK_Builds_PSU" FromRole="Builds" ToRole="PSU" />
           <NavigationProperty Name="BuildsPeripherals" Relationship="Self.FK_BuildsPeripherals_Builds" FromRole="Builds" ToRole="BuildsPeripherals" />
           <NavigationProperty Name="BuildsRAMs" Relationship="Self.FK_BuildsRAM_Builds" FromRole="Builds" ToRole="BuildsRAM" />
         </EntityType>
@@ -680,6 +697,7 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_GPU" FromRole="GPU" ToRole="Builds" />
         </EntityType>
         <EntityType Name="HardDrive">
           <Key>
@@ -938,6 +956,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Builds_GPU">
+          <End Role="GPU" Type="Self.GPU" Multiplicity="0..1" />
+          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GPU">
+              <PropertyRef Name="GPUID" />
+            </Principal>
+            <Dependent Role="Builds">
+              <PropertyRef Name="GPUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Builds_Motherboard">
           <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
           <End Role="Builds" Type="Self.Build" Multiplicity="*" />
@@ -958,7 +988,7 @@
               <PropertyRef Name="PSUID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="PSU" />
+              <PropertyRef Name="PSUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1069,6 +1099,10 @@
             <End Role="CPU" EntitySet="CPUs" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
+          <AssociationSet Name="FK_Builds_GPU" Association="Self.FK_Builds_GPU">
+            <End Role="GPU" EntitySet="GPUs" />
+            <End Role="Builds" EntitySet="Builds" />
+          </AssociationSet>
           <AssociationSet Name="FK_Builds_Motherboard" Association="Self.FK_Builds_Motherboard">
             <End Role="Motherboard" EntitySet="Motherboards" />
             <End Role="Builds" EntitySet="Builds" />
@@ -1145,8 +1179,8 @@
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
                 <ScalarProperty Name="MBID" ColumnName="MBID" />
                 <ScalarProperty Name="CPUID" ColumnName="CPUID" />
-                <ScalarProperty Name="PSU" ColumnName="PSU" />
-                <ScalarProperty Name="GPUs" ColumnName="GPUs" />
+                <ScalarProperty Name="PSUID" ColumnName="PSUID" />
+                <ScalarProperty Name="GPUID" ColumnName="GPUID" />
                 <ScalarProperty Name="GPUCount" ColumnName="GPUCount" />
               </MappingFragment>
             </EntityTypeMapping>

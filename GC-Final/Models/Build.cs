@@ -31,8 +31,8 @@ namespace GC_Final.Models
         public string CaseID { get; set; }
         public string MBID { get; set; }
         public string CPUID { get; set; }
-        public string PSU { get; set; }
-        public string GPUs { get; set; }
+        public string PSUID { get; set; }
+        public string GPUID { get; set; }
         public Nullable<byte> GPUCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,8 +45,9 @@ namespace GC_Final.Models
         public virtual ICollection<BuildPCI> BuildPCIs { get; set; }
         public virtual Case Case { get; set; }
         public virtual CPU CPU { get; set; }
+        public virtual GPU GPU { get; set; }
         public virtual Motherboard Motherboard { get; set; }
-        public virtual PSU PSU1 { get; set; }
+        public virtual PSU PSU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildsPeripheral> BuildsPeripherals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
