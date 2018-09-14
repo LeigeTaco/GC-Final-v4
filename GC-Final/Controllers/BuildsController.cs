@@ -31,6 +31,7 @@ namespace GC_Final.Controllers
         {
             BuildDetails temp = new BuildDetails();
             temp.Name = buildName;
+            temp.BuildID = Guid.NewGuid().ToString("D");
             Entities ORM = new Entities();
             temp.MB = new MotherBoardDetails(ORM.Motherboards.Where(x => x.title.ToLower() == motherboard.ToLower()).ToArray()[0]);
             temp.GPU = new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]);
@@ -79,8 +80,7 @@ namespace GC_Final.Controllers
         public JObject GetGPUs()
         {
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
-            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]); //used to add keys
-            //apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
+            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
 
@@ -97,28 +97,28 @@ namespace GC_Final.Controllers
 
         public List<JObject> GetGPUData(JObject jsoninfo)
         {
-            List<JObject> GPUs = new List<JObject>();
+            List<JObject> Parts = new List<JObject>();
             for (int i = 0; i <= 5; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
-                HttpWebRequest apiRequest1 = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
-                apiRequest1.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]); //used to add keys
-                apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
-                apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
+                HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
+                apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]); //used to add keys
+                apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
+                apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
-                HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
+                HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponse();
 
-                StreamReader responseData1 = new StreamReader(apiResponse1.GetResponseStream());
+                StreamReader responseData = new StreamReader(apiResponse.GetResponseStream());
 
-                string gpuinfo = responseData1.ReadToEnd();
+                string partinfo = responseData.ReadToEnd();
 
-                JObject Temp = JObject.Parse(gpuinfo);
+                JObject Temp = JObject.Parse(partinfo);
 
-                GPUs.Add(Temp);
+                Parts.Add(Temp);
             }
 
-            return GPUs;
+            return Parts;
         }
 
         public JObject GetCPUs()

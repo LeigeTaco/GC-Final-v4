@@ -58,6 +58,7 @@ namespace GC_Final.Models
         {
 
             BuildName = bass.Name;
+            BuildID = bass.BuildID;
             OwnerID = bass.OwnerID;
             CaseID = bass.Case.CaseID;
             MBID = bass.MB.MBID;

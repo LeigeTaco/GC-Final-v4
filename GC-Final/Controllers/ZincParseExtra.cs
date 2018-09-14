@@ -79,6 +79,7 @@ namespace GC_Final.Controllers
     {
         
         public string Name { set; get; }
+        public string BuildID { set; get; }
         public string OwnerID { set; get; }
         public CaseDetails Case { set; get; }
         public MotherBoardDetails MB { set; get; }

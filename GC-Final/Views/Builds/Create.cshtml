@@ -2,7 +2,8 @@
 ﻿@{
     ViewBag.Title = "Create";
 }
-
+<br />
+<br />
 <h2>Create Your Own Custom Build</h2>
 <br />
 <div class="container">
@@ -11,11 +12,11 @@
             <label>Name</label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
         </div>
         <div class="form-group">
-            <div class="custom-select" style="width:200px;">
+            @*<div class="custom-select" style="width:200px;">*@
                 <label>Motherboard</label>
                 @*<input type="text" id="motherboard" name="motherboard" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
 
-                <select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>   @*Get from db?*@
+                @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
                 
                 <select id="Motherboard">
                 @foreach (var motherboard in ViewBag.Motherboards)
@@ -23,7 +24,7 @@
                     <option value="GPU">@motherboard["title"]</option>
                 }
              </select>
-            </div>
+            @*</div>*@
         </div>
 
         <div class="form-group">
