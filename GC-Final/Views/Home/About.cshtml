@@ -1,7 +1,33 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+
+@*<form>
+    <select id="myselect">
+        <option value="cat">Option 1</option>
+        <option value="dog">Option 2</option>
+        <option value="bear">Option 3</option>
+    </select>
+</form>*@
+@*<script type="text/javascript">
+    var selectobject = document.getElementById("myselect")
+    for (var i = 0; i < selectobject.length; i++) {
+        alert(selectobject.options[i].text + " " + selectobject.options[i].value)
+    }</script>*@
+
+
+<form>
+        <select id="GPU">
+            @foreach (var parts in ViewBag.Parts)
+            {
+                <option value="gpu">@parts["title"]</option>
+            }
+        </select>
+    </form>
+<script type="text/javascript">
+    var selectobject = document.getElementById("myselect")
+    for (var i = 0; i < selectobject.length; i++) {
+        alert(selectobject.options[i].text + " " + selectobject.options[i].value)
+    }</script>

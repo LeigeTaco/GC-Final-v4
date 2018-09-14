@@ -17,13 +17,15 @@ namespace GC_Final.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.GPUs = GetGPUData(GetGPUs());
+            
             return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            ViewBag.GPUs = GetGPUData(GetGPUs());
 
             return View();
         }
