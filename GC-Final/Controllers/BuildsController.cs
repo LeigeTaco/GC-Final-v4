@@ -64,7 +64,6 @@ namespace GC_Final.Controllers
             ORM.Cases.Add(tempCase);
             UserBuild.Case = tempCase;
             RAM tempRAM = new RAM(ram);
-            UserBuild.OwnerID = "TURNER";
             ORM.RAMs.Add(tempRAM);
             ORM.SaveChanges();
             ORM.Builds.Add(UserBuild);
@@ -149,7 +148,7 @@ namespace GC_Final.Controllers
 
         public JObject GetCPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -237,7 +236,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetPSUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -280,7 +279,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetRAMs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
