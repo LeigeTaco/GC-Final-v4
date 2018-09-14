@@ -27,6 +27,7 @@ namespace GC_Final.Controllers
             return View();
         }
 
+
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram)
         {
             //BuildDetails temp = new BuildDetails();
@@ -46,6 +47,7 @@ namespace GC_Final.Controllers
 
             Entities ORM = new Entities();
             Build UserBuild = new Build(buildName);
+            UserBuild.OwnerID = User.Identity.GetUserId();
             Motherboard tempMB = new Motherboard(motherboard);
             ORM.Motherboards.Add(tempMB);
             UserBuild.Motherboard = tempMB;
