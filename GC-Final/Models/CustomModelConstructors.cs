@@ -140,4 +140,28 @@ namespace GC_Final.Models
             title = name;
         }
     }
+
+    public partial class Build
+    {
+        public Build(Controllers.BuildDetails bass)
+        {
+
+            BuildName = bass.Name;
+            BuildID = bass.BuildID;
+            OwnerID = bass.OwnerID;
+            CaseID = bass.Case.CaseID;
+            MBID = bass.MB.MBID;
+            CPUID = bass.CPU.CPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUID = bass.GPU.GPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUCount = bass.GPUCount;
+
+        }
+
+        public Build(string name)
+        {
+            BuildName = name;
+        }
+    }
 }

@@ -382,7 +382,7 @@ namespace GC_Final.Controllers
     {
         public MonitorDetails(Monitor bass)
         {
-
+            
         }
     }
 
@@ -398,7 +398,7 @@ namespace GC_Final.Controllers
     {
         public PCIDetails(PCICard bass)
         {
-
+            
         }
     }
 
