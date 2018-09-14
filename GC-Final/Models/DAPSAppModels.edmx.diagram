@@ -4,30 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e6cfd8e2dd214841a635c72a081edfe6" Name="Diagram1">
-        <EntityTypeShape EntityType="DAPSFinalDBModel.Build" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.Case" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.CPU" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.GPU" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.HardDrive" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.Monitor" Width="1.5" PointX="0.75" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.Motherboard" Width="1.5" PointX="0.75" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.OpticalDriver" Width="1.5" PointX="0.75" PointY="29.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.PCICard" Width="1.5" PointX="0.75" PointY="34.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.Peripheral" Width="1.5" PointX="0.75" PointY="38.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.PSU" Width="1.5" PointX="0.75" PointY="42.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAPSFinalDBModel.RAM" Width="1.5" PointX="0.75" PointY="46.375" IsExpanded="true" />
+      <Diagram DiagramId="a3238da5568748ed8b4f5a08660160ff" Name="Diagram1">
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildDisk" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildMonitor" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildOD" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildPCI" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.Build" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildsPeripheral" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.BuildsRAM" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.Case" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.CPU" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.GPU" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.HardDrive" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.Monitor" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.Motherboard" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.OpticalDriver" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.PCICard" Width="1.5" PointX="6" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.Peripheral" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.PSU" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.RAM" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildDisks_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildDisks_HardDrive" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildMonitors_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildMonitors_Monitor" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildODs_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildODs_OpticalDriver" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildPCIs_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildPCIs_PCICards" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_Case" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_CPU" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_GPU" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_HardDrive" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_Monitor" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_Motherboard" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_OpticalDriver" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_PCICards" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_Peripherals" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_PSU" ManuallyRouted="false" />
-        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_RAM" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsPeripherals_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsRAM_Builds" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsPeripherals_Peripherals" ManuallyRouted="false" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsRAM_RAM" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

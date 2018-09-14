@@ -12,17 +12,13 @@ namespace GC_Final.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Monitor
+    public partial class BuildsRAM
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Monitor()
-        {
-            this.BuildMonitors = new HashSet<BuildMonitor>();
-        }
+        public long TID { get; set; }
+        public string BuildID { get; set; }
+        public string RAMID { get; set; }
     
-        public string MonitorID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BuildMonitor> BuildMonitors { get; set; }
+        public virtual Build Build { get; set; }
+        public virtual RAM RAM { get; set; }
     }
 }

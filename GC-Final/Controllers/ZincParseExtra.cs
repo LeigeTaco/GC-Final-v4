@@ -77,7 +77,8 @@ namespace GC_Final.Controllers
         public CaseDetails Case { set; get; }
         public MotherBoardDetails MB { set; get; }
         public CPUDetails CPU { set; get; }
-        public PartBag GPU { set; get; }
+        public GPUDetails GPU { set; get; }
+        public byte GPUCount;
         public PSUDetails PSU { set; get; }
         public PartBag RAM { set; get; }
         public PartBag Monitor { set; get; }
@@ -85,6 +86,14 @@ namespace GC_Final.Controllers
         public PartBag HD { set; get; }
         public PartBag Peripherals { set; get; }
         public PartBag PCI { set; get; }
+
+        public BuildDetails(Build bass)
+        {
+
+            Name = bass.BuildName;
+            OwnerID = bass.OwnerID;
+
+        }
 
     }
 

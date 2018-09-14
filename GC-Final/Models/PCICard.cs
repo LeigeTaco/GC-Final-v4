@@ -17,7 +17,7 @@ namespace GC_Final.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PCICard()
         {
-            this.Builds = new HashSet<Build>();
+            this.BuildPCIs = new HashSet<BuildPCI>();
         }
     
         public string PCIcardID { get; set; }
@@ -31,6 +31,6 @@ namespace GC_Final.Models
         public string manufacturer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Build> Builds { get; set; }
+        public virtual ICollection<BuildPCI> BuildPCIs { get; set; }
     }
 }

@@ -14,36 +14,42 @@ namespace GC_Final.Models
     
     public partial class Build
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Build()
+        {
+            this.BuildDisks = new HashSet<BuildDisk>();
+            this.BuildMonitors = new HashSet<BuildMonitor>();
+            this.BuildODs = new HashSet<BuildOD>();
+            this.BuildPCIs = new HashSet<BuildPCI>();
+            this.BuildsPeripherals = new HashSet<BuildsPeripheral>();
+            this.BuildsRAMs = new HashSet<BuildsRAM>();
+        }
+    
         public string BuildName { get; set; }
         public string OwnerID { get; set; }
         public string BuildID { get; set; }
-        public string PCcase { get; set; }
-        public string Motherboard { get; set; }
-        public string CPU { get; set; }
-        public string GPU { get; set; }
+        public string CaseID { get; set; }
+        public string MBID { get; set; }
+        public string CPUID { get; set; }
         public string PSU { get; set; }
-        public string RAM { get; set; }
-        public string Monitor { get; set; }
-        public string OpticalDrives { get; set; }
-        public string HardDrive { get; set; }
-        public string Peripherals { get; set; }
-        public string PCIcard { get; set; }
+        public string GPUs { get; set; }
+        public Nullable<byte> GPUCount { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildDisk> BuildDisks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildMonitor> BuildMonitors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildOD> BuildODs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildPCI> BuildPCIs { get; set; }
         public virtual Case Case { get; set; }
-        public virtual CPU CPU1 { get; set; }
-        public virtual GPU GPU1 { get; set; }
-        public virtual HardDrive HardDrive1 { get; set; }
-        public virtual Monitor Monitor1 { get; set; }
-        public virtual Motherboard Motherboard1 { get; set; }
-        public virtual OpticalDriver OpticalDriver { get; set; }
-        public virtual PCICard PCICard1 { get; set; }
-        public virtual Peripheral Peripheral { get; set; }
+        public virtual CPU CPU { get; set; }
+        public virtual Motherboard Motherboard { get; set; }
         public virtual PSU PSU1 { get; set; }
-        public virtual RAM RAM1 { get; set; }
-
-        public Build(Controllers.BuildDetails bass)
-        {
-
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildsPeripheral> BuildsPeripherals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BuildsRAM> BuildsRAMs { get; set; }
     }
 }

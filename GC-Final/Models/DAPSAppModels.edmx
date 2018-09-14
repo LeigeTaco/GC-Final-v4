@@ -5,6 +5,38 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="DAPSFinalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BuildDisks">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="HDID" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildMonitors">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="MonitorID" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildODs">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="ODID" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildPCIs">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="PCIID" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
         <EntityType Name="Builds">
           <Key>
             <PropertyRef Name="BuildID" />
@@ -12,17 +44,28 @@
           <Property Name="BuildName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OwnerID" Type="nchar" MaxLength="36" Nullable="false" />
           <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="PCcase" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="Motherboard" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="CPU" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="GPU" Type="nchar" MaxLength="36" />
+          <Property Name="CaseID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="MBID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="CPUID" Type="nchar" MaxLength="36" Nullable="false" />
           <Property Name="PSU" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="RAM" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="Monitor" Type="nchar" MaxLength="36" />
-          <Property Name="OpticalDrives" Type="nchar" MaxLength="36" />
-          <Property Name="HardDrive" Type="nchar" MaxLength="36" Nullable="false" />
-          <Property Name="Peripherals" Type="nchar" MaxLength="36" />
-          <Property Name="PCIcard" Type="nchar" MaxLength="36" />
+          <Property Name="GPUs" Type="nchar" MaxLength="36" />
+          <Property Name="GPUCount" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="BuildsPeripherals">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="PerID" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildsRAM">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildID" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="RAMID" Type="nchar" MaxLength="36" Nullable="false" />
         </EntityType>
         <EntityType Name="Case">
           <Key>
@@ -212,6 +255,102 @@
           <Property Name="main_image" Type="image" Nullable="false" />
           <Property Name="manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BuildDisks_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildDisks" Type="Self.BuildDisks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildDisks">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildDisks_HardDrive">
+          <End Role="HardDrive" Type="Self.HardDrive" Multiplicity="1" />
+          <End Role="BuildDisks" Type="Self.BuildDisks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HardDrive">
+              <PropertyRef Name="HardDriveID" />
+            </Principal>
+            <Dependent Role="BuildDisks">
+              <PropertyRef Name="HDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMonitors_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildMonitors" Type="Self.BuildMonitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildMonitors">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMonitors_Monitor">
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
+          <End Role="BuildMonitors" Type="Self.BuildMonitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monitor">
+              <PropertyRef Name="MonitorID" />
+            </Principal>
+            <Dependent Role="BuildMonitors">
+              <PropertyRef Name="MonitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildODs_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildODs" Type="Self.BuildODs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildODs">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildODs_OpticalDriver">
+          <End Role="OpticalDriver" Type="Self.OpticalDriver" Multiplicity="1" />
+          <End Role="BuildODs" Type="Self.BuildODs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpticalDriver">
+              <PropertyRef Name="OpticalDriverID" />
+            </Principal>
+            <Dependent Role="BuildODs">
+              <PropertyRef Name="ODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildPCIs_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildPCIs" Type="Self.BuildPCIs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildPCIs">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildPCIs_PCICards">
+          <End Role="PCICards" Type="Self.PCICards" Multiplicity="1" />
+          <End Role="BuildPCIs" Type="Self.BuildPCIs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCICards">
+              <PropertyRef Name="PCIcardID" />
+            </Principal>
+            <Dependent Role="BuildPCIs">
+              <PropertyRef Name="PCIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Builds_Case">
           <End Role="Case" Type="Self.Case" Multiplicity="1" />
           <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
@@ -220,7 +359,7 @@
               <PropertyRef Name="CaseID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="PCcase" />
+              <PropertyRef Name="CaseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,43 +371,7 @@
               <PropertyRef Name="CPUID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="CPU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_GPU">
-          <End Role="GPU" Type="Self.GPU" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GPU">
-              <PropertyRef Name="GPUID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="GPU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_HardDrive">
-          <End Role="HardDrive" Type="Self.HardDrive" Multiplicity="1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HardDrive">
-              <PropertyRef Name="HardDriveID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="HardDrive" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_Monitor">
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monitor">
-              <PropertyRef Name="MonitorID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="Monitor" />
+              <PropertyRef Name="CPUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -280,43 +383,7 @@
               <PropertyRef Name="MotherboardID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="Motherboard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_OpticalDriver">
-          <End Role="OpticalDriver" Type="Self.OpticalDriver" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OpticalDriver">
-              <PropertyRef Name="OpticalDriverID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="OpticalDrives" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_PCICards">
-          <End Role="PCICards" Type="Self.PCICards" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PCICards">
-              <PropertyRef Name="PCIcardID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="PCIcard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_Peripherals">
-          <End Role="Peripherals" Type="Self.Peripherals" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Peripherals">
-              <PropertyRef Name="PeripheralsID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="Peripherals" />
+              <PropertyRef Name="MBID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -332,20 +399,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Builds_RAM">
+        <Association Name="FK_BuildsPeripherals_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildsPeripherals" Type="Self.BuildsPeripherals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildsPeripherals">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsPeripherals_Peripherals">
+          <End Role="Peripherals" Type="Self.Peripherals" Multiplicity="1" />
+          <End Role="BuildsPeripherals" Type="Self.BuildsPeripherals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peripherals">
+              <PropertyRef Name="PeripheralsID" />
+            </Principal>
+            <Dependent Role="BuildsPeripherals">
+              <PropertyRef Name="PerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsRAM_Builds">
+          <End Role="Builds" Type="Self.Builds" Multiplicity="1" />
+          <End Role="BuildsRAM" Type="Self.BuildsRAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildsRAM">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsRAM_RAM">
           <End Role="RAM" Type="Self.RAM" Multiplicity="1" />
-          <End Role="Builds" Type="Self.Builds" Multiplicity="*" />
+          <End Role="BuildsRAM" Type="Self.BuildsRAM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RAM">
               <PropertyRef Name="RAMID" />
             </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="RAM" />
+            <Dependent Role="BuildsRAM">
+              <PropertyRef Name="RAMID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DAPSFinalDBModelStoreContainer">
+          <EntitySet Name="BuildDisks" EntityType="Self.BuildDisks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildMonitors" EntityType="Self.BuildMonitors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildODs" EntityType="Self.BuildODs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildPCIs" EntityType="Self.BuildPCIs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Builds" EntityType="Self.Builds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildsPeripherals" EntityType="Self.BuildsPeripherals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildsRAM" EntityType="Self.BuildsRAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CPU" EntityType="Self.CPU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GPU" EntityType="Self.GPU" Schema="dbo" store:Type="Tables" />
@@ -357,6 +466,38 @@
           <EntitySet Name="Peripherals" EntityType="Self.Peripherals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PSU" EntityType="Self.PSU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BuildDisks_Builds" Association="Self.FK_BuildDisks_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildDisks" EntitySet="BuildDisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildDisks_HardDrive" Association="Self.FK_BuildDisks_HardDrive">
+            <End Role="HardDrive" EntitySet="HardDrive" />
+            <End Role="BuildDisks" EntitySet="BuildDisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMonitors_Builds" Association="Self.FK_BuildMonitors_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildMonitors" EntitySet="BuildMonitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMonitors_Monitor" Association="Self.FK_BuildMonitors_Monitor">
+            <End Role="Monitor" EntitySet="Monitor" />
+            <End Role="BuildMonitors" EntitySet="BuildMonitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildODs_Builds" Association="Self.FK_BuildODs_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildODs" EntitySet="BuildODs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildODs_OpticalDriver" Association="Self.FK_BuildODs_OpticalDriver">
+            <End Role="OpticalDriver" EntitySet="OpticalDriver" />
+            <End Role="BuildODs" EntitySet="BuildODs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildPCIs_Builds" Association="Self.FK_BuildPCIs_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildPCIs" EntitySet="BuildPCIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildPCIs_PCICards" Association="Self.FK_BuildPCIs_PCICards">
+            <End Role="PCICards" EntitySet="PCICards" />
+            <End Role="BuildPCIs" EntitySet="BuildPCIs" />
+          </AssociationSet>
           <AssociationSet Name="FK_Builds_Case" Association="Self.FK_Builds_Case">
             <End Role="Case" EntitySet="Case" />
             <End Role="Builds" EntitySet="Builds" />
@@ -365,41 +506,29 @@
             <End Role="CPU" EntitySet="CPU" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Builds_GPU" Association="Self.FK_Builds_GPU">
-            <End Role="GPU" EntitySet="GPU" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_HardDrive" Association="Self.FK_Builds_HardDrive">
-            <End Role="HardDrive" EntitySet="HardDrive" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_Monitor" Association="Self.FK_Builds_Monitor">
-            <End Role="Monitor" EntitySet="Monitor" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
           <AssociationSet Name="FK_Builds_Motherboard" Association="Self.FK_Builds_Motherboard">
             <End Role="Motherboard" EntitySet="Motherboard" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_OpticalDriver" Association="Self.FK_Builds_OpticalDriver">
-            <End Role="OpticalDriver" EntitySet="OpticalDriver" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_PCICards" Association="Self.FK_Builds_PCICards">
-            <End Role="PCICards" EntitySet="PCICards" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_Peripherals" Association="Self.FK_Builds_Peripherals">
-            <End Role="Peripherals" EntitySet="Peripherals" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
           <AssociationSet Name="FK_Builds_PSU" Association="Self.FK_Builds_PSU">
             <End Role="PSU" EntitySet="PSU" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Builds_RAM" Association="Self.FK_Builds_RAM">
-            <End Role="RAM" EntitySet="RAM" />
+          <AssociationSet Name="FK_BuildsPeripherals_Builds" Association="Self.FK_BuildsPeripherals_Builds">
             <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildsPeripherals" EntitySet="BuildsPeripherals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsPeripherals_Peripherals" Association="Self.FK_BuildsPeripherals_Peripherals">
+            <End Role="Peripherals" EntitySet="Peripherals" />
+            <End Role="BuildsPeripherals" EntitySet="BuildsPeripherals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsRAM_Builds" Association="Self.FK_BuildsRAM_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildsRAM" EntitySet="BuildsRAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsRAM_RAM" Association="Self.FK_BuildsRAM_RAM">
+            <End Role="RAM" EntitySet="RAM" />
+            <End Role="BuildsRAM" EntitySet="BuildsRAM" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -407,6 +536,46 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAPSFinalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BuildDisk">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="HDID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildDisks_Builds" FromRole="BuildDisks" ToRole="Builds" />
+          <NavigationProperty Name="HardDrive" Relationship="Self.FK_BuildDisks_HardDrive" FromRole="BuildDisks" ToRole="HardDrive" />
+        </EntityType>
+        <EntityType Name="BuildMonitor">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MonitorID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildMonitors_Builds" FromRole="BuildMonitors" ToRole="Builds" />
+          <NavigationProperty Name="Monitor" Relationship="Self.FK_BuildMonitors_Monitor" FromRole="BuildMonitors" ToRole="Monitor" />
+        </EntityType>
+        <EntityType Name="BuildOD">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ODID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildODs_Builds" FromRole="BuildODs" ToRole="Builds" />
+          <NavigationProperty Name="OpticalDriver" Relationship="Self.FK_BuildODs_OpticalDriver" FromRole="BuildODs" ToRole="OpticalDriver" />
+        </EntityType>
+        <EntityType Name="BuildPCI">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PCIID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildPCIs_Builds" FromRole="BuildPCIs" ToRole="Builds" />
+          <NavigationProperty Name="PCICard" Relationship="Self.FK_BuildPCIs_PCICards" FromRole="BuildPCIs" ToRole="PCICards" />
+        </EntityType>
         <EntityType Name="Build">
           <Key>
             <PropertyRef Name="BuildID" />
@@ -414,28 +583,42 @@
           <Property Name="BuildName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OwnerID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PCcase" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Motherboard" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="CPU" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="GPU" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
+          <Property Name="CaseID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MBID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CPUID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PSU" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="RAM" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Monitor" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
-          <Property Name="OpticalDrives" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
-          <Property Name="HardDrive" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Peripherals" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
-          <Property Name="PCIcard" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
+          <Property Name="GPUs" Type="String" MaxLength="36" FixedLength="true" Unicode="true" />
+          <Property Name="GPUCount" Type="Byte" />
+          <NavigationProperty Name="BuildDisks" Relationship="Self.FK_BuildDisks_Builds" FromRole="Builds" ToRole="BuildDisks" />
+          <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Builds" FromRole="Builds" ToRole="BuildMonitors" />
+          <NavigationProperty Name="BuildODs" Relationship="Self.FK_BuildODs_Builds" FromRole="Builds" ToRole="BuildODs" />
+          <NavigationProperty Name="BuildPCIs" Relationship="Self.FK_BuildPCIs_Builds" FromRole="Builds" ToRole="BuildPCIs" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Builds_Case" FromRole="Builds" ToRole="Case" />
-          <NavigationProperty Name="CPU1" Relationship="Self.FK_Builds_CPU" FromRole="Builds" ToRole="CPU" />
-          <NavigationProperty Name="GPU1" Relationship="Self.FK_Builds_GPU" FromRole="Builds" ToRole="GPU" />
-          <NavigationProperty Name="HardDrive1" Relationship="Self.FK_Builds_HardDrive" FromRole="Builds" ToRole="HardDrive" />
-          <NavigationProperty Name="Monitor1" Relationship="Self.FK_Builds_Monitor" FromRole="Builds" ToRole="Monitor" />
-          <NavigationProperty Name="Motherboard1" Relationship="Self.FK_Builds_Motherboard" FromRole="Builds" ToRole="Motherboard" />
-          <NavigationProperty Name="OpticalDriver" Relationship="Self.FK_Builds_OpticalDriver" FromRole="Builds" ToRole="OpticalDriver" />
-          <NavigationProperty Name="PCICard1" Relationship="Self.FK_Builds_PCICards" FromRole="Builds" ToRole="PCICards" />
-          <NavigationProperty Name="Peripheral" Relationship="Self.FK_Builds_Peripherals" FromRole="Builds" ToRole="Peripherals" />
+          <NavigationProperty Name="CPU" Relationship="Self.FK_Builds_CPU" FromRole="Builds" ToRole="CPU" />
+          <NavigationProperty Name="Motherboard" Relationship="Self.FK_Builds_Motherboard" FromRole="Builds" ToRole="Motherboard" />
           <NavigationProperty Name="PSU1" Relationship="Self.FK_Builds_PSU" FromRole="Builds" ToRole="PSU" />
-          <NavigationProperty Name="RAM1" Relationship="Self.FK_Builds_RAM" FromRole="Builds" ToRole="RAM" />
+          <NavigationProperty Name="BuildsPeripherals" Relationship="Self.FK_BuildsPeripherals_Builds" FromRole="Builds" ToRole="BuildsPeripherals" />
+          <NavigationProperty Name="BuildsRAMs" Relationship="Self.FK_BuildsRAM_Builds" FromRole="Builds" ToRole="BuildsRAM" />
+        </EntityType>
+        <EntityType Name="BuildsPeripheral">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PerID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildsPeripherals_Builds" FromRole="BuildsPeripherals" ToRole="Builds" />
+          <NavigationProperty Name="Peripheral" Relationship="Self.FK_BuildsPeripherals_Peripherals" FromRole="BuildsPeripherals" ToRole="Peripherals" />
+        </EntityType>
+        <EntityType Name="BuildsRAM">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="RAMID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_BuildsRAM_Builds" FromRole="BuildsRAM" ToRole="Builds" />
+          <NavigationProperty Name="RAM" Relationship="Self.FK_BuildsRAM_RAM" FromRole="BuildsRAM" ToRole="RAM" />
         </EntityType>
         <EntityType Name="Case">
           <Key>
@@ -497,7 +680,6 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_GPU" FromRole="GPU" ToRole="Builds" />
         </EntityType>
         <EntityType Name="HardDrive">
           <Key>
@@ -516,14 +698,14 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_HardDrive" FromRole="HardDrive" ToRole="Builds" />
+          <NavigationProperty Name="BuildDisks" Relationship="Self.FK_BuildDisks_HardDrive" FromRole="HardDrive" ToRole="BuildDisks" />
         </EntityType>
         <EntityType Name="Monitor">
           <Key>
             <PropertyRef Name="MonitorID" />
           </Key>
           <Property Name="MonitorID" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_Monitor" FromRole="Monitor" ToRole="Builds" />
+          <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Monitor" FromRole="Monitor" ToRole="BuildMonitors" />
         </EntityType>
         <EntityType Name="Motherboard">
           <Key>
@@ -565,7 +747,7 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_OpticalDriver" FromRole="OpticalDriver" ToRole="Builds" />
+          <NavigationProperty Name="BuildODs" Relationship="Self.FK_BuildODs_OpticalDriver" FromRole="OpticalDriver" ToRole="BuildODs" />
         </EntityType>
         <EntityType Name="PCICard">
           <Key>
@@ -580,7 +762,7 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_PCICards" FromRole="PCICards" ToRole="Builds" />
+          <NavigationProperty Name="BuildPCIs" Relationship="Self.FK_BuildPCIs_PCICards" FromRole="PCICards" ToRole="BuildPCIs" />
         </EntityType>
         <EntityType Name="Peripheral">
           <Key>
@@ -595,7 +777,7 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_Peripherals" FromRole="Peripherals" ToRole="Builds" />
+          <NavigationProperty Name="BuildsPeripherals" Relationship="Self.FK_BuildsPeripherals_Peripherals" FromRole="Peripherals" ToRole="BuildsPeripherals" />
         </EntityType>
         <EntityType Name="PSU">
           <Key>
@@ -634,8 +816,104 @@
           <Property Name="stars" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="main_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_RAM" FromRole="RAM" ToRole="Builds" />
+          <NavigationProperty Name="BuildsRAMs" Relationship="Self.FK_BuildsRAM_RAM" FromRole="RAM" ToRole="BuildsRAM" />
         </EntityType>
+        <Association Name="FK_BuildDisks_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildDisks" Type="Self.BuildDisk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildDisks">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildDisks_HardDrive">
+          <End Role="HardDrive" Type="Self.HardDrive" Multiplicity="1" />
+          <End Role="BuildDisks" Type="Self.BuildDisk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HardDrive">
+              <PropertyRef Name="HardDriveID" />
+            </Principal>
+            <Dependent Role="BuildDisks">
+              <PropertyRef Name="HDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMonitors_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildMonitors" Type="Self.BuildMonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildMonitors">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildMonitors_Monitor">
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
+          <End Role="BuildMonitors" Type="Self.BuildMonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monitor">
+              <PropertyRef Name="MonitorID" />
+            </Principal>
+            <Dependent Role="BuildMonitors">
+              <PropertyRef Name="MonitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildODs_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildODs" Type="Self.BuildOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildODs">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildODs_OpticalDriver">
+          <End Role="OpticalDriver" Type="Self.OpticalDriver" Multiplicity="1" />
+          <End Role="BuildODs" Type="Self.BuildOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpticalDriver">
+              <PropertyRef Name="OpticalDriverID" />
+            </Principal>
+            <Dependent Role="BuildODs">
+              <PropertyRef Name="ODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildPCIs_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildPCIs" Type="Self.BuildPCI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildPCIs">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildPCIs_PCICards">
+          <End Role="PCICards" Type="Self.PCICard" Multiplicity="1" />
+          <End Role="BuildPCIs" Type="Self.BuildPCI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PCICards">
+              <PropertyRef Name="PCIcardID" />
+            </Principal>
+            <Dependent Role="BuildPCIs">
+              <PropertyRef Name="PCIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Builds_Case">
           <End Role="Case" Type="Self.Case" Multiplicity="1" />
           <End Role="Builds" Type="Self.Build" Multiplicity="*" />
@@ -644,7 +922,7 @@
               <PropertyRef Name="CaseID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="PCcase" />
+              <PropertyRef Name="CaseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -656,43 +934,7 @@
               <PropertyRef Name="CPUID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="CPU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_GPU">
-          <End Role="GPU" Type="Self.GPU" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GPU">
-              <PropertyRef Name="GPUID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="GPU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_HardDrive">
-          <End Role="HardDrive" Type="Self.HardDrive" Multiplicity="1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HardDrive">
-              <PropertyRef Name="HardDriveID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="HardDrive" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_Monitor">
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monitor">
-              <PropertyRef Name="MonitorID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="Monitor" />
+              <PropertyRef Name="CPUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -704,43 +946,7 @@
               <PropertyRef Name="MotherboardID" />
             </Principal>
             <Dependent Role="Builds">
-              <PropertyRef Name="Motherboard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_OpticalDriver">
-          <End Role="OpticalDriver" Type="Self.OpticalDriver" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OpticalDriver">
-              <PropertyRef Name="OpticalDriverID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="OpticalDrives" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_PCICards">
-          <End Role="PCICards" Type="Self.PCICard" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PCICards">
-              <PropertyRef Name="PCIcardID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="PCIcard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Builds_Peripherals">
-          <End Role="Peripherals" Type="Self.Peripheral" Multiplicity="0..1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Peripherals">
-              <PropertyRef Name="PeripheralsID" />
-            </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="Peripherals" />
+              <PropertyRef Name="MBID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -756,20 +962,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Builds_RAM">
+        <Association Name="FK_BuildsPeripherals_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildsPeripherals" Type="Self.BuildsPeripheral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildsPeripherals">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsRAM_Builds">
+          <End Role="Builds" Type="Self.Build" Multiplicity="1" />
+          <End Role="BuildsRAM" Type="Self.BuildsRAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Builds">
+              <PropertyRef Name="BuildID" />
+            </Principal>
+            <Dependent Role="BuildsRAM">
+              <PropertyRef Name="BuildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsPeripherals_Peripherals">
+          <End Role="Peripherals" Type="Self.Peripheral" Multiplicity="1" />
+          <End Role="BuildsPeripherals" Type="Self.BuildsPeripheral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peripherals">
+              <PropertyRef Name="PeripheralsID" />
+            </Principal>
+            <Dependent Role="BuildsPeripherals">
+              <PropertyRef Name="PerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildsRAM_RAM">
           <End Role="RAM" Type="Self.RAM" Multiplicity="1" />
-          <End Role="Builds" Type="Self.Build" Multiplicity="*" />
+          <End Role="BuildsRAM" Type="Self.BuildsRAM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RAM">
               <PropertyRef Name="RAMID" />
             </Principal>
-            <Dependent Role="Builds">
-              <PropertyRef Name="RAM" />
+            <Dependent Role="BuildsRAM">
+              <PropertyRef Name="RAMID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PCEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BuildDisks" EntityType="Self.BuildDisk" />
+          <EntitySet Name="BuildMonitors" EntityType="Self.BuildMonitor" />
+          <EntitySet Name="BuildODs" EntityType="Self.BuildOD" />
+          <EntitySet Name="BuildPCIs" EntityType="Self.BuildPCI" />
           <EntitySet Name="Builds" EntityType="Self.Build" />
+          <EntitySet Name="BuildsPeripherals" EntityType="Self.BuildsPeripheral" />
+          <EntitySet Name="BuildsRAMs" EntityType="Self.BuildsRAM" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="CPUs" EntityType="Self.CPU" />
           <EntitySet Name="GPUs" EntityType="Self.GPU" />
@@ -781,6 +1029,38 @@
           <EntitySet Name="Peripherals" EntityType="Self.Peripheral" />
           <EntitySet Name="PSUs" EntityType="Self.PSU" />
           <EntitySet Name="RAMs" EntityType="Self.RAM" />
+          <AssociationSet Name="FK_BuildDisks_Builds" Association="Self.FK_BuildDisks_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildDisks" EntitySet="BuildDisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildDisks_HardDrive" Association="Self.FK_BuildDisks_HardDrive">
+            <End Role="HardDrive" EntitySet="HardDrives" />
+            <End Role="BuildDisks" EntitySet="BuildDisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMonitors_Builds" Association="Self.FK_BuildMonitors_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildMonitors" EntitySet="BuildMonitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildMonitors_Monitor" Association="Self.FK_BuildMonitors_Monitor">
+            <End Role="Monitor" EntitySet="Monitors" />
+            <End Role="BuildMonitors" EntitySet="BuildMonitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildODs_Builds" Association="Self.FK_BuildODs_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildODs" EntitySet="BuildODs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildODs_OpticalDriver" Association="Self.FK_BuildODs_OpticalDriver">
+            <End Role="OpticalDriver" EntitySet="OpticalDrivers" />
+            <End Role="BuildODs" EntitySet="BuildODs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildPCIs_Builds" Association="Self.FK_BuildPCIs_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildPCIs" EntitySet="BuildPCIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildPCIs_PCICards" Association="Self.FK_BuildPCIs_PCICards">
+            <End Role="PCICards" EntitySet="PCICards" />
+            <End Role="BuildPCIs" EntitySet="BuildPCIs" />
+          </AssociationSet>
           <AssociationSet Name="FK_Builds_Case" Association="Self.FK_Builds_Case">
             <End Role="Case" EntitySet="Cases" />
             <End Role="Builds" EntitySet="Builds" />
@@ -789,41 +1069,29 @@
             <End Role="CPU" EntitySet="CPUs" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Builds_GPU" Association="Self.FK_Builds_GPU">
-            <End Role="GPU" EntitySet="GPUs" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_HardDrive" Association="Self.FK_Builds_HardDrive">
-            <End Role="HardDrive" EntitySet="HardDrives" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_Monitor" Association="Self.FK_Builds_Monitor">
-            <End Role="Monitor" EntitySet="Monitors" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
           <AssociationSet Name="FK_Builds_Motherboard" Association="Self.FK_Builds_Motherboard">
             <End Role="Motherboard" EntitySet="Motherboards" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_OpticalDriver" Association="Self.FK_Builds_OpticalDriver">
-            <End Role="OpticalDriver" EntitySet="OpticalDrivers" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_PCICards" Association="Self.FK_Builds_PCICards">
-            <End Role="PCICards" EntitySet="PCICards" />
-            <End Role="Builds" EntitySet="Builds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Builds_Peripherals" Association="Self.FK_Builds_Peripherals">
-            <End Role="Peripherals" EntitySet="Peripherals" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
           <AssociationSet Name="FK_Builds_PSU" Association="Self.FK_Builds_PSU">
             <End Role="PSU" EntitySet="PSUs" />
             <End Role="Builds" EntitySet="Builds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Builds_RAM" Association="Self.FK_Builds_RAM">
-            <End Role="RAM" EntitySet="RAMs" />
+          <AssociationSet Name="FK_BuildsPeripherals_Builds" Association="Self.FK_BuildsPeripherals_Builds">
             <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildsPeripherals" EntitySet="BuildsPeripherals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsRAM_Builds" Association="Self.FK_BuildsRAM_Builds">
+            <End Role="Builds" EntitySet="Builds" />
+            <End Role="BuildsRAM" EntitySet="BuildsRAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsPeripherals_Peripherals" Association="Self.FK_BuildsPeripherals_Peripherals">
+            <End Role="Peripherals" EntitySet="Peripherals" />
+            <End Role="BuildsPeripherals" EntitySet="BuildsPeripherals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildsRAM_RAM" Association="Self.FK_BuildsRAM_RAM">
+            <End Role="RAM" EntitySet="RAMs" />
+            <End Role="BuildsRAM" EntitySet="BuildsRAMs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -831,24 +1099,73 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DAPSFinalDBModelStoreContainer" CdmEntityContainer="PCEntities">
+        <EntityContainerMapping StorageEntityContainer="DAPSFinalDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BuildDisks">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildDisk">
+              <MappingFragment StoreEntitySet="BuildDisks">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="HDID" ColumnName="HDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildMonitors">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildMonitor">
+              <MappingFragment StoreEntitySet="BuildMonitors">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="MonitorID" ColumnName="MonitorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildODs">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildOD">
+              <MappingFragment StoreEntitySet="BuildODs">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="ODID" ColumnName="ODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildPCIs">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildPCI">
+              <MappingFragment StoreEntitySet="BuildPCIs">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="PCIID" ColumnName="PCIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Builds">
             <EntityTypeMapping TypeName="DAPSFinalDBModel.Build">
               <MappingFragment StoreEntitySet="Builds">
                 <ScalarProperty Name="BuildName" ColumnName="BuildName" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="BuildID" ColumnName="BuildID" />
-                <ScalarProperty Name="PCcase" ColumnName="PCcase" />
-                <ScalarProperty Name="Motherboard" ColumnName="Motherboard" />
-                <ScalarProperty Name="CPU" ColumnName="CPU" />
-                <ScalarProperty Name="GPU" ColumnName="GPU" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="MBID" ColumnName="MBID" />
+                <ScalarProperty Name="CPUID" ColumnName="CPUID" />
                 <ScalarProperty Name="PSU" ColumnName="PSU" />
-                <ScalarProperty Name="RAM" ColumnName="RAM" />
-                <ScalarProperty Name="Monitor" ColumnName="Monitor" />
-                <ScalarProperty Name="OpticalDrives" ColumnName="OpticalDrives" />
-                <ScalarProperty Name="HardDrive" ColumnName="HardDrive" />
-                <ScalarProperty Name="Peripherals" ColumnName="Peripherals" />
-                <ScalarProperty Name="PCIcard" ColumnName="PCIcard" />
+                <ScalarProperty Name="GPUs" ColumnName="GPUs" />
+                <ScalarProperty Name="GPUCount" ColumnName="GPUCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildsPeripherals">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildsPeripheral">
+              <MappingFragment StoreEntitySet="BuildsPeripherals">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="PerID" ColumnName="PerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildsRAMs">
+            <EntityTypeMapping TypeName="DAPSFinalDBModel.BuildsRAM">
+              <MappingFragment StoreEntitySet="BuildsRAM">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="RAMID" ColumnName="RAMID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

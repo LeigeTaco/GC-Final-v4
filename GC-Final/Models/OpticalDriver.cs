@@ -17,7 +17,7 @@ namespace GC_Final.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OpticalDriver()
         {
-            this.Builds = new HashSet<Build>();
+            this.BuildODs = new HashSet<BuildOD>();
         }
     
         public string OpticalDriverID { get; set; }
@@ -37,6 +37,6 @@ namespace GC_Final.Models
         public string manufacturer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Build> Builds { get; set; }
+        public virtual ICollection<BuildOD> BuildODs { get; set; }
     }
 }

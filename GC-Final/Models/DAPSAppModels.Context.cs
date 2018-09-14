@@ -13,10 +13,10 @@ namespace GC_Final.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PCEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public PCEntities()
-            : base("name=PCEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,7 +25,13 @@ namespace GC_Final.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BuildDisk> BuildDisks { get; set; }
+        public virtual DbSet<BuildMonitor> BuildMonitors { get; set; }
+        public virtual DbSet<BuildOD> BuildODs { get; set; }
+        public virtual DbSet<BuildPCI> BuildPCIs { get; set; }
         public virtual DbSet<Build> Builds { get; set; }
+        public virtual DbSet<BuildsPeripheral> BuildsPeripherals { get; set; }
+        public virtual DbSet<BuildsRAM> BuildsRAMs { get; set; }
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CPU> CPUs { get; set; }
         public virtual DbSet<GPU> GPUs { get; set; }
