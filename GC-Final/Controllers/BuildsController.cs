@@ -64,6 +64,7 @@ namespace GC_Final.Controllers
             ORM.Cases.Add(tempCase);
             UserBuild.Case = tempCase;
             RAM tempRAM = new RAM(ram);
+            UserBuild.OwnerID = "TURNER";
             ORM.RAMs.Add(tempRAM);
             ORM.SaveChanges();
             ORM.Builds.Add(UserBuild);
@@ -72,26 +73,26 @@ namespace GC_Final.Controllers
             return RedirectToAction("_Edit", UserBuild.BuildID);
         }
 
-        //edit when given a buildID
-        private ActionResult _Edit(string BuildID)
-        {
-            Entities ORM = new Entities();
+        ////edit when given a buildID
+        //private ActionResult _Edit(string BuildID)
+        //{
+        //    Entities ORM = new Entities();
 
-            ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
+        //    ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
             
-            return View("Edit");
-        }
+        //    return View("Edit");
+        //}
 
-        public ActionResult Edit(string id)
-        {
-            Entities ORM = new Entities();
+        //public ActionResult Edit(string id)
+        //{
+        //    Entities ORM = new Entities();
 
-            if(ORM.Builds.Where(x => x.BuildID == id).ToArray()[0].OwnerID == User.Identity.GetUserId())
-            {
-                return RedirectToAction("_Edit", id);
-            }
-            return RedirectToAction("Display", id);
-        }
+        //    if(ORM.Builds.Where(x => x.BuildID == id).ToArray()[0].OwnerID == User.Identity.GetUserId())
+        //    {
+        //        return RedirectToAction("_Edit", id);
+        //    }
+        //    return RedirectToAction("Display", id);
+        //}
 
         [AllowAnonymous]
         public ActionResult Display(string id)
@@ -104,7 +105,7 @@ namespace GC_Final.Controllers
 
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -123,7 +124,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetGPUData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -167,7 +168,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetCPUData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -192,8 +193,9 @@ namespace GC_Final.Controllers
 
         public JObject GetMotherboards()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Motherboard&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
+            apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
 
@@ -211,7 +213,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetMotherboardData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -254,7 +256,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetPSUData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -297,7 +299,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetRAMData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -340,7 +342,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetCaseData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 

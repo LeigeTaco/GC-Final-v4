@@ -18,10 +18,10 @@
 
                 @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
                 
-                <select id="Motherboard">
+                <select name="motherboard" id="Motherboard">
                 @foreach (var motherboard in ViewBag.Motherboards)
                 {
-                    <option value="GPU">@motherboard["title"]</option>
+                    <option value="@motherboard["title"]">@motherboard["title"]</option>
                 }
              </select>
             @*</div>*@
@@ -30,50 +30,50 @@
         <div class="form-group">
             <label>GPU</label>
             @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="GPU">
+            <select name="gpu" id="GPU">
                 @foreach (var gpu in ViewBag.GPUs)
                 {
-                    <option value="1">@gpu["title"]</option>
+                    <option value="@gpu["title"]">@gpu["title"]</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>CPU</label>
             @*<input type="text" id="cpu" name="cpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="CPU">
+            <select name="cpu" id="CPU">
                 @foreach (var cpu in ViewBag.CPUs)
                 {
-                    <option value="1">@cpu["title"]</option>
+                    <option value="@cpu["title"]">@cpu["title"]</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>PSU</label>
             @*<input type="text" id="psu" name="psu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="PSU">
+            <select name="psu" id="PSU">
                 @foreach (var psu in ViewBag.PSUs)
                 {
-                    <option value="1">@psu["title"]</option>
+                    <option value="@psu["title"]">@psu["title"]</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>Case</label>
             @*<input type="text" id="case" name="casename" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="Case">
+            <select name="casename" id="Case">
                 @foreach (var pccase in ViewBag.Cases)
                 {
-                    <option value="1">@pccase["title"]</option>
+                    <option value="@pccase["title"]">@pccase["title"]</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>RAM</label>
             @*<input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="RAM">
+            <select name ="ram" id="RAM">
                 @foreach (var ram in ViewBag.RAMs)
                 {
-                    <option value="1">@ram["title"]</option>
+                    <option value="@ram["title"]">@ram["title"]</option>
                 }
             </select>
         </div>
