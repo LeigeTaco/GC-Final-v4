@@ -6,18 +6,17 @@
 <h2>More Parts</h2>
 
 <br />
-<table border-="1">
+<table border="1">
     <tr>
         <th>Title</th>
         <th>Brand</th>
     </tr>
 
-    @*TODO: need to create PartSearch Controller*@
-    @*@foreach (var x in ViewBag.PartSearch)
+    @for (int i = 0; i < 14; i++)
     {
         <tr>
-            <td>@ViewBag.PartSearch["title"]</td>
-            <td>@ViewBag.PartSearch["brand"]</td>
+            <td>@ViewBag.PartSearch["results"][i]["title"]</td>
+            <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
         </tr>
-    }*@
+    }
 </table>
