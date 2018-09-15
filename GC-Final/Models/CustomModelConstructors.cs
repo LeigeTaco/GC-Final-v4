@@ -7,28 +7,45 @@ namespace GC_Final.Models
 {
     public partial class PCCase
     {
-        public PCCase(string NameFromAPI)
+        public PCCase(string name)
         {
             CaseID = Guid.NewGuid().ToString("D");
-            Name = NameFromAPI;
+            Style = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
     public partial class CPU
     {
-        public CPU(string NameFromAPI)
+        public CPU(string name)
         {
             CPUID = Guid.NewGuid().ToString("D");
-            Name = NameFromAPI;
+            ProductID = "xxxxxxxxxx";
+            Cache = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
     public partial class GPU
     {
-        public GPU(string NameFromAPI)
+        public GPU(string name)
         {
             GPUID = Guid.NewGuid().ToString("D");
-            Name = NameFromAPI;
+            ProductID = "xxxxxxxxxx";
+            RAMType = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
@@ -55,8 +72,15 @@ namespace GC_Final.Models
     {
         public Monitor(string name)
         {
+            ProductID = "xxxxxxxxxx";
             MonitorID = Guid.NewGuid().ToString("D");
-            //Name = name;
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
