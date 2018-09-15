@@ -94,12 +94,12 @@ namespace GC_Final.Controllers
             return partlist;
         }
 
-        public List<JObject> GetPartData(JObject jsonpartinfo)
+        public List<JObject> GetPartData(JObject partlist)
         {
             List<JObject> Parts = new List<JObject>();
             for (int i = 0; i <= 14; i++)
             {
-                string x = jsonpartinfo["results"][i]["product_id"].ToString();
+                string x = partlist["results"][i]["product_id"].ToString();
 
                 HttpWebRequest apiRequest1 = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
                 apiRequest1.Headers.Add("Authorization", ConfigurationManager.AppSettings["apizinc"]); //used to add keys

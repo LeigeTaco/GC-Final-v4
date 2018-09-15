@@ -46,7 +46,7 @@ namespace GC_Final.Controllers
         {
             Entities ORM = new Entities();
             Build UserBuild = new Build();
-            UserBuild.OwnerID = User.Identity.GetUserId().ToString();
+            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
             Motherboard tempMB = new Motherboard(motherboard);
             ORM.Motherboards.Add(tempMB);
             UserBuild.Motherboard = tempMB;
@@ -121,7 +121,7 @@ namespace GC_Final.Controllers
 
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -140,7 +140,7 @@ namespace GC_Final.Controllers
         public List<JObject> GetGPUData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
