@@ -241,9 +241,6 @@
     <Compile Include="Models\BuildsRAM.cs">
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Case.cs">
-      <DependentUpon>DAPSAppModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CPU.cs">
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
@@ -278,6 +275,9 @@
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OpticalDriver.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PCCase.cs">
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PCICard.cs">

@@ -21,20 +21,20 @@ namespace GC_Final.Models
         }
     
         public string OpticalDriverID { get; set; }
-        public string product_id { get; set; }
-        public bool rewriteable { get; set; }
-        public string drive_type { get; set; }
-        public int read_speed { get; set; }
-        public int write_speed { get; set; }
-        public int wattage { get; set; }
-        public string type { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public int price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
-        public string manufacturer { get; set; }
+        public string ProductID { get; set; }
+        public bool Rewritable { get; set; }
+        public string Interface { get; set; }
+        public int ReadSpeed { get; set; }
+        public int WriteSpeed { get; set; }
+        public int Wattage { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildOD> BuildODs { get; set; }

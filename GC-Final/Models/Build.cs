@@ -43,7 +43,7 @@ namespace GC_Final.Models
         public virtual ICollection<BuildOD> BuildODs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildPCI> BuildPCIs { get; set; }
-        public virtual Case Case { get; set; }
+        public virtual PCCase PCCase { get; set; }
         public virtual CPU CPU { get; set; }
         public virtual GPU GPU { get; set; }
         public virtual Motherboard Motherboard { get; set; }

@@ -21,20 +21,19 @@ namespace GC_Final.Models
         }
     
         public string RAMID { get; set; }
-        public string product_id { get; set; }
-        public Nullable<int> memory_speed { get; set; }
-        public Nullable<int> total_capacity { get; set; }
-        public string compatibility { get; set; }
-        public Nullable<int> voltage { get; set; }
-        public Nullable<byte> processor_count { get; set; }
-        public Nullable<int> stick_quantity { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public Nullable<int> price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
-        public string manufacturer { get; set; }
+        public string ProductID { get; set; }
+        public Nullable<int> BusSpeed { get; set; }
+        public Nullable<int> TotalCapacity { get; set; }
+        public string RAMType { get; set; }
+        public Nullable<int> Voltage { get; set; }
+        public Nullable<byte> Quantity { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildsRAM> BuildsRAMs { get; set; }

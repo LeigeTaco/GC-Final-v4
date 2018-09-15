@@ -21,20 +21,24 @@ namespace GC_Final.Models
         }
     
         public string MotherboardID { get; set; }
-        public string product_id { get; set; }
-        public string socket { get; set; }
-        public string chipset { get; set; }
-        public string memory_slots { get; set; }
-        public Nullable<byte> sli { get; set; }
-        public Nullable<byte> crossfire { get; set; }
-        public string form_factor { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public Nullable<int> price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
-        public string manufacturer { get; set; }
+        public string ProductID { get; set; }
+        public string Socket { get; set; }
+        public string Chipset { get; set; }
+        public Nullable<short> Wattage { get; set; }
+        public Nullable<byte> SATASlots { get; set; }
+        public Nullable<byte> PCISlots { get; set; }
+        public string RAMType { get; set; }
+        public Nullable<byte> RAMSlots { get; set; }
+        public Nullable<byte> SLILimit { get; set; }
+        public Nullable<byte> CrossfireLimit { get; set; }
+        public string FormFactor { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Build> Builds { get; set; }

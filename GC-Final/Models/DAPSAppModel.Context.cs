@@ -32,13 +32,13 @@ namespace GC_Final.Models
         public virtual DbSet<Build> Builds { get; set; }
         public virtual DbSet<BuildsPeripheral> BuildsPeripherals { get; set; }
         public virtual DbSet<BuildsRAM> BuildsRAMs { get; set; }
-        public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<CPU> CPUs { get; set; }
         public virtual DbSet<GPU> GPUs { get; set; }
         public virtual DbSet<HardDrive> HardDrives { get; set; }
         public virtual DbSet<Monitor> Monitors { get; set; }
         public virtual DbSet<Motherboard> Motherboards { get; set; }
         public virtual DbSet<OpticalDriver> OpticalDrivers { get; set; }
+        public virtual DbSet<PCCase> PCCases { get; set; }
         public virtual DbSet<PCICard> PCICards { get; set; }
         public virtual DbSet<Peripheral> Peripherals { get; set; }
         public virtual DbSet<PSU> PSUs { get; set; }

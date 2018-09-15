@@ -21,18 +21,18 @@ namespace GC_Final.Models
         }
     
         public string HardDriveID { get; set; }
-        public string product_id { get; set; }
-        public string @interface { get; set; }
-        public bool size { get; set; }
-        public string capacity { get; set; }
-        public string speed { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public int price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
-        public string manufacturer { get; set; }
+        public string ProductID { get; set; }
+        public string Interface { get; set; }
+        public bool SlotSize { get; set; }
+        public int Capacity { get; set; }
+        public string CapacityUnits { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildDisk> BuildDisks { get; set; }
