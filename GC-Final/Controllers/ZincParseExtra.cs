@@ -176,7 +176,7 @@ namespace GC_Final.Controllers
 
             Name = bass.BuildName;
             OwnerID = bass.OwnerID;
-            Case = new CaseDetails(bass.Case);
+            Case = new CaseDetails(bass.PCCase);
             MB = new MotherBoardDetails(bass.Motherboard);
             CPU = new CPUDetails(bass.CPU);
             GPU = new GPUDetails(bass.GPU);
@@ -243,7 +243,7 @@ namespace GC_Final.Controllers
             Style = "";
         }
 
-        public CaseDetails(Case bass)
+        public CaseDetails(PCCase bass)
         {
 
         }

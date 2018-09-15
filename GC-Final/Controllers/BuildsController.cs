@@ -9,9 +9,23 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net;
 using System.Configuration;
+using System.Reflection;
 
 namespace GC_Final.Controllers
 {
+    public class RequireParameterAttribute : ActionMethodSelectorAttribute
+    {
+        public string ValueName { set; get; }
+        public RequireParameterAttribute(string valueName)
+        {
+            ValueName = valueName;
+        }
+        public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
+        {
+            return (controllerContext.HttpContext.Request[ValueName] != null);
+        }
+    }
+
     [Authorize]
     public class BuildsController : Controller
     {
@@ -26,25 +40,10 @@ namespace GC_Final.Controllers
             ViewBag.Cases = GetCaseData(GetCases());
             return View();
         }
-
-
+        
+        [RequireParameter("buildName")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram)
         {
-            //BuildDetails temp = new BuildDetails();
-            //temp.Name = buildName;
-            //temp.BuildID = Guid.NewGuid().ToString("D");
-            //Entities ORM = new Entities();
-            //temp.MB = new MotherBoardDetails(ORM.Motherboards.Where(x => x.title.ToLower() == motherboard.ToLower()).ToArray()[0]);
-            //temp.GPU = new GPUDetails(ORM.GPUs.Where(x => x.title.ToLower() == gpu.ToLower()).ToArray()[0]);
-            //temp.CPU = new CPUDetails(ORM.CPUs.Where(x => x.title.ToLower() == cpu.ToLower()).ToArray()[0]);
-            //temp.PSU = new PSUDetails(ORM.PSUs.Where(x => x.title.ToLower() == psu.ToLower()).ToArray()[0]);
-            //temp.Case = new CaseDetails(ORM.Cases.Where(x => x.title.ToLower() == casename.ToLower()).ToArray()[0]);
-            //temp.RAM.Add(new RAMDetails(ORM.RAMs.Where(x => x.title.ToLower() == ram.ToLower()).ToArray()[0]));
-            //Build UserBuild = new Build(temp);
-            //ORM.Builds.Add(UserBuild);
-            //ORM.SaveChanges();
-            //ViewBag.UserBuild = UserBuild;
-
             Entities ORM = new Entities();
             Build UserBuild = new Build();
             UserBuild.OwnerID = User.Identity.GetUserId().ToString();
@@ -61,9 +60,9 @@ namespace GC_Final.Controllers
             PSU tempPSU = new PSU(psu);
             ORM.PSUs.Add(tempPSU);
             UserBuild.PSU = tempPSU;
-            Case tempCase = new Case(casename);
-            ORM.Cases.Add(tempCase);
-            UserBuild.Case = tempCase;
+            PCCase tempCase = new PCCase(casename);
+            ORM.PCCases.Add(tempCase);
+            UserBuild.PCCase = tempCase;
             RAM tempRAM = new RAM(ram);
             ORM.RAMs.Add(tempRAM);
             ORM.SaveChanges();
@@ -77,33 +76,43 @@ namespace GC_Final.Controllers
             ORM.Builds.Add(UserBuild);
             ORM.SaveChanges();
 
-            return RedirectToAction("_Edit", UserBuild.BuildID);
+            return _Edit(UserBuild.BuildID, User.Identity.GetUserId());
         }
 
         ////edit when given a buildID
-        private ActionResult _Edit(string BuildID)
+        private ActionResult _Edit(string BuildID, string UserID)
         {
             Entities ORM = new Entities();
+            Build temp = ORM.Builds.Find(BuildID);
 
-            ViewBag.UserBuild = ORM.Builds.Where(x => x.BuildID == BuildID).ToList()[0];
-
-            return View("Edit");
+            if (temp.OwnerID == UserID)
+            {
+                //ViewBag Stuff here
+                return View("Edit");
+            }
+            else
+            {
+                return View("Display", "Builds", BuildID);
+            }
         }
 
-        //public ActionResult Edit(string id)
-        //{
-        //    Entities ORM = new Entities();
-
-        //    if(ORM.Builds.Where(x => x.BuildID == id).ToArray()[0].OwnerID == User.Identity.GetUserId())
-        //    {
-        //        return RedirectToAction("_Edit", id);
-        //    }
-        //    return RedirectToAction("Display", id);
-        //}
+        public ActionResult Edit(string id)
+        {
+            return _Edit(id, User.Identity.GetUserId());
+        }
 
         [AllowAnonymous]
         public ActionResult Display(string id)
         {
+            Entities ORM = new Entities();
+            Build temp = ORM.Builds.Find(id);
+
+            if (temp == null)
+            {
+                ViewBag.Message = "The build you were searching for could not be found!";
+                return View("Error");
+            }
+
             return View();
         }
 
@@ -112,7 +121,7 @@ namespace GC_Final.Controllers
 
         public JObject GetGPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=GPU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -156,7 +165,7 @@ namespace GC_Final.Controllers
 
         public JObject GetCPUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -244,7 +253,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetPSUs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=PSU&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -287,7 +296,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetRAMs()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=RAM&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -330,7 +339,7 @@ namespace GC_Final.Controllers
         }
         public JObject GetCases()
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Computer+Case&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Computer+Case&page=2&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 

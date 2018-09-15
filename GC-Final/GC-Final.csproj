@@ -380,6 +380,7 @@
     <Content Include="Views\Builds\Display.cshtml" />
     <Content Include="Views\Builds\Edit.cshtml" />
     <Content Include="Views\Builds\Error.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

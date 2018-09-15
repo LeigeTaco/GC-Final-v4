@@ -35,6 +35,13 @@ namespace GC_Final.Controllers
 
             return View();
         }
+
+        [Authorize(Roles ="Admin")]
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
         public JObject GetGPUs()
         {
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=Computer+Case&page=1&retailer=amazon");

@@ -65,7 +65,18 @@ namespace GC_Final.Models
         public Motherboard(string name)
         {
             MotherboardID = Guid.NewGuid().ToString("D");
+            ProductID = "xxxxxxxxxx";
+            Socket = " ";
+            Chipset = " ";
+            RAMType = " ";
+            FormFactor = " ";
             Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
