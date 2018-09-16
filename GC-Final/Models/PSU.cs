@@ -21,17 +21,19 @@ namespace GC_Final.Models
         }
     
         public string PSUID { get; set; }
-        public string product_id { get; set; }
-        public string power_source { get; set; }
-        public string product_dimensions { get; set; }
-        public int wattage { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public int price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
-        public string manufacturer { get; set; }
+        public string ProductID { get; set; }
+        public string FormFactor { get; set; }
+        public Nullable<double> Width { get; set; }
+        public Nullable<double> Height { get; set; }
+        public Nullable<double> Length { get; set; }
+        public Nullable<short> Wattage { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Build> Builds { get; set; }

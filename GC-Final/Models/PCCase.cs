@@ -12,29 +12,30 @@ namespace GC_Final.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Case
+    public partial class PCCase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Case()
+        public PCCase()
         {
             this.Builds = new HashSet<Build>();
         }
     
         public string CaseID { get; set; }
-        public string product_id { get; set; }
-        public int size { get; set; }
-        public int product_dimensions { get; set; }
-        public byte number_of_ports { get; set; }
-        public string drives { get; set; }
-        public bool ssd_support { get; set; }
-        public string ports { get; set; }
-        public string style { get; set; }
-        public string title { get; set; }
-        public string product_description { get; set; }
-        public string brand { get; set; }
-        public int price { get; set; }
-        public string stars { get; set; }
-        public byte[] main_image { get; set; }
+        public string ProductID { get; set; }
+        public Nullable<double> Height { get; set; }
+        public Nullable<double> Length { get; set; }
+        public Nullable<double> Width { get; set; }
+        public Nullable<byte> TwoSlots { get; set; }
+        public Nullable<byte> ThreeSlots { get; set; }
+        public Nullable<byte> ExpansionSlots { get; set; }
+        public string Style { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<float> Stars { get; set; }
+        public string ImageLink { get; set; }
+        public string Manufacturer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Build> Builds { get; set; }

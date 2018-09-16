@@ -5,30 +5,47 @@ using System.Web;
 
 namespace GC_Final.Models
 {
-    public partial class Case
+    public partial class PCCase
     {
-        public Case(string titleFromAPI)
+        public PCCase(string name)
         {
             CaseID = Guid.NewGuid().ToString("D");
-            title = titleFromAPI;
+            Style = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
     public partial class CPU
     {
-        public CPU(string titleFromAPI)
+        public CPU(string name)
         {
             CPUID = Guid.NewGuid().ToString("D");
-            title = titleFromAPI;
+            ProductID = "xxxxxxxxxx";
+            Cache = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
     public partial class GPU
     {
-        public GPU(string titleFromAPI)
+        public GPU(string name)
         {
             GPUID = Guid.NewGuid().ToString("D");
-            title = titleFromAPI;
+            ProductID = "xxxxxxxxxx";
+            RAMType = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
@@ -37,17 +54,17 @@ namespace GC_Final.Models
         public HardDrive(string name)
         {
             HardDriveID = Guid.NewGuid().ToString("D");
-            product_id = "xxxxxxxxxx";
-            @interface = " ";
-            size = true;
-            capacity = " ";
-            speed = " ";
-            product_description = " ";
-            brand = " ";
-            price = 0;
-            stars = " ";
-            main_image = new byte[] { 0, 0, 0, 0 };
-            manufacturer = " ";
+            ProductID = "xxxxxxxxxx";
+            Interface = " ";
+            SlotSize = true;
+            Capacity = 0;
+            CapacityUnits = " ";
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            ImageLink = " ";
+            Manufacturer = " ";
         }
     }
 
@@ -55,8 +72,15 @@ namespace GC_Final.Models
     {
         public Monitor(string name)
         {
+            ProductID = "xxxxxxxxxx";
             MonitorID = Guid.NewGuid().ToString("D");
-            //title = name;
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
@@ -65,7 +89,18 @@ namespace GC_Final.Models
         public Motherboard(string name)
         {
             MotherboardID = Guid.NewGuid().ToString("D");
-            title = name;
+            ProductID = "xxxxxxxxxx";
+            Socket = " ";
+            Chipset = " ";
+            RAMType = " ";
+            FormFactor = " ";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            Manufacturer = " ";
+            ImageLink = " ";
         }
     }
 
@@ -74,20 +109,19 @@ namespace GC_Final.Models
         public OpticalDriver(string name)
         {
             OpticalDriverID = Guid.NewGuid().ToString("D");
-            product_id = "xxxxxxxxxx";
-            rewriteable = true;
-            drive_type = " ";
-            read_speed = 0;
-            write_speed = 0;
-            wattage = 0;
-            type = " ";
-            title = name;
-            product_description = " ";
-            brand = " ";
-            price = 0;
-            stars = " ";
-            main_image = new byte[] { 0, 0, 0, 0 };
-            manufacturer = " ";
+            ProductID = "xxxxxxxxxx";
+            Rewritable = false;
+            Interface = " ";
+            ReadSpeed = 0;
+            WriteSpeed = 0;
+            Wattage = 0;
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            ImageLink = " ";
+            Manufacturer = " ";
         }
     }
 
@@ -96,14 +130,14 @@ namespace GC_Final.Models
         public PCICard(string name)
         {
             PCIcardID = Guid.NewGuid().ToString("D");
-            product_description = " ";
-            title = name;
-            product_id = "xxxxxxxxxx";
-            brand = " ";
-            price = 0;
-            stars = " ";
-            main_image = new byte[] { 0, 0, 0, 0 };
-            manufacturer = " ";
+            Description = " ";
+            Name = name;
+            ProductID = "xxxxxxxxxx";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            ImageLink = " ";
+            Manufacturer = " ";
         }
     }
 
@@ -112,14 +146,14 @@ namespace GC_Final.Models
         public Peripheral(string name)
         {
             PeripheralsID = Guid.NewGuid().ToString("D");
-            product_id = "xxxxxxxxxx";
-            title = name;
-            product_description = " ";
-            brand = " ";
-            price = 0;
-            stars = " ";
-            main_image = new byte[] { 0, 0, 0, 0 };
-            manufacturer = " ";
+            ProductID = "xxxxxxxxxx";
+            Name = name;
+            Description = " ";
+            Brand = " ";
+            Price = 0;
+            Stars = 0.0F;
+            ImageLink =  " ";
+            Manufacturer = " ";
         }
     }
 
@@ -128,7 +162,7 @@ namespace GC_Final.Models
         public PSU(string name)
         {
             PSUID = Guid.NewGuid().ToString("D");
-            title = name;
+            Name = name;
         }
     }
 
@@ -137,7 +171,37 @@ namespace GC_Final.Models
         public RAM(string name)
         {
             RAMID = Guid.NewGuid().ToString("D");
-            title = name;
+            Name = name;
+        }
+    }
+
+    public partial class Build
+    {
+        public Build(Controllers.BuildDetails bass)
+        {
+
+            BuildName = bass.Name;
+            BuildID = bass.BuildID;
+            OwnerID = bass.OwnerID;
+            CaseID = bass.Case.CaseID;
+            MBID = bass.MB.MBID;
+            CPUID = bass.CPU.CPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUID = bass.GPU.GPUID;
+            PSUID = bass.PSU.PSUID;
+            GPUCount = bass.GPUCount;
+
+        }
+
+        public Build(string name)
+        {
+            BuildName = name;
+            PCCase = new PCCase();
+            Motherboard = new Motherboard();
+            CPU = new CPU();
+            PSU = new PSU();
+            GPU = new GPU();
+            GPUCount = 0;
         }
     }
 }

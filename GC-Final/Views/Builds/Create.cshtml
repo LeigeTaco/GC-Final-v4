@@ -7,7 +7,7 @@
 <h2>Create Your Own Custom Build</h2>
 <br />
 <div class="container">
-    <form action="~/Builds/Create" method="post">
+    <form action="~/Builds/Edit" method="post">
         <div class="form-group">
             <label>Name</label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
         </div>
@@ -18,11 +18,14 @@
 
                 @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
                 
-                <select id="Motherboard">
+                <select name="motherboard" id="Motherboard">
                 @foreach (var motherboard in ViewBag.Motherboards)
                 {
-                    <option value="GPU">@motherboard["title"]</option>
+                    <option value="@motherboard["title"]">@motherboard["title"]</option>
                 }
+                    <optgroup label="more" onchange="location = this.value">
+                        <option value="http://localhost:53796/Builds/MoreParts">More...</option>
+                    </optgroup>
              </select>
             @*</div>*@
         </div>
@@ -30,50 +33,50 @@
         <div class="form-group">
             <label>GPU</label>
             @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="GPU">
+            <select name="gpu" id="GPU">
                 @foreach (var gpu in ViewBag.GPUs)
                 {
-                    <option value="1">@gpu["title"]</option>
+                    <option value="@gpu.GPUID">@gpu.Name</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>CPU</label>
             @*<input type="text" id="cpu" name="cpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="CPU">
+            <select name="cpu" id="CPU">
                 @foreach (var cpu in ViewBag.CPUs)
                 {
-                    <option value="1">@cpu["title"]</option>
+                    <option value="@cpu.CPUID">@cpu.Name</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>PSU</label>
             @*<input type="text" id="psu" name="psu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="PSU">
+            <select name="psu" id="PSU">
                 @foreach (var psu in ViewBag.PSUs)
                 {
-                    <option value="1">@psu["title"]</option>
+                    <option value="@psu.PSUID">@psu.Name"</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>Case</label>
             @*<input type="text" id="case" name="casename" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="Case">
+            <select name="casename" id="Case">
                 @foreach (var pccase in ViewBag.Cases)
                 {
-                    <option value="1">@pccase["title"]</option>
+                    <option value="@pccase.CaseID">@pccase.Name</option>
                 }
             </select>
         </div>
         <div class="form-group">
             <label>RAM</label>
             @*<input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select id="RAM">
+            <select name ="ram" id="RAM">
                 @foreach (var ram in ViewBag.RAMs)
                 {
-                    <option value="1">@ram["title"]</option>
+                    <option value="@ram.RAMID">@ram.Name</option>
                 }
             </select>
         </div>

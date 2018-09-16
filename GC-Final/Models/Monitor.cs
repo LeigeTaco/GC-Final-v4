@@ -20,7 +20,18 @@ namespace GC_Final.Models
             this.BuildMonitors = new HashSet<BuildMonitor>();
         }
     
+        public string ProductID { get; set; }
         public string MonitorID { get; set; }
+        public Nullable<int> ResX { get; set; }
+        public Nullable<float> RefreshRate { get; set; }
+        public Nullable<int> ResY { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public int Price { get; set; }
+        public float Stars { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildMonitor> BuildMonitors { get; set; }
