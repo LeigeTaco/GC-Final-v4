@@ -43,12 +43,6 @@ namespace GC_Final.Controllers
             return View();
         }
 
-        public ActionResult MoreParts(string partType)
-        {
-            //ViewBag.PartSearch = HomeController.GetParts(partType);
-
-            return View();
-        }
         
         [RequireParameter("buildName")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram)

@@ -52,7 +52,14 @@ namespace GC_Final.Controllers
             return RedirectToAction("About");
         }
 
-       
+        public ActionResult MoreParts(string partType)
+        {
+            ViewBag.PartSearch = GetParts(partType);
+
+            return View();
+        }
+
+
         public JObject GetParts(string partType)
         {
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
