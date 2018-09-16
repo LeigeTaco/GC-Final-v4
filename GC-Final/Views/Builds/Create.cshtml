@@ -36,7 +36,7 @@
             <select name="gpu" id="GPU">
                 @foreach (var gpu in ViewBag.GPUs)
                 {
-                    <option value="@gpu["title"]">@gpu["title"]</option>
+                    <option value="@gpu.GPUID">@gpu.Name</option>
                 }
             </select>
         </div>
@@ -46,7 +46,7 @@
             <select name="cpu" id="CPU">
                 @foreach (var cpu in ViewBag.CPUs)
                 {
-                    <option value="@cpu["title"]">@cpu["title"]</option>
+                    <option value="@cpu.CPUID">@cpu.Name</option>
                 }
             </select>
         </div>
@@ -56,7 +56,7 @@
             <select name="psu" id="PSU">
                 @foreach (var psu in ViewBag.PSUs)
                 {
-                    <option value="@psu["title"]">@psu["title"]</option>
+                    <option value="@psu.PSUID">@psu.Name"</option>
                 }
             </select>
         </div>
@@ -66,7 +66,7 @@
             <select name="casename" id="Case">
                 @foreach (var pccase in ViewBag.Cases)
                 {
-                    <option value="@pccase["title"]">@pccase["title"]</option>
+                    <option value="@pccase.CaseID">@pccase.Name</option>
                 }
             </select>
         </div>
@@ -76,7 +76,7 @@
             <select name ="ram" id="RAM">
                 @foreach (var ram in ViewBag.RAMs)
                 {
-                    <option value="@ram["title"]">@ram["title"]</option>
+                    <option value="@ram.RAMID">@ram.Name</option>
                 }
             </select>
         </div>
