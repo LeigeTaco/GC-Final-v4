@@ -2,3 +2,10 @@
     ViewBag.Title = "About";
 }
 
+<br /><br />
+<p>@ViewBag.GPUs</p>
+
+@foreach (var x in ViewBag.GPUs)
+{
+    <p>@x</p>
+}
