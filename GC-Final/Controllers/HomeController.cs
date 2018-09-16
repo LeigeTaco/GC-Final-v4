@@ -31,7 +31,8 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
-            SavePCCasesToDB();
+            @ViewBag.Parts = GetPartData(GetParts("RAM"));
+            SaveGPUsToDB();
 
             return View();
         }
@@ -62,7 +63,7 @@ namespace GC_Final.Controllers
 
         public JObject GetParts(string partType)
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]); //used to add keys
             //apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
@@ -82,6 +83,10 @@ namespace GC_Final.Controllers
         public List<JObject> GetPartData(JObject jsoninfo)
         {
             List<JObject> Parts = new List<JObject>();
+            if (jsoninfo.Count < 1)
+            {
+                return null;
+            }
             for (int i = 0; i <= 3; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
@@ -140,10 +145,11 @@ namespace GC_Final.Controllers
                     ORM.SaveChanges();
                 }
             }
+            
             return RedirectToAction("Admin");
         }
 
-        public void SaveCPUsToDB()
+        public ActionResult SaveCPUsToDB()
         {
             List<JObject> searchedparts = new List<JObject>();
             searchedparts = GetPartData(GetParts("CPU"));
@@ -171,6 +177,7 @@ namespace GC_Final.Controllers
                     ORM.SaveChanges();
                 }
             }
+            return RedirectToAction("Admin");
         }
 
         public ActionResult SaveMotherBoardsToDB()
