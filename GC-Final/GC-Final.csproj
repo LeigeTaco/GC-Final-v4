@@ -382,6 +382,7 @@
     <Content Include="Views\Builds\Error.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Builds\MoreParts.cshtml" />
+    <Content Include="Views\Users\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
