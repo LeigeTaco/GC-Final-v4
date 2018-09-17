@@ -362,11 +362,11 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
-                tempPSU.Width = null;
-                tempPSU.Wattage = null;
-                tempPSU.Length = null;
-                tempPSU.Height = null;
-                tempPSU.FormFactor = null;
+                tempObj.Width = null;
+                tempObj.Wattage = null;
+                tempObj.Length = null;
+                tempObj.Height = null;
+                tempObj.FormFactor = null;
 
                 ORM.PSUs.Add(tempObj);
                 ORM.SaveChanges();
