@@ -33,9 +33,17 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PCI+Card"));
-            ZincParseController.SaveGPUsToDB();
-        
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("Motherboard"));
+            //ZincParseController.SaveGPUsToDB();
+
+            //List<JObject> testlist = new List<JObject>();
+            //testlist = ZincParseController.GetPartData(ZincParseController.GetParts("PCI+Card"));
+            //int[] datatosend;
+            //foreach (var x in testlist)
+            //{
+            //   // GetMaxScreenResolution(x["product_description"]().ToArray);
+            //}
+
             return View();
         }
 
@@ -57,6 +65,7 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreParts(string partType)
         {
+    
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             return View();
@@ -88,9 +97,9 @@ namespace GC_Final.Controllers
 
             int[] MaxScreenResolution = { MaxResX, MaxResY };
             return MaxScreenResolution;
-            
-            
+                       
         }
+<<<<<<< HEAD
 
         public static string GetSocketType(string[] Data)
         {
@@ -184,5 +193,7 @@ namespace GC_Final.Controllers
         
 
 
+=======
+>>>>>>> be2ed48052fa6faf7970a9858d93cba05d072b16
     }
 }

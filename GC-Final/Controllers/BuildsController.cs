@@ -41,8 +41,8 @@ namespace GC_Final.Controllers
             ViewBag.RAMs = ORM.RAMs;
             ViewBag.Monitors = ORM.Monitors;
             ViewBag.PCCases = ORM.PCCases;
-            ViewBag.HardDrive = ORM.HardDrives;
-            ViewBag.OpticalDriver = ORM.OpticalDrivers;
+            ViewBag.HardDrives = ORM.HardDrives;
+            ViewBag.OpticalDrivers = ORM.OpticalDrivers;
             ViewBag.PCICards = ORM.PCICards;
             return View();
         }
@@ -53,7 +53,7 @@ namespace GC_Final.Controllers
         {
             Entities ORM = new Entities();
             Build UserBuild = new Build();
-            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
+            UserBuild.OwnerID = User.Identity.GetUserId().ToString();
             Motherboard tempMB = new Motherboard(motherboard);
             ORM.Motherboards.Add(tempMB);
             UserBuild.Motherboard = tempMB;
@@ -122,7 +122,5 @@ namespace GC_Final.Controllers
 
             return View();
         }
-
-
     }
 }
