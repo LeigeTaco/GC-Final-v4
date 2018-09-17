@@ -7,6 +7,11 @@ namespace GC_Final.Models
 {
     public partial class PCCase
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public PCCase(string name)
         {
             CaseID = Guid.NewGuid().ToString("D");
@@ -21,6 +26,11 @@ namespace GC_Final.Models
 
     public partial class CPU
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public CPU(string name)
         {
             CPUID = Guid.NewGuid().ToString("D");
@@ -36,6 +46,11 @@ namespace GC_Final.Models
 
     public partial class GPU
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public GPU(string name)
         {
             GPUID = Guid.NewGuid().ToString("D");
@@ -51,6 +66,11 @@ namespace GC_Final.Models
 
     public partial class HardDrive
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public HardDrive(string name)
         {
             HardDriveID = Guid.NewGuid().ToString("D");
@@ -70,6 +90,11 @@ namespace GC_Final.Models
 
     public partial class Monitor
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public Monitor(string name)
         {
             ProductID = "xxxxxxxxxx";
@@ -86,6 +111,11 @@ namespace GC_Final.Models
 
     public partial class Motherboard
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public Motherboard(string name)
         {
             MotherboardID = Guid.NewGuid().ToString("D");
@@ -106,6 +136,11 @@ namespace GC_Final.Models
 
     public partial class OpticalDriver
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public OpticalDriver(string name)
         {
             OpticalDriverID = Guid.NewGuid().ToString("D");
@@ -127,6 +162,11 @@ namespace GC_Final.Models
 
     public partial class PCICard
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public PCICard(string name)
         {
             PCIcardID = Guid.NewGuid().ToString("D");
@@ -143,6 +183,11 @@ namespace GC_Final.Models
 
     public partial class Peripheral
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public Peripheral(string name)
         {
             PeripheralsID = Guid.NewGuid().ToString("D");
@@ -159,6 +204,11 @@ namespace GC_Final.Models
 
     public partial class PSU
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public PSU(string name)
         {
             PSUID = Guid.NewGuid().ToString("D");
@@ -168,6 +218,11 @@ namespace GC_Final.Models
 
     public partial class RAM
     {
+        public double GetPrice()
+        {
+            return Convert.ToDouble(Price) / 100;
+        }
+
         public RAM(string name)
         {
             RAMID = Guid.NewGuid().ToString("D");

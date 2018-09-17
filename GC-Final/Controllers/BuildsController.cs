@@ -47,41 +47,66 @@ namespace GC_Final.Controllers
             return View();
         }
 
+        [RequireParameter("autoComplete")]
+        public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram, double? price, string preferredBrands, bool autoComplete)
+        {
+
+            Entities ORM = new Entities();
+            Build UserBuild = new Build();
+            UserBuild.BuildName = buildName;
+            UserBuild.BuildID = Guid.NewGuid().ToString("D");
+            UserBuild.OwnerID = User.Identity.GetUserId();
+
+        }
         
         [RequireParameter("buildName")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram)
         {
             Entities ORM = new Entities();
             Build UserBuild = new Build();
-            UserBuild.OwnerID = User.Identity.GetUserId().ToString();
-            Motherboard tempMB = new Motherboard(motherboard);
-            ORM.Motherboards.Add(tempMB);
-            UserBuild.Motherboard = tempMB;
-            GPU tempGPU = new GPU(gpu);
-            ORM.GPUs.Add(tempGPU);
-            UserBuild.GPU = tempGPU;
-            UserBuild.GPUCount = 1;
-            CPU tempCPU = new CPU(cpu);
-            ORM.CPUs.Add(tempCPU);
-            UserBuild.CPU = tempCPU;
-            PSU tempPSU = new PSU(psu);
-            ORM.PSUs.Add(tempPSU);
-            UserBuild.PSU = tempPSU;
-            PCCase tempCase = new PCCase(casename);
-            ORM.PCCases.Add(tempCase);
-            UserBuild.PCCase = tempCase;
-            RAM tempRAM = new RAM(ram);
-            ORM.RAMs.Add(tempRAM);
-            ORM.SaveChanges();
-            UserBuild.MBID = tempMB.MotherboardID;
-            UserBuild.GPUID = tempGPU.GPUID;
-            UserBuild.CPUID = tempCPU.CPUID;
-            UserBuild.PSUID = tempPSU.PSUID;
-            UserBuild.CaseID = tempCase.CaseID;
+            BuildsRAM userRam = new BuildsRAM();
+
+            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
+            //Motherboard tempMB = new Motherboard(motherboard);
+            //ORM.Motherboards.Add(tempMB);
+            //UserBuild.Motherboard = tempMB;
+            //GPU tempGPU = new GPU(gpu);
+            //ORM.GPUs.Add(tempGPU);
+            //UserBuild.GPU = tempGPU;
+            //UserBuild.GPUCount = 1;
+            //CPU tempCPU = new CPU(cpu);
+            //ORM.CPUs.Add(tempCPU);
+            //UserBuild.CPU = tempCPU;
+            //PSU tempPSU = new PSU(psu);
+            //ORM.PSUs.Add(tempPSU);
+            //UserBuild.PSU = tempPSU;
+            //PCCase tempCase = new PCCase(casename);
+            //ORM.PCCases.Add(tempCase);
+            //UserBuild.PCCase = tempCase;
+            //RAM tempRAM = new RAM(ram);
+            //ORM.RAMs.Add(tempRAM);
+            //ORM.SaveChanges();
+            //UserBuild.MBID = tempMB.MotherboardID;
+            //UserBuild.GPUID = tempGPU.GPUID;
+            //UserBuild.CPUID = tempCPU.CPUID;
+            //UserBuild.PSUID = tempPSU.PSUID;
+            //UserBuild.CaseID = tempCase.CaseID;
+            //UserBuild.BuildID = Guid.NewGuid().ToString("D");
+            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
+            //ORM.Builds.Add(UserBuild);
+            //ORM.SaveChanges();
+
             UserBuild.BuildID = Guid.NewGuid().ToString("D");
             UserBuild.OwnerID = User.Identity.GetUserId().ToString();
-            ORM.Builds.Add(UserBuild);
-            ORM.SaveChanges();
+            UserBuild.BuildName = buildName;
+            UserBuild.MBID = ORM.Motherboards.Where(x => x.Name == motherboard).Select(x => x.MotherboardID).ToArray()[0];
+            UserBuild.CPUID = ORM.CPUs.Where(x => x.Name == cpu).Select(x => x.CPUID).ToArray()[0];
+            UserBuild.GPUID = ORM.GPUs.Where(x => x.Name == gpu).Select(x => x.GPUID).ToArray()[0];
+            UserBuild.GPUCount = 1;
+            userRam.BuildID = UserBuild.BuildID;
+            userRam.RAMID = ORM.RAMs.Where(x => x.Name == ram).Select(x => x.RAMID).ToArray()[0];
+            UserBuild.PSUID = ORM.PSUs.Where(x => x.Name == psu).Select(x => x.PSUID).ToArray()[0];
+            UserBuild.CaseID = ORM.PCCases.Where(x => x.Name == casename).Select(x => x.CaseID).ToArray()[0];
 
             return _Edit(UserBuild.BuildID, User.Identity.GetUserId());
         }
