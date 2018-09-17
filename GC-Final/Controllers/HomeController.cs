@@ -99,11 +99,6 @@ namespace GC_Final.Controllers
             return MaxScreenResolution;
                        
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> rebase
 
         public static string GetSocketType(string[] Data)
         {
@@ -192,8 +187,6 @@ namespace GC_Final.Controllers
             return null;
 
         }
-
-
         
 
 
