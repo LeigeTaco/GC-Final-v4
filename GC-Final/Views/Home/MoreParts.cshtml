@@ -1,31 +1,11 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "MoreParts";
 }
 
-<br /> <br />
-<h2>More Parts</h2>
-
-<br />
-<table border="1">
-    <tr>
-        <th>Title</th>
-        <th>Brand</th>
-        <th>Stars</th>
-        <th>Price</th>
-        <th>Save</th>
-    </tr>
-
-    @for (int i = 0; i < 14; i++)
-    {
-    <tr>
-        <td>@ViewBag.PartSearch["results"][i]["title"]</td>
-        <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
-        <td>@ViewBag.PartSearch["results"][i]["stars"]</td>
-        <td>@ViewBag.PartSearch["results"][i]["price"]</td>
-        <td><input type="submit" action="/api/ZincParse/Save{partType}ToDB" name="partid" value="@ViewBag.PartsSearch["results"][i]["product_id"]"/></td>
-    </tr>
-    }
-</table>
-
-<table id="searchResults" class="table">
-</table>
+<h2>MoreParts</h2>
+<br /><br />
+@for(int i = 0; i <= 14; i++)
+{
+    <p>@ViewBag.PartSearch["results"][i]["title"]</p>
+}

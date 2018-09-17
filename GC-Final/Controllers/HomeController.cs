@@ -66,7 +66,7 @@ namespace GC_Final.Controllers
         public ActionResult MoreParts(string partType)
         {
     
-            JObject x = ZincParseController.GetParts("GPU");
+            ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             return View();
         }
