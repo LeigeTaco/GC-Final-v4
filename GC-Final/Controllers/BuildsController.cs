@@ -39,7 +39,11 @@ namespace GC_Final.Controllers
             ViewBag.Motherboards = ORM.Motherboards;
             ViewBag.PSUs = ORM.PSUs;
             ViewBag.RAMs = ORM.RAMs;
-            ViewBag.Cases = ORM.PCCases;
+            ViewBag.Monitors = ORM.Monitors;
+            ViewBag.PCCases = ORM.PCCases;
+            ViewBag.HardDrive = ORM.HardDrives;
+            ViewBag.OpticalDriver = ORM.OpticalDrivers;
+            ViewBag.PCICards = ORM.PCICards;
             return View();
         }
 

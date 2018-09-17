@@ -739,7 +739,7 @@ namespace GC_Final.Controllers
                 tempObj.ProductID = chosenpart["product_id"].ToString();
                 tempObj.Description = chosenpart["product_description"].ToString();
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString()));
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
