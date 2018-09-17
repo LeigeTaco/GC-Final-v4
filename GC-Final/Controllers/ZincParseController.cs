@@ -178,6 +178,14 @@ namespace GC_Final.Controllers
                 tempCPU.Stars = null; //float.Parse(part["stars"].ToString());
                 tempCPU.ImageLink = chosenpart["main_image"].ToString();
                 tempCPU.Manufacturer = null;
+                tempCPU.MaxSpeed = null;
+                tempCPU.Wattage = null;
+                tempCPU.Threads = null;
+                tempCPU.Speed = null;
+                tempCPU.MaxRAM = null;
+                tempCPU.Fan = null;
+                tempCPU.Cores = null;
+                tempCPU.Cache = null;
 
                 ORM.CPUs.Add(tempCPU);
                 ORM.SaveChanges();
@@ -206,6 +214,14 @@ namespace GC_Final.Controllers
                     tempCPU.Stars = null; //float.Parse(chosenpart["stars"].ToString());
                     tempCPU.ImageLink = part["main_image"].ToString();
                     tempCPU.Manufacturer = null;
+                    tempCPU.MaxSpeed = null;
+                    tempCPU.Wattage = null;
+                    tempCPU.Threads = null;
+                    tempCPU.Speed = null;
+                    tempCPU.MaxRAM = null;
+                    tempCPU.Fan = null;
+                    tempCPU.Cores = null;
+                    tempCPU.Cache = null;
 
                     ORM.CPUs.Add(tempCPU);
                     ORM.SaveChanges();
@@ -237,7 +253,17 @@ namespace GC_Final.Controllers
                     tempMB.ImageLink = part["main_image"].ToString();
                     tempMB.Manufacturer = null;
                     tempMB.RAMType = null;
-
+                    tempMB.Wattage = null;
+                    tempMB.Socket = null;
+                    tempMB.Socket = null;
+                    tempMB.SLILimit = null;
+                    tempMB.SATASlots = null;
+                    tempMB.RAMType = null;
+                    tempMB.RAMSlots = null;
+                    tempMB.PCISlots = null;
+                    tempMB.FormFactor = null;
+                    tempMB.CrossfireLimit = null;
+                    tempMB.Chipset = null;
 
                     ORM.Motherboards.Add(tempMB);
                     ORM.SaveChanges();
@@ -264,6 +290,18 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.RAMType = null;
+                tempObj.Wattage = null;
+                tempObj.Socket = null;
+                tempObj.Socket = null;
+                tempObj.SLILimit = null;
+                tempObj.SATASlots = null;
+                tempObj.RAMType = null;
+                tempObj.RAMSlots = null;
+                tempObj.PCISlots = null;
+                tempObj.FormFactor = null;
+                tempObj.CrossfireLimit = null;
+                tempObj.Chipset = null;
 
                 ORM.Motherboards.Add(tempObj);
                 ORM.SaveChanges();
@@ -293,7 +331,11 @@ namespace GC_Final.Controllers
                     tempPSU.Stars = float.Parse(part["stars"].ToString());
                     tempPSU.ImageLink = part["main_image"].ToString();
                     tempPSU.Manufacturer = null;
-
+                    tempPSU.Width = null;
+                    tempPSU.Wattage = null;
+                    tempPSU.Length = null;
+                    tempPSU.Height = null;
+                    tempPSU.FormFactor = null;
 
                     ORM.PSUs.Add(tempPSU);
                     ORM.SaveChanges();
@@ -320,6 +362,11 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempPSU.Width = null;
+                tempPSU.Wattage = null;
+                tempPSU.Length = null;
+                tempPSU.Height = null;
+                tempPSU.FormFactor = null;
 
                 ORM.PSUs.Add(tempObj);
                 ORM.SaveChanges();
@@ -349,7 +396,13 @@ namespace GC_Final.Controllers
                     tempPCCase.Stars = null;  //float.Parse(part["stars"].ToString());
                     tempPCCase.ImageLink = part["main_image"].ToString();
                     tempPCCase.Manufacturer = null;
-
+                    tempPCCase.Width = null;
+                    tempPCCase.TwoSlots = null;
+                    tempPCCase.ThreeSlots = null;
+                    tempPCCase.Style = null;
+                    tempPCCase.Length = null;
+                    tempPCCase.Height = null;
+                    tempPCCase.ExpansionSlots = null;
 
                     ORM.PCCases.Add(tempPCCase);
                     ORM.SaveChanges();
@@ -376,6 +429,13 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.Width = null;
+                tempObj.TwoSlots = null;
+                tempObj.ThreeSlots = null;
+                tempObj.Style = null;
+                tempObj.Length = null;
+                tempObj.Height = null;
+                tempObj.ExpansionSlots = null;
 
                 ORM.PCCases.Add(tempObj);
                 ORM.SaveChanges();
@@ -405,7 +465,11 @@ namespace GC_Final.Controllers
                     tempRAM.Stars = 99;  //float.Parse(part["stars"].ToString());
                     tempRAM.ImageLink = part["main_image"].ToString();
                     tempRAM.Manufacturer = null;
-
+                    tempRAM.BusSpeed = null;
+                    tempRAM.Quantity = null;
+                    tempRAM.RAMType = null;
+                    tempRAM.TotalCapacity = null;
+                    tempRAM.Voltage = null;
 
                     ORM.RAMs.Add(tempRAM);
                     ORM.SaveChanges();
@@ -431,6 +495,11 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.BusSpeed = null;
+                tempObj.Quantity = null;
+                tempObj.RAMType = null;
+                tempObj.TotalCapacity = null;
+                tempObj.Voltage = null;
 
                 ORM.RAMs.Add(tempObj);
                 ORM.SaveChanges();
@@ -459,7 +528,10 @@ namespace GC_Final.Controllers
                     tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = null;
-
+                    tempObj.RefreshRate = null;
+                    tempObj.ResX = null;
+                    tempObj.ResY = null;
+                    
 
                     ORM.Monitors.Add(tempObj);
                     ORM.SaveChanges();
@@ -485,6 +557,9 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.RefreshRate = null;
+                tempObj.ResX = null;
+                tempObj.ResY = null;
 
                 ORM.Monitors.Add(tempObj);
                 ORM.SaveChanges();
@@ -513,6 +588,11 @@ namespace GC_Final.Controllers
                     tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = null;
+                    tempObj.BuildDisks = null;
+                    tempObj.Capacity = 0;//null;
+                    tempObj.CapacityUnits = null;
+                    tempObj.Interface = null;
+                    tempObj.SlotSize = false;//null;
 
 
                     ORM.HardDrives.Add(tempObj);
@@ -539,6 +619,10 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.Capacity = 0;//null;
+                tempObj.CapacityUnits = null;
+                tempObj.Interface = null;
+                tempObj.SlotSize = false;//null;
 
                 ORM.HardDrives.Add(tempObj);
                 ORM.SaveChanges();
@@ -567,6 +651,12 @@ namespace GC_Final.Controllers
                     tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = null;
+                    tempObj.WriteSpeed = 0;// null;
+                    tempObj.Wattage = 0;// null;
+                    tempObj.Type = null;
+                    tempObj.Rewritable = false;// null;
+                    tempObj.ReadSpeed = 0;// null;
+                    tempObj.Interface = null;
 
 
                     ORM.OpticalDrivers.Add(tempObj);
@@ -593,6 +683,12 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = null;
+                tempObj.WriteSpeed = 0;// null;
+                tempObj.Wattage = 0;// null;
+                tempObj.Type = null;
+                tempObj.Rewritable = false;// null;
+                tempObj.ReadSpeed = 0;// null;
+                tempObj.Interface = null;
 
                 ORM.OpticalDrivers.Add(tempObj);
                 ORM.SaveChanges();
