@@ -197,11 +197,5 @@ namespace GC_Final.Controllers
         
 
 
-<<<<<<< HEAD
-=======
->>>>>>> be2ed48052fa6faf7970a9858d93cba05d072b16
-=======
->>>>>>> Added GetChipset, GetMaxScreenRes, GetFormFactor, GetSocketType methods to the Home Controller
->>>>>>> rebase
     }
 }
