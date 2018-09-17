@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
+using GC_Final.Controllers;
 
 namespace GC_Final.Controllers
 {
@@ -16,11 +17,10 @@ namespace GC_Final.Controllers
     {
         public object ViewBag { get; private set; }
 
-        public JObject GetParts(string partType)
+        public static JObject GetParts(string partType)
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query=CPU&page=1&retailer=amazon");
-            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]); //used to add keys
-            //apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=1&retailer=amazon");
+            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
 
@@ -35,47 +35,52 @@ namespace GC_Final.Controllers
             return jsoninfo;
         }
 
-        public List<JObject> GetPartData(JObject jsoninfo)
+        public static List<JObject> GetPartData(JObject jsoninfo)
         {
-            List<JObject> GPUs = new List<JObject>();
-            for (int i = 4; i <= 7; i++)
+            List<JObject> Parts = new List<JObject>();
+
+            if (jsoninfo.Count < 1)
+            {
+                return null;
+            }
+
+            for (int i = 0; i <= 3; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
-                HttpWebRequest apiRequest1 = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
-                apiRequest1.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]); //used to add keys
-                apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
-                apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
+                HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{x}?retailer=amazon");
+                apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]); //used to add keys
+                apiRequest.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
+                apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
-                HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
+                HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponse();
 
-                StreamReader responseData1 = new StreamReader(apiResponse1.GetResponseStream());
+                StreamReader responseData = new StreamReader(apiResponse.GetResponseStream());
 
-                string gpuinfo = responseData1.ReadToEnd();
+                string partinfo = responseData.ReadToEnd();
 
-                JObject Temp = JObject.Parse(gpuinfo);
+                JObject Temp = JObject.Parse(partinfo);
 
-                GPUs.Add(Temp);
+                Parts.Add(Temp);
             }
 
-            return GPUs;
+            return Parts;
         }
 
         //overloaed searches specific part
-        public JObject GetPartData(string partid)
+        public static JObject GetPartData(string partid)
         {
-            HttpWebRequest apiRequest1 = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{partid}?retailer=amazon");
-            apiRequest1.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]); //used to add keys
-            //apiRequest1.Headers.Add("-u", ConfigurationManager.AppSettings["apizinc"]);
-            apiRequest1.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/products/{partid}?retailer=amazon");
+            apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCKey"]);
+            apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
-            HttpWebResponse apiResponse1 = (HttpWebResponse)apiRequest1.GetResponse();
+            HttpWebResponse apiResponse = (HttpWebResponse)apiRequest.GetResponse();
 
             //NEEDS - Add if apiresponse error
 
-            StreamReader responseData1 = new StreamReader(apiResponse1.GetResponseStream());
+            StreamReader responseData = new StreamReader(apiResponse.GetResponseStream());
 
-            string partdetails = responseData1.ReadToEnd();
+            string partdetails = responseData.ReadToEnd();
 
             JObject ChosenPart = JObject.Parse(partdetails);
 
@@ -83,7 +88,7 @@ namespace GC_Final.Controllers
         }
 
         //for mass saves
-        public void SaveGPUsToDB()
+        public static void SaveGPUsToDB()
         {
             List<JObject> gpuparts = new List<JObject>();
             gpuparts = GetPartData(GetParts("GPU"));
@@ -121,7 +126,7 @@ namespace GC_Final.Controllers
         }
 
         //for single save
-        public ActionResult SaveGPUToDB(string partid)
+        public static ActionResult SaveGPUToDB(string partid)
         {
             JObject chosenpart= GetPartData(partid);
             Entities ORM = new Entities();
@@ -154,7 +159,7 @@ namespace GC_Final.Controllers
             return null;
             
         }
-        public void SaveCPUToDB(string partid)
+        public static void SaveCPUToDB(string partid)
         {
             JObject chosenpart = GetPartData(partid);
             Entities ORM = new Entities();
@@ -178,7 +183,7 @@ namespace GC_Final.Controllers
                 ORM.SaveChanges();
             }
         }
-        public void SaveCPUsToDB()
+        public static void SaveCPUsToDB()
         {
             List<JObject> searchedparts = new List<JObject>();
             searchedparts = GetPartData(GetParts("CPU"));
@@ -197,14 +202,238 @@ namespace GC_Final.Controllers
                     tempCPU.ProductID = part["product_id"].ToString();
                     tempCPU.Description = part["product_description"].ToString();
                     tempCPU.Brand = part["brand"].ToString();
-                    tempCPU.Price = null; // (int.Parse(part["price"].ToString())) / 100;
-                    tempCPU.Stars = null; //float.Parse(part["stars"].ToString());
+                    tempCPU.Price = null; // (int.Parse(chosenpart["price"].ToString())) / 100;
+                    tempCPU.Stars = null; //float.Parse(chosenpart["stars"].ToString());
                     tempCPU.ImageLink = part["main_image"].ToString();
                     tempCPU.Manufacturer = null;
 
                     ORM.CPUs.Add(tempCPU);
                     ORM.SaveChanges();
                 }
+            }
+        }
+
+        public static void SaveMotherBoardsToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("Motherboard"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                Motherboard tempMB = new Motherboard(part["title"].ToString());
+
+                List<Motherboard> z = new List<Motherboard>();
+                z = ORM.Motherboards.Where(x => x.ProductID == y).ToList();
+
+                if (z.Count < 1)
+                {
+                    tempMB.ProductID = part["product_id"].ToString();
+                    tempMB.Description = null;//part["product_description"].ToString();
+                    tempMB.Brand = part["brand"].ToString();
+                    tempMB.Price = (int.Parse(part["price"].ToString())) / 100;
+                    tempMB.Stars = float.Parse(part["stars"].ToString());
+                    tempMB.ImageLink = part["main_image"].ToString();
+                    tempMB.Manufacturer = null;
+                    tempMB.RAMType = null;
+
+
+                    ORM.Motherboards.Add(tempMB);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+
+        public static void SaveMotherboardToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            Motherboard tempObj = new Motherboard(chosenpart["title"].ToString());
+
+            List<Motherboard> z = new List<Motherboard>();
+            z = ORM.Motherboards.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.Motherboards.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SavePSUsToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("PSU"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                PSU tempPSU = new PSU(part["title"].ToString());
+
+                List<PSU> z = new List<PSU>();
+                z = ORM.PSUs.Where(x => x.ProductID == y).ToList();
+
+                if (z.Count < 1)
+                {
+                    tempPSU.ProductID = part["product_id"].ToString();
+                    tempPSU.Description = null;//part["product_description"].ToString();
+                    tempPSU.Brand = part["brand"].ToString();
+                    tempPSU.Price = (int.Parse(part["price"].ToString())) / 100;
+                    tempPSU.Stars = float.Parse(part["stars"].ToString());
+                    tempPSU.ImageLink = part["main_image"].ToString();
+                    tempPSU.Manufacturer = null;
+
+
+                    ORM.PSUs.Add(tempPSU);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+
+        public static void SavePSUToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            PSU tempObj = new PSU(chosenpart["title"].ToString());
+
+            List<PSU> z = new List<PSU>();
+            z = ORM.PSUs.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.PSUs.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SavePCCasesToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("Computer+Case"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                PCCase tempPCCase = new PCCase(part["title"].ToString());
+
+                List<PCCase> z = new List<PCCase>();
+                z = ORM.PCCases.Where(x => x.ProductID == y).ToList();
+
+                if (z.Count < 1)
+                {
+                    tempPCCase.ProductID = part["product_id"].ToString();
+                    tempPCCase.Description = null;//part["product_description"].ToString();
+                    tempPCCase.Brand = part["brand"].ToString();
+                    tempPCCase.Price = null;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempPCCase.Stars = null;  //float.Parse(part["stars"].ToString());
+                    tempPCCase.ImageLink = part["main_image"].ToString();
+                    tempPCCase.Manufacturer = null;
+
+
+                    ORM.PCCases.Add(tempPCCase);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+
+        public static void SavePCCaseToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            PCCase tempObj = new PCCase(chosenpart["title"].ToString());
+
+            List<PCCase> z = new List<PCCase>();
+            z = ORM.PCCases.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.PCCases.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SaveRAMsToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("RAM"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                RAM tempRAM = new RAM(part["title"].ToString());
+
+                List<RAM> z = new List<RAM>();
+                z = ORM.RAMs.Where(x => x.ProductID == y).ToList();
+
+                if (z.Count < 1)
+                {
+                    tempRAM.ProductID = part["product_id"].ToString();
+                    tempRAM.Description = null;//part["product_description"].ToString();
+                    tempRAM.Brand = part["brand"].ToString();
+                    tempRAM.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempRAM.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempRAM.ImageLink = part["main_image"].ToString();
+                    tempRAM.Manufacturer = null;
+
+
+                    ORM.RAMs.Add(tempRAM);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+        public static void SaveRAMoDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            RAM tempObj = new RAM(chosenpart["title"].ToString());
+
+            List<RAM> z = new List<RAM>();
+            z = ORM.RAMs.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.RAMs.Add(tempObj);
+                ORM.SaveChanges();
             }
         }
     }
