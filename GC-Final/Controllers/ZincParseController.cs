@@ -412,7 +412,7 @@ namespace GC_Final.Controllers
                 }
             }
         }
-        public static void SaveRAMoDB(string partid)
+        public static void SaveRAMToDB(string partid)
         {
             JObject chosenpart = GetPartData(partid);
             Entities ORM = new Entities();
@@ -433,6 +433,222 @@ namespace GC_Final.Controllers
                 tempObj.Manufacturer = null;
 
                 ORM.RAMs.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SaveMonitorsToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("CPU+Monitor"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                Monitor tempObj = new Monitor(part["title"].ToString());
+
+                List<Monitor> z = new List<Monitor>();
+                z = ORM.Monitors.Where(x => x.ProductID == y).ToList();
+                if (z.Count < 1)
+                {
+                    tempObj.ProductID = part["product_id"].ToString();
+                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Brand = part["brand"].ToString();
+                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.ImageLink = part["main_image"].ToString();
+                    tempObj.Manufacturer = null;
+
+
+                    ORM.Monitors.Add(tempObj);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+        public static void SaveMonitorToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            Monitor tempObj = new Monitor(chosenpart["title"].ToString());
+
+            List<Monitor> z = new List<Monitor>();
+            z = ORM.Monitors.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.Monitors.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SaveHardDrivesToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("HardDrive"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                HardDrive tempObj = new HardDrive(part["title"].ToString());
+
+                List<HardDrive> z = new List<HardDrive>();
+                z = ORM.HardDrives.Where(x => x.ProductID == y).ToList();
+                if (z.Count < 1)
+                {
+                    tempObj.ProductID = part["product_id"].ToString();
+                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Brand = part["brand"].ToString();
+                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.ImageLink = part["main_image"].ToString();
+                    tempObj.Manufacturer = null;
+
+
+                    ORM.HardDrives.Add(tempObj);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+        public static void SaveHardDriveToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            HardDrive tempObj = new HardDrive(chosenpart["title"].ToString());
+
+            List<HardDrive> z = new List<HardDrive>();
+            z = ORM.HardDrives.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.HardDrives.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SaveOpticalDriversToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("Optical+Driver"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                OpticalDriver tempObj = new OpticalDriver(part["title"].ToString());
+
+                List<OpticalDriver> z = new List<OpticalDriver>();
+                z = ORM.OpticalDrivers.Where(x => x.ProductID == y).ToList();
+                if (z.Count < 1)
+                {
+                    tempObj.ProductID = part["product_id"].ToString();
+                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Brand = part["brand"].ToString();
+                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.ImageLink = part["main_image"].ToString();
+                    tempObj.Manufacturer = null;
+
+
+                    ORM.OpticalDrivers.Add(tempObj);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+        public static void SaveOpticalDriverToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            OpticalDriver tempObj = new OpticalDriver(chosenpart["title"].ToString());
+
+            List<OpticalDriver> z = new List<OpticalDriver>();
+            z = ORM.OpticalDrivers.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.OpticalDrivers.Add(tempObj);
+                ORM.SaveChanges();
+            }
+        }
+
+        public static void SavePCICardsToDB()
+        {
+            List<JObject> searchedparts = new List<JObject>();
+            searchedparts = GetPartData(GetParts("PCI+Card"));
+            Entities ORM = new Entities();
+
+            foreach (JObject part in searchedparts)
+            {
+                string y = part["product_id"].ToString();
+                PCICard tempObj = new PCICard(part["title"].ToString());
+
+                List<PCICard> z = new List<PCICard>();
+                z = ORM.PCICards.Where(x => x.ProductID == y).ToList();
+                if (z.Count < 1)
+                {
+                    tempObj.ProductID = part["product_id"].ToString();
+                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Brand = part["brand"].ToString();
+                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
+                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.ImageLink = part["main_image"].ToString();
+                    tempObj.Manufacturer = null;
+
+
+                    ORM.PCICards.Add(tempObj);
+                    ORM.SaveChanges();
+                }
+            }
+        }
+        public static void SavePCICardToDB(string partid)
+        {
+            JObject chosenpart = GetPartData(partid);
+            Entities ORM = new Entities();
+
+            PCICard tempObj = new PCICard(chosenpart["title"].ToString());
+
+            List<PCICard> z = new List<PCICard>();
+            z = ORM.PCICards.Where(x => x.ProductID == partid).ToList();
+
+            if (z.Count < 1)
+            {
+                tempObj.ProductID = chosenpart["product_id"].ToString();
+                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Brand = chosenpart["brand"].ToString();
+                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                tempObj.ImageLink = chosenpart["main_image"].ToString();
+                tempObj.Manufacturer = null;
+
+                ORM.PCICards.Add(tempObj);
                 ORM.SaveChanges();
             }
         }

@@ -32,8 +32,8 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("GPU"));
-            ZincParseController.SaveCPUsToDB();
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PCI+Card"));
+            ZincParseController.SaveGPUsToDB();
         
             return View();
         }
