@@ -20,8 +20,8 @@
     <tr>
         <td>@ViewBag.PartSearch["results"][i]["title"]</td>
         <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
-        @*<td>@ViewBag.PartSearch["results"][i]["stars"]</td>
-        <td>@ViewBag.PartSearch["results"][i]["price"]</td>*@
+        <td>@ViewBag.PartSearch["results"][i]["stars"]</td>
+        <td>@ViewBag.PartSearch["results"][i]["price"]</td>
         <td><input type="submit" action="/api/ZincParse/Save{partType}ToDB" name="partid" value="@ViewBag.PartsSearch["results"][i]["product_id"]"/></td>
     </tr>
     }
