@@ -80,7 +80,7 @@ namespace GC_Final.Controllers
             if (Index < 0)
                 return null;
 
-            string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").ToString();
+            string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").Value.ToString();
             string[] SplitScreenRes = ScreenResolution.Split(' ');
 
             MaxResX = int.Parse(SplitScreenRes[0]);
@@ -91,6 +91,95 @@ namespace GC_Final.Controllers
             
             
         }
+
+        public static string GetSocketType(string[] Data)
+        {
+
+            for (int i = 0; i <= Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("socket"))
+                {
+                    return Regex.Match(Data[i], @"^[lpLP][Gg][Aa] \d+$").Value.ToString();
+                }
+            }
+
+            return null;
+
+        }
+
+        public static string GetFormFactor(string[] Data)
+        {
+            for (int i = 0; i <= Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("form factor"))
+                {
+                    string _FFDetails = "";
+                    
+                    if (Data[i].ToLower().Contains("at"))
+                    {
+                        _FFDetails += "AT,";
+                    }
+
+                    if (Data[i].ToLower().Contains("baby at"))
+                    {
+                        _FFDetails += "Baby AT,";
+                    }
+
+                    if (Data[i].ToLower().Contains("atx"))
+                    {
+                        _FFDetails += "ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("mini atx"))
+                    {
+                        _FFDetails += "Mini ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("micro atx"))
+                    {
+                        _FFDetails += "Micro ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("flex atx"))
+                    {
+                        _FFDetails += "Flex ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("lpx"))
+                    {
+                        _FFDetails += "LPX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("nlx"))
+                    {
+                        _FFDetails += "NLX,";
+                    }
+
+                    return _FFDetails;
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static string GetChipset(string[] Data)
+        {
+            for (int i = 0; i <= Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("chipset"))
+                {
+                    return Regex.Match(Data[i], @"[a-zA-Z]+\d+[a-zA-Z]?+").Value.ToString();
+                }
+
+            }
+
+            return null;
+
+        }
+
 
         
 
