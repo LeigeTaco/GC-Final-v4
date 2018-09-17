@@ -22,6 +22,7 @@
         <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
         <td>@ViewBag.PartSearch["results"][i]["stars"]</td>
         <td>@ViewBag.PartSearch["results"][i]["price"]</td>
+        <td><input type="submit" action="/api/ZincParse/Save{partType}ToDB" name="partid" value="@ViewBag.PartsSearch["results"][i]["product_id"]"</td>
         <td>@*<input type="button" onclick="/Home/SavePart" name="Save!" value="@ViewBag.PartSearch["results"][i]["product_id"] />*@</td>
     </tr>
     }

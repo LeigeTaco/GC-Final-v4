@@ -23,9 +23,8 @@
                 {
                     <option value="@motherboard["title"]">@motherboard["title"]</option>
                 }
-                <option>More...</option>
             </select>
-            <input type="button" onclick="location.href='http://localhost:53796/Builds/MoreParts';" value="More" />
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name ="partType" value="Motherboard" />
             @*</div>*@
         </div>
 
@@ -38,6 +37,7 @@
                     <option value="@gpu.GPUID">@gpu.Name</option>
                 }
             </select>
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="GPU" />
         </div>
         <div class="form-group">
             <label>CPU</label>
@@ -48,6 +48,7 @@
                     <option value="@cpu.CPUID">@cpu.Name</option>
                 }
             </select>
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="CPU" />
         </div>
         <div class="form-group">
             <label>PSU</label>
@@ -58,6 +59,7 @@
                     <option value="@psu.PSUID">@psu.Name"</option>
                 }
             </select>
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="PSU" />
         </div>
         <div class="form-group">
             <label>Case</label>
@@ -68,20 +70,50 @@
                     <option value="@pccase.CaseID">@pccase.Name</option>
                 }
             </select>
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="Computer+Case" />
         </div>
         <div class="form-group">
             <label>RAM</label>
             @*<input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select name ="ram" id="RAM">
+            <select name="ram" id="RAM">
                 @foreach (var ram in ViewBag.RAMs)
                 {
                     <option value="@ram.RAMID">@ram.Name</option>
                 }
             </select>
+            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="RAM" />
         </div>
         <div class="form-group">
+            <div class="form-group">
+                <label>Monitor</label>
+                @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
+                <select name="moniter" id="Moniter">
+                    @foreach (var monitor in ViewBag.Monitor)
+                    {
+                        <option value="@monitor.MonitorID">@monitor.Name</option>
+                    }
+                </select>
+                <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="CPU+Monitor" />
+            </div>
+            <div class="form-group">
+                <label>Hard Drive</label>
+                @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
+                <select name="hardDrive" id="HardDrive">
+                    @foreach (var hardDrive in ViewBag.HardDrive)
+                    {
+                        <option value="@hardDrive">@hardDrive.Name</option>
+                    }
+                </select>
+                <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="HardDrive" />
+            </div>
+
+
+
+
+
+
             @*remember me radio box with BIT, 1 for click save*@
-            <input type="submit" id="create" class="form-control" value="Build" />
+            <input type="submit" action="" id="create" class="form-control" value="Build" />
         </div>
     </form>
 </div>
