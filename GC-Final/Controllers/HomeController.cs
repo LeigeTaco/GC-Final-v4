@@ -70,6 +70,7 @@ namespace GC_Final.Controllers
 
             return View();
         }
+
         
         public static int[] GetMaxScreenResolution(string[] Data)
         {
@@ -100,6 +101,12 @@ namespace GC_Final.Controllers
                        
         }
 
+        public static string GetSocketType(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetSocketType(_dataArray);
+        }
+
         public static string GetSocketType(string[] Data)
         {
 
@@ -113,6 +120,12 @@ namespace GC_Final.Controllers
 
             return null;
 
+        }
+
+        public static string GetFormFactor(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetFormFactor(_dataArray);
         }
 
         public static string GetFormFactor(string[] Data)
@@ -173,6 +186,11 @@ namespace GC_Final.Controllers
 
         }
 
+        public static string GetChipset(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetChipset(_dataArray);
+        }
 
         public static string GetChipset(string[] Data)
         {
