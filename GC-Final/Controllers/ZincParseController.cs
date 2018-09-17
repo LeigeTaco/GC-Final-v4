@@ -126,7 +126,7 @@ namespace GC_Final.Controllers
         }
 
         //for single save
-        public static ActionResult SaveGPUToDB(string partid)
+        public static ActionResult GetSaveGPUToDB(string partid)
         {
             JObject chosenpart= GetPartData(partid);
             Entities ORM = new Entities();
@@ -750,3 +750,4 @@ namespace GC_Final.Controllers
         }
     }
 }
+
