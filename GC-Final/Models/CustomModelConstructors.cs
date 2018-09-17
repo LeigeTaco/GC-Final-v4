@@ -232,6 +232,90 @@ namespace GC_Final.Models
 
     public partial class Build
     {
+        public void Glorp(Build _goop)
+        {
+
+            if (_goop.Motherboard != null && Motherboard == null)
+            {
+                MBID = _goop.Motherboard.MotherboardID;
+                Motherboard = _goop.Motherboard;
+            }
+            if (_goop.CPU != null && CPU == null)
+            {
+                CPUID = _goop.CPU.CPUID;
+                CPU = _goop.CPU;
+            }
+            if (_goop.GPU != null && GPU == null)
+            {
+                GPUID = _goop.GPU.GPUID;
+                GPU = _goop.GPU;
+                GPUCount = _goop.GPUCount;
+            }
+            if (_goop.PSU != null && PSU == null)
+            {
+                PSUID = _goop.PSU.PSUID;
+                PSU = _goop.PSU;
+            }
+            if (_goop.PCCase != null && PCCase == null)
+            {
+                CaseID = _goop.PCCase.CaseID;
+                PCCase = _goop.PCCase;
+            }
+
+        }
+
+        public double GetPrice()
+        {
+            double _total = 0.0;
+
+            _total += PCCase.GetPrice();
+            _total += Motherboard.GetPrice();
+            _total += CPU.GetPrice();
+            _total += GPU.GetPrice() * (double)GPUCount;
+            _total += PSU.GetPrice();
+            foreach (RAM r in BuildsRAMs.Select(x => x.RAM).ToArray())
+            {
+                _total += r.GetPrice();
+            }
+            if (BuildDisks != null)
+            {
+                foreach (HardDrive d in BuildDisks.Select(x => x.HardDrive).ToArray())
+                {
+                    _total += d.GetPrice();
+                }
+            }
+            if (BuildODs != null)
+            {
+                foreach (OpticalDriver o in BuildODs.Select(x => x.OpticalDriver).ToArray())
+                {
+                    _total += o.GetPrice();
+                }
+            }
+            if (BuildMonitors != null)
+            {
+                foreach (Monitor m in BuildMonitors.Select(x => x.Monitor).ToArray())
+                {
+                    m.GetPrice();
+                }
+            }
+            if (BuildPCIs != null)
+            {
+                foreach (PCICard c in BuildPCIs.Select(x => x.PCICard).ToArray())
+                {
+                    _total += c.GetPrice();
+                }
+            }
+            if (BuildsPeripherals != null)
+            {
+                foreach (Peripheral p in BuildsPeripherals.Select(x => x.Peripheral).ToArray())
+                {
+                    _total += p.GetPrice();
+                }
+            }
+
+            return _total;
+        }
+
         public Build(Controllers.BuildDetails bass)
         {
 

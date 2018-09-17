@@ -29,6 +29,40 @@ namespace GC_Final.Controllers
     [Authorize]
     public class BuildsController : Controller
     {
+        private Build _Algorithm(string bName, string bID, string oID, Motherboard _MB, CPU _CPU, GPU _GPU, PSU _PSU, RAM _RAM, PCCase _CASE, double? maxPrice)
+        {
+            //Strings: bName, bID, oID
+            //Parts: MB, CPU, GPU, PSU, RAM, PCCase
+            //Double: Price
+
+            Entities ORM = new Entities();
+            Build _out = new Build();
+            _out.BuildName = bName;
+            _out.BuildID = bID;
+            _out.OwnerID = oID;
+            bool isCompatible = false;
+
+            do
+            {
+
+                if (maxPrice != null)
+                {
+                    double mPrice = (double)maxPrice;
+
+                    if (_MB == null)
+                    {
+                        _MB = ORM.Motherboards.Where(x => x.GetPrice() <= mPrice).First();
+                    }
+
+                }
+
+
+            } while (!isCompatible);
+
+            return _out;
+
+        }
+
         // GET: Builds
         public ActionResult Create()
         {
@@ -57,6 +91,42 @@ namespace GC_Final.Controllers
             UserBuild.BuildID = Guid.NewGuid().ToString("D");
             UserBuild.OwnerID = User.Identity.GetUserId();
 
+            Motherboard _MB = new Motherboard();
+            CPU _CPU = new CPU();
+            RAM _RAM = new RAM();
+            PSU _PSU = new PSU();
+            GPU _GPU = new GPU();
+            PCCase _CASE = new PCCase();
+            if (motherboard != null)
+            {
+                _MB = ORM.Motherboards.Where(x => x.Name == motherboard).First();
+            }
+            if (cpu != null)
+            {
+                _CPU = ORM.CPUs.Where(x => x.Name == cpu).First();
+            }
+            if (ram != null)
+            {
+                _RAM = ORM.RAMs.Where(x => x.Name == ram).First();
+            }
+            if (psu != null)
+            {
+                _PSU = ORM.PSUs.Where(x => x.Name == psu).First();
+            }
+            if (gpu != null)
+            {
+                _GPU = ORM.GPUs.Where(x => x.Name == gpu).First();
+            }
+            if (casename != null)
+            {
+                _CASE = ORM.PCCases.Where(x => x.Name == casename).First();
+            }
+
+            UserBuild.Glorp(_Algorithm(UserBuild.BuildName, UserBuild.BuildID, UserBuild.OwnerID, _MB, _CPU, _GPU, _PSU, _RAM, _CASE, price));
+            ORM.Builds.Add(UserBuild);
+            ORM.SaveChanges();
+
+            return _Edit(UserBuild.BuildID, User.Identity.GetUserId());
         }
         
         [RequireParameter("buildName")]
@@ -65,36 +135,6 @@ namespace GC_Final.Controllers
             Entities ORM = new Entities();
             Build UserBuild = new Build();
             BuildsRAM userRam = new BuildsRAM();
-
-            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
-            //Motherboard tempMB = new Motherboard(motherboard);
-            //ORM.Motherboards.Add(tempMB);
-            //UserBuild.Motherboard = tempMB;
-            //GPU tempGPU = new GPU(gpu);
-            //ORM.GPUs.Add(tempGPU);
-            //UserBuild.GPU = tempGPU;
-            //UserBuild.GPUCount = 1;
-            //CPU tempCPU = new CPU(cpu);
-            //ORM.CPUs.Add(tempCPU);
-            //UserBuild.CPU = tempCPU;
-            //PSU tempPSU = new PSU(psu);
-            //ORM.PSUs.Add(tempPSU);
-            //UserBuild.PSU = tempPSU;
-            //PCCase tempCase = new PCCase(casename);
-            //ORM.PCCases.Add(tempCase);
-            //UserBuild.PCCase = tempCase;
-            //RAM tempRAM = new RAM(ram);
-            //ORM.RAMs.Add(tempRAM);
-            //ORM.SaveChanges();
-            //UserBuild.MBID = tempMB.MotherboardID;
-            //UserBuild.GPUID = tempGPU.GPUID;
-            //UserBuild.CPUID = tempCPU.CPUID;
-            //UserBuild.PSUID = tempPSU.PSUID;
-            //UserBuild.CaseID = tempCase.CaseID;
-            //UserBuild.BuildID = Guid.NewGuid().ToString("D");
-            //UserBuild.OwnerID = User.Identity.GetUserId().ToString();
-            //ORM.Builds.Add(UserBuild);
-            //ORM.SaveChanges();
 
             UserBuild.BuildID = Guid.NewGuid().ToString("D");
             UserBuild.OwnerID = User.Identity.GetUserId().ToString();
@@ -107,6 +147,9 @@ namespace GC_Final.Controllers
             userRam.RAMID = ORM.RAMs.Where(x => x.Name == ram).Select(x => x.RAMID).ToArray()[0];
             UserBuild.PSUID = ORM.PSUs.Where(x => x.Name == psu).Select(x => x.PSUID).ToArray()[0];
             UserBuild.CaseID = ORM.PCCases.Where(x => x.Name == casename).Select(x => x.CaseID).ToArray()[0];
+            ORM.BuildsRAMs.Add(userRam);
+            ORM.Builds.Add(UserBuild);
+            ORM.SaveChanges();
 
             return _Edit(UserBuild.BuildID, User.Identity.GetUserId());
         }
