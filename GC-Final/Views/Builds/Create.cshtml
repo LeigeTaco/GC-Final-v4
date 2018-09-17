@@ -1,5 +1,4 @@
-﻿
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Create";
 }
 <br />
@@ -7,115 +6,144 @@
 <h2>Create Your Own Custom Build</h2>
 <br />
 <div class="container">
-    <form action="~/Builds/Edit" method="post">
+    <form action="~/Home/MoreParts" method="post">
         <div class="form-group">
             <label>Name</label><input type="text" id="buildName" name="buildName" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />
         </div>
         <div class="form-group">
-            @*<div class="custom-select" style="width:200px;">*@
             <label>Motherboard</label>
-            @*<input type="text" id="motherboard" name="motherboard" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-
-            @*<select asp-for="Motherboard" asp-items="ViewBag.CreatedList"></select>*@   @*Get from db?*@
-
             <select name="motherboard" id="Motherboard">
                 @foreach (var motherboard in ViewBag.Motherboards)
                 {
                     <option value="@motherboard["title"]">@motherboard["title"]</option>
                 }
             </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name ="partType" value="Motherboard" />
-            @*</div>*@
+            <input type="submit" name="partType" value="Motherboard" />
         </div>
-
         <div class="form-group">
             <label>GPU</label>
-            @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select name="gpu" id="GPU">
                 @foreach (var gpu in ViewBag.GPUs)
                 {
                     <option value="@gpu.GPUID">@gpu.Name</option>
                 }
             </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="GPU" />
+            <input type="submit" name="partType" value="GPU" />
         </div>
         <div class="form-group">
-            <label>CPU</label>
-            @*<input type="text" id="cpu" name="cpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
-            <select name="cpu" id="CPU">
-                @foreach (var cpu in ViewBag.CPUs)
-                {
-                    <option value="@cpu.CPUID">@cpu.Name</option>
-                }
-            </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="CPU" />
+            CPU: <input id="CPU" name="cpu" type="text" /><br />
+
+            <input type="button" id="searchButton" value="Search" />
+
+            <script type="text/javascript" src=""></script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#searchButton").click(function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Home/MoreParts",
+                            data: '{country:"' + $("#country").val() + '"}',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+
+                                $("#searchResults").html("");// clear the table
+                                for (var i = 0; i < response.length; i++) {
+                                    var Customer = response[i];// get Customer at index i
+                                    var Tr = "<tr>";
+                                    var Td1 = "<td>" + Customer.CustomerID + "</td>";
+                                    var Td2 = "<td>" + Customer.CompanyName + "</td>";
+
+                                    $("#searchResults").append(Tr + Td1 + Td2 + "</tr>");
+
+                                }
+
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    });
+                });
+            </script>
         </div>
         <div class="form-group">
             <label>PSU</label>
-            @*<input type="text" id="psu" name="psu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select name="psu" id="PSU">
                 @foreach (var psu in ViewBag.PSUs)
                 {
                     <option value="@psu.PSUID">@psu.Name"</option>
                 }
             </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="PSU" />
+            <input type="submit" name="partType" value="PSU" />
         </div>
         <div class="form-group">
             <label>Case</label>
-            @*<input type="text" id="case" name="casename" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select name="casename" id="Case">
-                @foreach (var pccase in ViewBag.Cases)
+                @foreach (var pccase in ViewBag.PCCases)
                 {
                     <option value="@pccase.CaseID">@pccase.Name</option>
                 }
             </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="Computer+Case" />
+            <input type="submit" name="partType" value="More" />
         </div>
         <div class="form-group">
             <label>RAM</label>
-            @*<input type="text" id="ram" name="ram" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
             <select name="ram" id="RAM">
                 @foreach (var ram in ViewBag.RAMs)
                 {
                     <option value="@ram.RAMID">@ram.Name</option>
                 }
             </select>
-            <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="RAM" />
+            <input type="submit" name="partType" value="More" />
         </div>
         <div class="form-group">
             <div class="form-group">
                 <label>Monitor</label>
-                @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
                 <select name="moniter" id="Moniter">
-                    @foreach (var monitor in ViewBag.Monitor)
+                    @foreach (var monitor in ViewBag.Monitors)
                     {
                         <option value="@monitor.MonitorID">@monitor.Name</option>
                     }
                 </select>
-                <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="CPU+Monitor" />
+                <input type="submit" name="partType" value="More" />
             </div>
             <div class="form-group">
                 <label>Hard Drive</label>
-                @*<input type="text" id="gpu" name="gpu" class="form-control" placeholder="Enter build name" pattern="[a-zA-Z0-9-]+" />*@
                 <select name="hardDrive" id="HardDrive">
-                    @foreach (var hardDrive in ViewBag.HardDrive)
+                    @foreach (var x in ViewBag.HardDrives)
                     {
-                        <option value="@hardDrive">@hardDrive.Name</option>
+                        <option value="@x.HardDriveID">@x.Name</option>
                     }
                 </select>
-                <input type="submit" onclick="location.href='http://localhost:53796/Home/MoreParts';" name="partType" value="HardDrive" />
+                <input type="submit" name="partType" value="More" />
             </div>
-
-
-
-
-
-
-            @*remember me radio box with BIT, 1 for click save*@
-            <input type="submit" action="" id="create" class="form-control" value="Build" />
+            <div class="form-group">
+                <label>Optical Driver</label>
+                <select name="opticalDriver" id="OpticalDriver">
+                    @foreach (var x in ViewBag.OpticalDrivers)
+                    {
+                        <option value="@x.OpticalDriverID">@x.Name</option>
+                    }
+                </select>
+                <input type="submit" name="partType" value="More" />
+            </div>
+            <div class="form-group">
+                <label>PCI Card</label>
+                <select name="pciCard" id="PCICard">
+                    @foreach (var x in ViewBag.PCICards)
+                    {
+                        <option value="@x.CardID">@x.Name</option>
+                    }
+                </select>
+                <input type="submit" name="partType" value="More" />
+            </div>
         </div>
+        <input type="submit" action="" id="create" class="form-control" value="Build" />
     </form>
 </div>
+
+
+
 
 

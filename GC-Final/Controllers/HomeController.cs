@@ -57,6 +57,7 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreParts(string partType)
         {
+    
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             return View();
