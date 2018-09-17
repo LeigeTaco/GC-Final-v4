@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using GC_Final.Models;
 using GC_Final.Controllers;
+using System.Text.RegularExpressions;
 
 namespace GC_Final.Controllers
 {
@@ -60,6 +61,39 @@ namespace GC_Final.Controllers
 
             return View();
         }
+        
+        public static int[] GetMaxScreenResolution(string[] Data)
+        {
+            int Index = -1;
+
+            for (int i = 0; i <= Data.Length; i++ )
+            {
+                if (Data[i].ToLower().Contains("res"))
+                {
+                    Index = i;
+                }
+            }
+
+            int MaxResX;
+            int MaxResY;
+
+            if (Index < 0)
+                return null;
+
+            string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").ToString();
+            string[] SplitScreenRes = ScreenResolution.Split(' ');
+
+            MaxResX = int.Parse(SplitScreenRes[0]);
+            MaxResY = int.Parse(SplitScreenRes[2]);
+
+            int[] MaxScreenResolution = { MaxResX, MaxResY };
+            return MaxScreenResolution;
+            
+            
+        }
+
+        
+
 
     }
 }
