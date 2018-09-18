@@ -4,23 +4,23 @@
 <br />
 <br />
 <h2>Create Your Own Custom Build</h2>
-@*<form class="form-horizontal" action="/Home/MoreParts" method="get">
+@*<form class="form-horizontal" action="/Parts/MoreParts" method="get">
     <input type="submit" id="create" class="form-control" value="More CPUs" />
     <input type="hidden" name="partType" value="CPU" />
 </form>*@
 <br />
 <br />
 <div class="container">
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="buildName">Build Name: </label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="buildName" name="buildName" />
+            <div class="col-sm-10">
+                <input type="text" class="form-control"  id="buildName" name="buildName" />
                 <input type="hidden" name="buildName" value="input" />
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="Motherboard">Motherboard: </label>
             <div class="col-sm-2">
@@ -32,7 +32,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="GPU">GPU: </label>
             <div class="col-sm-2">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="CPU">CPU: </label>
             <div class="col-sm-2">
@@ -56,7 +56,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="PSU">PSU: </label>
             <div class="col-sm-2">
@@ -68,7 +68,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="Case">Case: </label>
             <div class="col-sm-2">
@@ -80,7 +80,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="RAM">RAM: </label>
             <div class="col-sm-2">
@@ -92,7 +92,7 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="~/Home/MoreParts" method="post">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="Monitor">Monitor: </label>
             <div class="col-sm-2">
@@ -107,37 +107,37 @@
 </div>
 
 
-    @*<form id="Motherboard" action="~/Home/MoreParts" method="post">
+    @*<form id="Motherboard" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More Motherboards" />
                 <input type="hidden" name="partType" value="Motherboard" />
             </form>
-            <form id="GPU" action="~/Home/MoreParts" method="post">
+            <form id="GPU" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More GPUs" />
                 <input type="hidden" name="partType" value="GPU" />
             </form>
-            <form id="CPU" action="~/Home/MoreParts" method="post">
+            <form id="CPU" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More CPUs" />
                 <input type="hidden" name="partType" value="CPU" />
             </form>
-            <form id="PSU" action="~/Home/MoreParts" method="post">
+            <form id="PSU" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More PSUs" />
                 <input type="hidden" name="partType" value="PSU" />
             </form>
-            <form id="Case" action="~/Home/MoreParts" method="post">
+            <form id="Case" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More Cases" />
                 <input type="hidden" name="partType" value="Case" />
             </form>
-            <form id="RAM" action="~/Home/MoreParts" method="post">
+            <form id="RAM" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More RAM" />
                 <input type="hidden" name="partType" value="RAM" />
             </form>
-            <form id="Monitor" action="~/Home/MoreParts" method="post">
+            <form id="Monitor" action="~/Parts/MoreParts" method="post">
                 <input type="search" class="form-control" id="search" value="TODO" />
                 <input type="submit" id="create" class="submit form-control" value="More Monitors" />
                 <input type="hidden" name="partType" value="Monitor" />
@@ -243,18 +243,22 @@
                     <input type="submit" name="partType" value="More" />
                 </div>
             </div>
-            <input type="submit" action="" id="create" class="form-control" value="Build" />
+            <input type="submit" action="" id="create" class="form-control" value="Build" />*@
 
-        </div>*@
-    <br /><br />
-    <form class="form-horizontal" action="~/Home/Display" method="post">
-        <div class="form-group">
-            <div class="control-label col-sm-2">
-                <input type="submit" id="create" class="submit form-control" name="buildID" value="Create Build" />
-                <input type="hidden" name="buildID" value="******" />
+       
+<br /><br />
+<div class="container">
+    <div class="col-sm-2">
+        <form class="form-horizontal" action="~/Home/Display" method="post">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <input type="submit" id="create" class="submit form-control" name="buildID" value="Create Build" />
+                    <input type="hidden" name="buildID" value="******" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
 
 
 
