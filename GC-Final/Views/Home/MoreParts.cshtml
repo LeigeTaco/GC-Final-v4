@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+﻿@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $("#AddBtn").on("submit", function (input) {
@@ -7,11 +7,7 @@
             $.ajax({
                 type: "GET",
                 url: "/api/ZincParse/GetSaveGPUToDB?partid="+ input,
-<<<<<<< HEAD
-                /*data: '{ "input" }'*/
-=======
                 data: '{ "input" }',
->>>>>>> rebase
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (input) {
@@ -26,65 +22,34 @@
             });
 
         });
-    });
-</script>
+    });*@
+@*</script>*@
 @{
     ViewBag.Title = "MoreParts";
 }
-<<<<<<< HEAD
-<h2>MoreParts</h2>
-<br /><br />
-<table border="1">
-=======
-
 <br /> <br />
-<h2>More Parts</h2>
 
-<br />
-@foreach (var x in ViewBag.title)
-{
-    <p>@x</p>
-}
-<br />
-@*<table border="1">
->>>>>>> Rebase
-    <tr>
-        <th> Title</th>
-        <th> Brand</th>
-        <th> Price</th>
-        <th> Description</th>
-        <th></th>
-        <th></th>
-    </tr>
-<<<<<<< HEAD
+<table border="1">
     @for (int i = 0; i <= 14; i++)
     {
-        <tr>
-            <td> @ViewBag.PartSearch["results"][i]["title"]</td>
-            <td> @ViewBag.PartSearch["results"][i]["brand"]</td>
-            <td> @ViewBag.PartSearch["results"][i]["price"]</td>
-            <td> @ViewBag.PartSearch["results"][i]["description"]</td>
-            @*<td class="btn" type="submit" name="TODO" value="@ViewBag.PartSearch["results"][i]["product_id"]">More Details</td>*@
-            @*<td class="btn" action="/api/ZincParse/SaveGPUToDB" type="button" name="partid" value="@ViewBag.PartSearch["results"][i]["product_id"]">Add</td>*@
-            <td><input id="AddBtn" type="button" value="Add" onclick="function({'@ViewBag.PartSearch["results"][i]["product_id"]'})" /></td>
-=======
-    @for (int i = 0; i < 14; i++)
-    {
-        <tr>
-            <td>@ViewBag.PartSearch["results"][i]["title"]</td>
-                <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
-                <td>@ViewBag.PartSearch["results"][i]["stars"]</td>
-                <td>@ViewBag.PartSearch["results"][i]["price"]</td>
-            <td><input type="submit" action="/api/ZincParse/SaveGPUToDB" name="partid" value="@ViewBag.PartsSearch["results"][i]["product_id"]" /></td>
->>>>>>> Rebase
-        </tr>
+    <tr>
+        <td> @ViewBag.PartSearch["results"][i]["title"]</td>
+        <td> @ViewBag.PartSearch["results"][i]["brand"]</td>
+        <td> @ViewBag.PartSearch["results"][i]["price"]</td>
+        <td> @ViewBag.PartSearch["results"][i]["description"]</td>
+        <td><button>class="btn btn-default" type="submit" action="/Home/PartSearch" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"]"</button> More Details</td>
+        <td class="btn btn-default" type="submit" action="/Parts/SavePart" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"]">Add</td>
+        <td><input type="submit" id="create" class="submit form-control" value="More Motherboards" /></td>
+        <td><input type="hidden" action="/Parts/SavePart" name="chosenPartId" value="@ViewBag.PartSearch["results"][i]["product_id"]" onclick="function({'@ViewBag.PartSearch["results"][i]["product_id"]'})" /></td>
+        @*<td><input id="AddBtn" type="button" value="Add" onclick="function({'@ViewBag.PartSearch["results"][i]["product_id"]'})" /></td>*@
+    </tr>
     }
 </table>
+<br /> <br /><br />
 
-<<<<<<< HEAD
+    <form id="Monitor" action="~/Home/Create" method="post">
+        <input type="submit" id="create" class="submit form-control" value="More Monitors" />
+        <input type="hidden" name="partType" value="Monitor" />
+    </form>
 
 
-
-=======
-<table id="searchResults" class="table"></table>*@
->>>>>>> Rebase
