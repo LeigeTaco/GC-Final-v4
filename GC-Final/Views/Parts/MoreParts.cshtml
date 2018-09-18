@@ -1,0 +1,43 @@
+﻿@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+@*<script type="text/javascript">
+    $(function(){
+        $("#AddBtn").on("submit", function (input) {
+            var $this = $(this);
+            var frmValues = $this.serialize();
+            $.ajax({
+                type: "GET",
+                url: "/api/ZincParse/GetSaveGPUToDB?partid="+ input,
+                data: '{ "input" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (input) {
+                    console.log("Success");
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        });
+    });*@
+
+@{
+    ViewBag.Title = "MoreParts";
+}
+<br /> <br />
+
+<br /> <br /><br />
+
+@for (int i = 0; i <= 14; i++)
+{
+    <form id="SavedPart" action="~/Parts/SavePart" method="get">
+        <input type="submit" id="create" class="submit form-control" value="@ViewBag.PartSearch["results"][i]["product_id"]" />
+        <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
+        <input type="hidden" name="partType" value="@ViewBag.PartType" />
+
+    </form>
+}
