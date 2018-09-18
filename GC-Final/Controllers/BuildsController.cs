@@ -81,6 +81,7 @@ namespace GC_Final.Controllers
             return View();
         }
 
+<<<<<<< HEAD
        
         public ActionResult Create(newPart)
         {
@@ -99,7 +100,6 @@ namespace GC_Final.Controllers
             return View();
         }
         
-
         [RequireParameter("autoComplete")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram, double? price, string preferredBrands, bool autoComplete)
         {

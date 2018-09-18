@@ -18,13 +18,6 @@ namespace GC_Final.Controllers
     public class PartsController : Controller
     {
         // GET: Parts
-        public ActionResult Index()
-        {
-
-
-            return View();
-        }
-
         public ActionResult SavePart(string chosenPartID, string partType)
         {
             if (chosenPartID == "GPU")
@@ -49,6 +42,11 @@ namespace GC_Final.Controllers
             return RedirectToAction("Create?newPart=" + chosenPartID, new { Controller = "Builds" });
         }
 
+        public ActionResult PartDetails(string partid)
+        {
+            return View("SavePart");
+        }
+
         public ActionResult MoreParts(string partType)
         {
 
@@ -56,6 +54,22 @@ namespace GC_Final.Controllers
 
             //ViewBag.PartSearch= ZincParseController.GetParts(partType);
 
+            return View();
+        }
+        public ActionResult Create(string newPart)
+        {
+            Entities ORM = new Entities();
+
+            ViewBag.GPUs = ORM.GPUs;
+            ViewBag.CPUs = ORM.CPUs;
+            ViewBag.Motherboards = ORM.Motherboards;
+            ViewBag.PSUs = ORM.PSUs;
+            ViewBag.RAMs = ORM.RAMs;
+            ViewBag.Monitors = ORM.Monitors;
+            ViewBag.PCCases = ORM.PCCases;
+            ViewBag.HardDrives = ORM.HardDrives;
+            ViewBag.OpticalDrivers = ORM.OpticalDrivers;
+            ViewBag.PCICards = ORM.PCICards;
             return View();
         }
     }
