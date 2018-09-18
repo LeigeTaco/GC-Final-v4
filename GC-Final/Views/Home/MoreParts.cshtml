@@ -7,10 +7,14 @@
             $.ajax({
                 type: "GET",
                 url: "/api/ZincParse/GetSaveGPUToDB?partid="+ input,
+<<<<<<< HEAD
                 /*data: '{ "input" }'*/
+=======
+                data: '{ "input" }',
+>>>>>>> rebase
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function () {
+                success: function (input) {
                     console.log("Success");
                 },
                 failure: function (response) {
