@@ -81,6 +81,7 @@ namespace GC_Final.Controllers
             return View();
         }
 
+       
         public ActionResult Create(newPart)
         {
             Entities ORM = new Entities();
@@ -97,6 +98,7 @@ namespace GC_Final.Controllers
             ViewBag.PCICards = ORM.PCICards;
             return View();
         }
+        
 
         [RequireParameter("autoComplete")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram, double? price, string preferredBrands, bool autoComplete)
