@@ -28,11 +28,11 @@ namespace GC_Final.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
-
         }
 
         public ActionResult Contact()
         {
+            
             @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
 
             ZincParseController.GetSaveGPUToDB("B01MA62JSZ"); 
@@ -49,6 +49,47 @@ namespace GC_Final.Controllers
             return View();
         }
 
+        public ActionResult SavePart(string chosenPartID)
+        {
+            if (chosenPartID == "GPU")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "CPU")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "Motherboard")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "PCCase")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "PSU")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "RAM")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "OpticalDrive")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "HardDrive")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+            if (chosenPartID == "Monitor")
+            {
+                ZincParseController.GetSaveGPUToDB(chosenPartID);
+            }
+
+            return RedirectToAction("Create", new { Controller = "Builds" });
+        }
 
         public ActionResult SavePart (JObject part)
         {

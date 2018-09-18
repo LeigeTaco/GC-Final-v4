@@ -17,6 +17,7 @@ namespace GC_Final.Controllers
     {
         public object ViewBag { get; private set; }
 
+
         public static JObject GetParts(string partType)
         {
             HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=1&retailer=amazon");
