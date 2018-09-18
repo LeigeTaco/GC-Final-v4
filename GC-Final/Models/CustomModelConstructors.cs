@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace GC_Final.Models
 {
@@ -21,6 +22,47 @@ namespace GC_Final.Models
             Brand = " ";
             Manufacturer = " ";
             ImageLink = " ";
+        }
+
+        public PCCase(string productID, double height, double length, double width, byte x25Slots, byte x35Slots, byte expansionSlots, string style, string name, string description, string brand, int price, float stars, string imagelink, string manufacturer)
+        {
+            CaseID = Guid.NewGuid().ToString("D");
+            if (Regex.IsMatch(productID, @"^[a-zA-Z0-9]{10}$"))
+            {
+                ProductID = productID.ToUpper();
+            }
+            if (height > 0)
+            {
+                Height = height;
+            }
+            if (length > 0)
+            {
+                Length = length;
+            }
+            if (width > 0)
+            {
+                Width = width;
+            }
+            TwoSlots = x25Slots;                //Slots for 2.5" drives
+            ThreeSlots = x35Slots;              //Slots for 3.5" drives
+            ExpansionSlots = expansionSlots;    //PCI Slots (GPUs too)
+            Style = style;
+            Name = name;
+            Description = description;
+            Brand = brand;
+            if (price > 0)
+            {
+                Price = price;
+            }
+            if (stars > 0)
+            {
+                Stars = stars;
+            }
+            if (imagelink.ToLower().Contains("http"))
+            {
+                ImageLink = imagelink;
+            }
+            Manufacturer = manufacturer;
         }
     }
 
