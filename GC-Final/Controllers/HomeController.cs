@@ -48,7 +48,6 @@ namespace GC_Final.Controllers
 
             return View();
         }
-
       
         public static int[] GetMaxScreenResolution(string[] Data)
         {
@@ -204,6 +203,31 @@ namespace GC_Final.Controllers
 
             return null;
 
+        }
+
+        public static int GetRAMSlots (string[] Data)
+        {
+            int Index = -1;
+            for (int i = 0; i <= Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("memory slots"))
+                {
+                    Index = i;
+                }
+            }
+
+            if (Index < 0)
+                return 0;
+
+            int MemorySlots = int.Parse(Regex.Match(Regex.Match(Data[Index], @"\d x").Value, @"\d").Value);
+            return MemorySlots;
+
+        }
+
+        public static int GetPowerSupply(string Data)
+        {
+            int PowerSupply = int.Parse(Regex.Match(Regex.Match(Data, @"\d+W").Value, @"\d+").Value);
+            return PowerSupply;
         }
 
 
