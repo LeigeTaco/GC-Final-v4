@@ -81,25 +81,6 @@ namespace GC_Final.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-       
-        public ActionResult Create(newPart)
-        {
-            Entities ORM = new Entities();
-
-            ViewBag.GPUs = ORM.GPUs;
-            ViewBag.CPUs = ORM.CPUs;
-            ViewBag.Motherboards = ORM.Motherboards;
-            ViewBag.PSUs = ORM.PSUs;
-            ViewBag.RAMs = ORM.RAMs;
-            ViewBag.Monitors = ORM.Monitors;
-            ViewBag.PCCases = ORM.PCCases;
-            ViewBag.HardDrives = ORM.HardDrives;
-            ViewBag.OpticalDrivers = ORM.OpticalDrivers;
-            ViewBag.PCICards = ORM.PCICards;
-            return View();
-        }
-        
         [RequireParameter("autoComplete")]
         public ActionResult Edit(string buildName, string motherboard, string gpu, string cpu, string psu, string casename, string ram, double? price, string preferredBrands, bool autoComplete)
         {
@@ -312,7 +293,6 @@ namespace GC_Final.Controllers
                 ViewBag.Case_3Slots = _case.ThreeSlots;
                 ViewBag.Case_XSlots = _case.ExpansionSlots;
                 ViewBag.Case_Dimensions = new int[] { (int)_case.Height, (int)_case.Length, (int)_case.Width };
-
             }
 
             return View();
