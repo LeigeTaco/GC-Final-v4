@@ -383,11 +383,10 @@
     <Content Include="Views\Builds\Error.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Users\Display.cshtml" />
-    <Content Include="Views\Home\MoreParts.cshtml" />
+    <Content Include="Views\Parts\MoreParts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Parts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

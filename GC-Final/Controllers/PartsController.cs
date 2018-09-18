@@ -38,6 +38,7 @@ namespace GC_Final.Controllers
             { ZincParseController.SaveHardDriveToDB(chosenPartID); }
             if (chosenPartID == "Monitor")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
+            
 
             return RedirectToAction("Create?newPart=" + chosenPartID, new { Controller = "Builds" });
         }
@@ -51,6 +52,8 @@ namespace GC_Final.Controllers
         {
 
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
+
+            ViewBag.PartType = partType;
 
             //ViewBag.PartSearch= ZincParseController.GetParts(partType);
 
