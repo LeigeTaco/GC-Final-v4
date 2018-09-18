@@ -27,9 +27,23 @@
 @{
     ViewBag.Title = "MoreParts";
 }
+<<<<<<< HEAD
 <h2>MoreParts</h2>
 <br /><br />
 <table border="1">
+=======
+
+<br /> <br />
+<h2>More Parts</h2>
+
+<br />
+@foreach (var x in ViewBag.title)
+{
+    <p>@x</p>
+}
+<br />
+@*<table border="1">
+>>>>>>> Rebase
     <tr>
         <th> Title</th>
         <th> Brand</th>
@@ -38,6 +52,7 @@
         <th></th>
         <th></th>
     </tr>
+<<<<<<< HEAD
     @for (int i = 0; i <= 14; i++)
     {
         <tr>
@@ -48,10 +63,24 @@
             @*<td class="btn" type="submit" name="TODO" value="@ViewBag.PartSearch["results"][i]["product_id"]">More Details</td>*@
             @*<td class="btn" action="/api/ZincParse/SaveGPUToDB" type="button" name="partid" value="@ViewBag.PartSearch["results"][i]["product_id"]">Add</td>*@
             <td><input id="AddBtn" type="button" value="Add" onclick="function({'@ViewBag.PartSearch["results"][i]["product_id"]'})" /></td>
+=======
+    @for (int i = 0; i < 14; i++)
+    {
+        <tr>
+            <td>@ViewBag.PartSearch["results"][i]["title"]</td>
+                <td>@ViewBag.PartSearch["results"][i]["brand"]</td>
+                <td>@ViewBag.PartSearch["results"][i]["stars"]</td>
+                <td>@ViewBag.PartSearch["results"][i]["price"]</td>
+            <td><input type="submit" action="/api/ZincParse/SaveGPUToDB" name="partid" value="@ViewBag.PartsSearch["results"][i]["product_id"]" /></td>
+>>>>>>> Rebase
         </tr>
     }
 </table>
 
+<<<<<<< HEAD
 
 
 
+=======
+<table id="searchResults" class="table"></table>*@
+>>>>>>> Rebase

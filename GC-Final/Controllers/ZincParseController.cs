@@ -19,7 +19,7 @@ namespace GC_Final.Controllers
 
         public static JObject GetParts(string partType)
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
@@ -44,7 +44,7 @@ namespace GC_Final.Controllers
                 return null;
             }
 
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 5; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -88,7 +88,7 @@ namespace GC_Final.Controllers
         }
 
         //for mass saves
-        public static void SaveGPUsToDB()
+        public static string GetSaveGPUsToDB()
         {
             List<JObject> gpuparts = new List<JObject>();
             gpuparts = GetPartData(GetParts("GPU"));
@@ -105,10 +105,10 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempGPU.ProductID = part["product_id"].ToString();
-                    tempGPU.Description = part["product_description"].ToString();
+                    tempGPU.Description = null; part["product_description"].ToString();
                     tempGPU.Brand = part["brand"].ToString();
                     tempGPU.Price = (int.Parse(part["price"].ToString())) / 100;
-                    tempGPU.Stars = null; //float.Parse(part["stars"].ToString());
+                    tempGPU.Stars = float.Parse(part["stars"].ToString());
                     tempGPU.ImageLink = part["main_image"].ToString();
                     tempGPU.Manufacturer = null;
                     tempGPU.ResX = null;
@@ -123,6 +123,7 @@ namespace GC_Final.Controllers
                     ORM.SaveChanges();
                 }
             }
+            return "Error?";
         }
 
         //for single save

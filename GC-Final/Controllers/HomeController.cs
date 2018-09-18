@@ -33,7 +33,11 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("Motherboard"));
+           @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("GPU"));
+
+           // ZincParseController.GetSaveGPUsToDB();
+
+
             //ZincParseController.SaveGPUsToDB();
 
             //List<JObject> testlist = new List<JObject>();
@@ -64,8 +68,13 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreParts(string partType)
         {
+<<<<<<< HEAD
     
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
+=======
+
+            ViewBag.PartSearch= ZincParseController.GetParts(partType);
+>>>>>>> Rebase
 
             return View();
         }
