@@ -20,27 +20,27 @@ namespace GC_Final.Controllers
         // GET: Parts
         public ActionResult SavePart(string chosenPartID, string partType)
         {
-            if (chosenPartID == "GPU")
+            if (partType == "GPU")
             { ZincParseController.GetSaveGPUToDB(chosenPartID); }
-            if (chosenPartID == "CPU")
+            if (partType == "CPU")
             { ZincParseController.SaveCPUToDB(chosenPartID); }
-            if (chosenPartID == "Motherboard")
+            if (partType == "Motherboard")
             { ZincParseController.SaveMotherboardToDB(chosenPartID); }
-            if (chosenPartID == "PCCase")
+            if (partType == "PCCase")
             { ZincParseController.SavePCCaseToDB(chosenPartID); }
-            if (chosenPartID == "PSU")
+            if (partType == "PSU")
             { ZincParseController.SavePSUToDB(chosenPartID); }
-            if (chosenPartID == "RAM")
+            if (partType == "RAM")
             { ZincParseController.SaveRAMToDB(chosenPartID); }
-            if (chosenPartID == "OpticalDrive")
+            if (partType == "OpticalDrive")
             { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
-            if (chosenPartID == "HardDrive")
+            if (partType == "HardDrive")
             { ZincParseController.SaveHardDriveToDB(chosenPartID); }
-            if (chosenPartID == "Monitor")
+            if (partType == "Monitor")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
             
 
-            return RedirectToAction("Create?newPart=" + chosenPartID, new { Controller = "Builds" });
+            return RedirectToAction("Create", new { Controller = "Builds" });
         }
 
         public ActionResult PartDetails(string partid)
@@ -54,8 +54,6 @@ namespace GC_Final.Controllers
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             ViewBag.PartType = partType;
-
-            //ViewBag.PartSearch= ZincParseController.GetParts(partType);
 
             return View();
         }

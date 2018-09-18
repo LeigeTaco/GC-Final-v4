@@ -49,10 +49,11 @@
 
 @for (int i = 0; i <= 14; i++)
 {
-    <form id="SavedPart" action="~/Parts/SavePart" method="post">
+    <form id="SavedPart" action="~/Parts/SavePart" method="get">
         <input type="submit" id="create" class="submit form-control" value="@ViewBag.PartSearch["results"][i]["product_id"]" />
+        <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
         <input type="hidden" name="partType" value="@ViewBag.PartType" />
-        <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch" />
+
     </form>
 }
 
