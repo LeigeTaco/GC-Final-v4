@@ -52,23 +52,23 @@ namespace GC_Final.Controllers
         public ActionResult SavePart(string chosenPartID)
         {
             if (chosenPartID == "GPU")
-                { ZincParseController.GetSaveGPUToDB(chosenPartID); }
+            { ZincParseController.GetSaveGPUToDB(chosenPartID); }
             if (chosenPartID == "CPU")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID); }
+            { ZincParseController.SaveCPUToDB(chosenPartID); }
             if (chosenPartID == "Motherboard")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID); }
-            if (chosenPartID == "PCCase")        
-               { ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SaveMotherboardToDB(chosenPartID); }
+            if (chosenPartID == "PCCase")
+            { ZincParseController.SavePCCaseToDB(chosenPartID); }
             if (chosenPartID == "PSU")
-               {ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SavePSUToDB(chosenPartID); }
             if (chosenPartID == "RAM")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SaveRAMToDB(chosenPartID); }
             if (chosenPartID == "OpticalDrive")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
             if (chosenPartID == "HardDrive")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SaveHardDriveToDB(chosenPartID); }
             if (chosenPartID == "Monitor")
-               { ZincParseController.GetSaveGPUToDB(chosenPartID);}
+            { ZincParseController.SaveMonitorToDB(chosenPartID); }
 
             return RedirectToAction("Create", new { Controller = "Builds" });
         }
