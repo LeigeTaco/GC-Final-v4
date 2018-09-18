@@ -49,47 +49,7 @@ namespace GC_Final.Controllers
             return View();
         }
 
-        public ActionResult SavePart(string chosenPartID)
-        {
-            if (chosenPartID == "GPU")
-            { ZincParseController.GetSaveGPUToDB(chosenPartID); }
-            if (chosenPartID == "CPU")
-            { ZincParseController.SaveCPUToDB(chosenPartID); }
-            if (chosenPartID == "Motherboard")
-            { ZincParseController.SaveMotherboardToDB(chosenPartID); }
-            if (chosenPartID == "PCCase")
-            { ZincParseController.SavePCCaseToDB(chosenPartID); }
-            if (chosenPartID == "PSU")
-            { ZincParseController.SavePSUToDB(chosenPartID); }
-            if (chosenPartID == "RAM")
-            { ZincParseController.SaveRAMToDB(chosenPartID); }
-            if (chosenPartID == "OpticalDrive")
-            { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
-            if (chosenPartID == "HardDrive")
-            { ZincParseController.SaveHardDriveToDB(chosenPartID); }
-            if (chosenPartID == "Monitor")
-            { ZincParseController.SaveMonitorToDB(chosenPartID); }
-
-            return RedirectToAction("Create", new { Controller = "Builds" });
-        }
-
-        public ActionResult SavePart (JObject part)
-        {
-
-            return RedirectToAction("About");
-        }
-
-        public ActionResult MoreParts(string partType)
-        {
-    
-            ViewBag.PartSearch = ZincParseController.GetParts(partType);
-
-            //ViewBag.PartSearch= ZincParseController.GetParts(partType);
-
-            return View();
-        }
-
-        
+      
         public static int[] GetMaxScreenResolution(string[] Data)
         {
             int Index = -1;
