@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DAPSFinalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DAPSFinalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BuildDisks">
           <Key>
             <PropertyRef Name="TID" />
@@ -73,6 +73,7 @@
           </Key>
           <Property Name="CPUID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ProductID" Type="nchar" MaxLength="10" />
+          <Property Name="Socket" Type="nchar" MaxLength="50" />
           <Property Name="Cache" Type="nvarchar" MaxLength="500" />
           <Property Name="Wattage" Type="smallint" />
           <Property Name="Fan" Type="bit" />
@@ -103,7 +104,7 @@
           <Property Name="RAMType" Type="nvarchar" MaxLength="500" />
           <Property Name="RAMAmount" Type="tinyint" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="Brand" Type="nvarchar" MaxLength="50" />
           <Property Name="Price" Type="int" />
           <Property Name="Stars" Type="real" />
@@ -568,8 +569,7 @@
             <End Role="BuildsRAM" EntitySet="BuildsRAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DAPSFinalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -680,6 +680,7 @@
           <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_CPU" FromRole="CPU" ToRole="Builds" />
+          <Property Name="Socket" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="GPU">
           <Key>
@@ -695,7 +696,7 @@
           <Property Name="RAMType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="RAMAmount" Type="Byte" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Int32" />
           <Property Name="Stars" Type="Single" />
@@ -1248,6 +1249,7 @@
           <EntitySetMapping Name="CPUs">
             <EntityTypeMapping TypeName="DAPSFinalDBModel.CPU">
               <MappingFragment StoreEntitySet="CPU">
+                <ScalarProperty Name="Socket" ColumnName="Socket" />
                 <ScalarProperty Name="CPUID" ColumnName="CPUID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Cache" ColumnName="Cache" />

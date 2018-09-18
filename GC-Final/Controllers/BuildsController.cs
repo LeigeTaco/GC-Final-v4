@@ -186,7 +186,7 @@ namespace GC_Final.Controllers
             }
             else
             {
-                return View("Display", "Builds", BuildID);
+                return RedirectToAction("Display", new { id = BuildID });
             }
         }
 
@@ -199,12 +199,120 @@ namespace GC_Final.Controllers
         public ActionResult Display(string id)
         {
             Entities ORM = new Entities();
-            Build temp = ORM.Builds.Find(id);
+            Build _build = ORM.Builds.Find(id);
 
-            if (temp == null)
+            if (_build == null)
             {
                 ViewBag.Message = "The build you were searching for could not be found!";
                 return View("Error");
+            }
+
+            Motherboard _mb = _build.Motherboard;
+            CPU _cpu = _build.CPU;
+            GPU _gpu = _build.GPU;
+            int _count = (int)_build.GPUCount;
+            PSU _psu = _build.PSU;
+            PCCase _case = _build.PCCase;
+            RAM[] _ram = _build.BuildsRAMs.Select(x => x.RAM).ToArray();
+            HardDrive[] _hd = _build.BuildDisks.Select(x => x.HardDrive).ToArray();
+            OpticalDriver[] _od = _build.BuildODs.Select(x => x.OpticalDriver).ToArray();
+            PCICard[] _pci = _build.BuildPCIs.Select(x => x.PCICard).ToArray();
+            Peripheral[] _per = _build.BuildsPeripherals.Select(x => x.Peripheral).ToArray();
+            Monitor[] _mon = _build.BuildMonitors.Select(x => x.Monitor).ToArray();
+
+            if (_mb != null)
+            {
+                ViewBag.MB_Exists = true;
+                ViewBag.MB_Name = _mb.Name;                 //All of these need to be
+                ViewBag.MB_Description = _mb.Description;   //Validated in Razor
+                ViewBag.MB_Brand = _mb.Brand;
+                ViewBag.MB_Stars = _mb.Stars;
+                ViewBag.MB_Manufacturer = _mb.Manufacturer;
+                ViewBag.MB_Price = _mb.GetPrice();          //Remember this is a double
+                ViewBag.MB_Chipset = _mb.Chipset;           //Even though price is an
+                ViewBag.MB_SLI = _mb.SLILimit;              //int in the databse.
+                ViewBag.MB_XFire = _mb.CrossfireLimit;
+                ViewBag.MB_Socket = _mb.Socket;
+                ViewBag.MB_PCI = _mb.PCISlots;
+                ViewBag.MB_SATA = _mb.SATASlots;
+                ViewBag.MB_RAMType = _mb.RAMType;
+                ViewBag.MB_RAMSlots = _mb.RAMSlots;
+                ViewBag.MB_Image = _mb.ImageLink;
+                ViewBag.MB_Wattage = _mb.Wattage;
+                ViewBag.MB_PID = _mb.ProductID;
+                ViewBag.MB_FF = _mb.FormFactor;
+            }
+            if (_cpu != null)
+            {
+                ViewBag.CPU_Exists = true;
+                ViewBag.CPU_Name = _cpu.Name;
+                ViewBag.CPU_Description = _cpu.Description;
+                ViewBag.CPU_Brand = _cpu.Brand;
+                ViewBag.CPU_Image = _cpu.ImageLink;
+                ViewBag.CPU_Stars = _cpu.Stars;
+                ViewBag.CPU_Price = _cpu.GetPrice();
+                ViewBag.CPU_Manufacturer = _cpu.Manufacturer;
+                ViewBag.CPU_Socket = _cpu.Socket;
+                ViewBag.CPU_PID = _cpu.ProductID;
+                ViewBag.CPU_Cache = _cpu.Cache;
+                ViewBag.CPU_Wattage = _cpu.Wattage;
+                ViewBag.CPU_Fan = _cpu.Fan;
+                ViewBag.CPU_Threads = _cpu.Threads;
+                ViewBag.CPU_Cores = _cpu.Cores;
+                ViewBag.CPU_MRAM = _cpu.MaxRAM;
+                ViewBag.CPU_Speed = _cpu.Speed;
+                ViewBag.CPU_OC = _cpu.MaxSpeed;
+            }
+            if (_gpu != null)
+            {
+                ViewBag.GPU_Exists = true;
+                ViewBag.GPU_Name = _gpu.Name;
+                ViewBag.GPU_Description = _gpu.Description;
+                ViewBag.GPU_Brand = _gpu.Brand;
+                ViewBag.GPU_Image = _gpu.ImageLink;
+                ViewBag.GPU_Stars = _gpu.Stars;
+                ViewBag.GPU_Price = _gpu.GetPrice();
+                ViewBag.GPU_PID = _gpu.ProductID;
+                ViewBag.GPU_Limit = _gpu.MultiGPULimit;
+                ViewBag.GPU_MType = _gpu.MultiGPUType;
+                ViewBag.GPU_MaxMonitors = _gpu.MaxMonitors;
+                ViewBag.GPU_MaxX = _gpu.ResX;
+                ViewBag.GPU_MaxY = _gpu.ResY;
+                ViewBag.GPU_RAMType = _gpu.RAMType;
+                ViewBag.GPU_RAMAmount = _gpu.RAMAmount;
+            }
+            if (_psu != null)
+            {
+                ViewBag.PSU_Exists = true;
+                ViewBag.PSU_Name = _psu.Name;
+                ViewBag.PSU_Description = _psu.Description;
+                ViewBag.PSU_Brand = _psu.Brand;
+                ViewBag.PSU_Price = _psu.GetPrice();
+                ViewBag.PSU_Stars = _psu.Stars;
+                ViewBag.PSU_Manufacturer = _psu.Manufacturer;
+                ViewBag.PSU_Image = _psu.ImageLink;
+                ViewBag.PSU_PID = _psu.ProductID;
+                ViewBag.PSU_FF = _psu.FormFactor;
+                ViewBag.PSU_Wattage = _psu.Wattage;
+                ViewBag.PSU_Dimensions = new int[] { (int)_psu.Height, (int)_psu.Length, (int)_psu.Width };
+            }
+            if (_case != null)
+            {
+                ViewBag.Case_Exists = true;
+                ViewBag.Case_Name = _case.Name;
+                ViewBag.Case_Description = _case.Description;
+                ViewBag.Case_Brand = _case.Brand;
+                ViewBag.Case_Price = _case.GetPrice();
+                ViewBag.Case_Stars = _case.Stars;
+                ViewBag.Case_Image = _case.ImageLink;
+                ViewBag.Case_Manufacturer = _case.Manufacturer;
+                ViewBag.Case_FF = _case.Style;
+                ViewBag.Case_PID = _case.ProductID;
+                ViewBag.Case_2Slots = _case.TwoSlots;
+                ViewBag.Case_3Slots = _case.ThreeSlots;
+                ViewBag.Case_XSlots = _case.ExpansionSlots;
+                ViewBag.Case_Dimensions = new int[] { (int)_case.Height, (int)_case.Length, (int)_case.Width };
+
             }
 
             return View();

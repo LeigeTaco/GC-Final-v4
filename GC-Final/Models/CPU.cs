@@ -37,6 +37,7 @@ namespace GC_Final.Models
         public Nullable<float> Stars { get; set; }
         public string Manufacturer { get; set; }
         public string ImageLink { get; set; }
+        public string Socket { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Build> Builds { get; set; }
