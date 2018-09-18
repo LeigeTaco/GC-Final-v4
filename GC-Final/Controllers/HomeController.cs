@@ -230,6 +230,36 @@ namespace GC_Final.Controllers
             return PowerSupply;
         }
 
+        public static double GetCPU_Speed(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("ghz"))
+                {
+                    double CPU_Speed = double.Parse(Regex.Match(Data[i], @"\d+( )?GHz").Value);
+                    return CPU_Speed;
+                }
+            }
+
+            return 0;
+        }
 
     }
 }
+
+/*
+    Motherboard:
+SATA Connections - string/string[] and return a byte (tinyint).
+PCI 3.0 x 16 slots - string/string[] and return a byte.
+MultiGPU Limit - string/string[] and return byte. (May need one for Crossfire and one for SLI)
+
+    Hard Drive:
+Type of Drive(HDD, SSHD, SSD) - string/string[] and return string.
+Size(2.5", 3.5", mSATA) - string/string[] and return string.
+Read/Write Speed - string/string[] and return int. (Maybe separate Read and Write speeds into to methods and take the lower for HD)
+
+    Optical Drive:
+Type of Drive(CD, DVD, Blu-Ray, Floppy) - string/string[] and return string.
+Read/Write Speed - Definitely need two methods for this one, re-use the HD ones.
+Writable Drive - string/string[] and return bool.
+*/
