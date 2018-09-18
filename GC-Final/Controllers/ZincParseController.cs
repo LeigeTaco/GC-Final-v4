@@ -88,7 +88,7 @@ namespace GC_Final.Controllers
         }
 
         //for mass saves
-        public static string GetSaveGPUsToDB()
+        public static void SaveGPUsToDB()
         {
             List<JObject> gpuparts = new List<JObject>();
             gpuparts = GetPartData(GetParts("GPU"));
@@ -105,7 +105,7 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempGPU.ProductID = part["product_id"].ToString();
-                    tempGPU.Description = null; part["product_description"].ToString();
+                    tempGPU.Description = null; //part["product_description"].ToString();
                     tempGPU.Brand = part["brand"].ToString();
                     tempGPU.Price = (int.Parse(part["price"].ToString())) / 100;
                     tempGPU.Stars = float.Parse(part["stars"].ToString());
@@ -123,7 +123,6 @@ namespace GC_Final.Controllers
                     ORM.SaveChanges();
                 }
             }
-            return "Error?";
         }
 
         //for single save
@@ -140,7 +139,7 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempGPU.ProductID = chosenpart["product_id"].ToString();
-                tempGPU.Description = chosenpart["product_description"].ToString();
+                tempGPU.Description = null; //chosenpart["product_description"].ToString();
                 tempGPU.Brand = chosenpart["brand"].ToString();
                 tempGPU.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
                 tempGPU.Stars = null; //float.Parse(part["stars"].ToString());
@@ -173,7 +172,7 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempCPU.ProductID = chosenpart["product_id"].ToString();
-                tempCPU.Description = chosenpart["product_description"].ToString();
+                //tempCPU.Description = chosenpart["product_description"].ToString();
                 tempCPU.Brand = chosenpart["brand"].ToString();
                 tempCPU.Price = null; // (int.Parse(chosenpart["price"].ToString())) / 100;
                 tempCPU.Stars = null; //float.Parse(part["stars"].ToString());

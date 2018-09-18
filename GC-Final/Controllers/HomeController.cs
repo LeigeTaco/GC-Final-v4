@@ -33,20 +33,10 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
-           @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("GPU"));
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
 
-           // ZincParseController.GetSaveGPUsToDB();
+            ZincParseController.GetSaveGPUToDB("B01MA62JSZ"); 
 
-
-            //ZincParseController.SaveGPUsToDB();
-
-            //List<JObject> testlist = new List<JObject>();
-            //testlist = ZincParseController.GetPartData(ZincParseController.GetParts("PCI+Card"));
-            //int[] datatosend;
-            //foreach (var x in testlist)
-            //{
-            //   // GetMaxScreenResolution(x["product_description"]().ToArray);
-            //}
 
             return View();
         }
@@ -68,13 +58,10 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreParts(string partType)
         {
-<<<<<<< HEAD
     
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
-=======
 
-            ViewBag.PartSearch= ZincParseController.GetParts(partType);
->>>>>>> Rebase
+            //ViewBag.PartSearch= ZincParseController.GetParts(partType);
 
             return View();
         }
