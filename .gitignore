@@ -8,6 +8,7 @@
 *.sln.docstates
 GC-Final/Web.config
 packages/*
+GC-Final/Properties/PublishProfiles/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
