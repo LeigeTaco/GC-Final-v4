@@ -264,7 +264,6 @@ namespace GC_Final.Controllers
 
         public MotherBoardDetails() : base()
         {
-
             MBID = "";
             PID = "";
             Socket = "";

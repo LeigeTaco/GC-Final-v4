@@ -18,29 +18,30 @@ namespace GC_Final.Controllers
     public class PartsController : Controller
     {
         // GET: Parts
-        public ActionResult SavePart(string chosenPartID, string partType)
+        public ActionResult SavePart(string partType, string chosenPartID)
         {
-            if (chosenPartID == "GPU")
+            if (partType == "GPU")
             { ZincParseController.GetSaveGPUToDB(chosenPartID); }
-            if (chosenPartID == "CPU")
+            if (partType == "CPU")
             { ZincParseController.SaveCPUToDB(chosenPartID); }
-            if (chosenPartID == "Motherboard")
+            if (partType == "Motherboard")
             { ZincParseController.SaveMotherboardToDB(chosenPartID); }
-            if (chosenPartID == "PCCase")
+            if (partType == "PCCase")
             { ZincParseController.SavePCCaseToDB(chosenPartID); }
-            if (chosenPartID == "PSU")
+            if (partType == "PSU")
             { ZincParseController.SavePSUToDB(chosenPartID); }
-            if (chosenPartID == "RAM")
+            if (partType == "RAM")
             { ZincParseController.SaveRAMToDB(chosenPartID); }
-            if (chosenPartID == "OpticalDrive")
+            if (partType == "OpticalDrive")
             { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
-            if (chosenPartID == "HardDrive")
+            if (partType == "HardDrive")
             { ZincParseController.SaveHardDriveToDB(chosenPartID); }
-            if (chosenPartID == "Monitor")
+            if (partType == "Monitor")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
 
-            //return RedirectToAction("Create?newPart=" + chosenPartID, new { Controller = "Builds" });     //From Ash <3
-            return RedirectToAction("Create", "Builds" , new { newPart = chosenPartID });
+            return RedirectToAction("Create", "Builds");
+
+           // return RedirectToAction("Create", "Builds" , new { newPart = chosenPartID });
         }
 
         public ActionResult PartDetails(string partid)
@@ -53,10 +54,11 @@ namespace GC_Final.Controllers
 
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
-            //ViewBag.PartSearch= ZincParseController.GetParts(partType);
+            ViewBag.PartType = partType;
 
             return View();
         }
+
         public ActionResult Create(string newPart)
         {
             Entities ORM = new Entities();
