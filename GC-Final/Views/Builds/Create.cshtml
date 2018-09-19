@@ -10,7 +10,7 @@
     <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
         <div class="form-group">
             <label class="control-label col-sm-2" id="buildName">Build Name: </label>
-            <div class="col-sm-8">
+            <div class="col-sm-10">
                 <input type="text" class="form-control" id="buildName" name="buildName" />
                 <input type="hidden" name="buildName" value="input" />
             </div>
@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" id="Motherboard">Motherboard: </label>
             <div class="col-sm-2">
-                <input type="search" class="form-control" id="motherboard_search" name="partType" value="Motherboard" on/>
+                <input type="search" class="form-control" id="motherboard_search" name="partType" value="Motherboard" on />
             </div>
             <div class="col-sm-2">
                 <input type="submit" id="create" class="submit form-control" value="More Motherboards" />
@@ -100,18 +100,53 @@
             </div>
         </div>
     </form>
-        <form class="form-horizontal" action="~/Builds/Display" method="get">
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <input type="submit" class="form-control" id="createBuild" value="Create Build" />
-                    <input type="hidden" name="partType" value="" />
-                </div>
-                <label class="control-label col-sm-2"> </label>
-                <div class="col-sm-2">
-
-                </div>
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
+        <div class="form-group">
+            <label class="control-label col-sm-2" id="OpticalDrive">Optical Drive: </label>
+            <div class="col-sm-2">
+                <input type="search" class="form-control" id="opticaldrive_search" name="partType" value="Optical+Drive" />
             </div>
-        </form>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Optical Drives" />
+                <input type="hidden" name="partType" value="Optical+Drive" />
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
+        <div class="form-group">
+            <label class="control-label col-sm-2" id="Harddrive">Hard Drive: </label>
+            <div class="col-sm-2">
+                <input type="search" class="form-control" id="harddrive_search" name="partType" value="HardDrive" />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Hard Drives" />
+                <input type="hidden" name="partType" value="HardDrive" />
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
+        <div class="form-group">
+            <label class="control-label col-sm-2" id="PCICard">PCI Card: </label>
+            <div class="col-sm-2">
+                <input type="search" class="form-control" id="pcicard_search" name="partType" value="PCICard" />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More PCI Cards" />
+                <input type="hidden" name="partType" value="PCICard" />
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal" action="~/Builds/Display" method="get">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <input type="submit" class="form-control" id="createBuild" value="Create Build" />
+                <input type="hidden" name="partType" value="" />
+            </div>
+            <label class="control-label col-sm-2"> </label>
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </form>
 </div>  
 <br />
 <br />
@@ -140,4 +175,4 @@
     <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
     <input type="submit" id="create" class="submit form-control" value="More Details" />
     <input type="hidden" name="partType" value="@ViewBag.PartType" />
-</form>*@
+</form>
