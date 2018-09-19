@@ -311,7 +311,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ajaxcompatibilityvalidation.js" />
     <Content Include="Models\DAPSAppModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DAPSAppModel.edmx</DependentUpon>
@@ -322,6 +321,7 @@
       <DependentUpon>DAPSAppModel.edmx</DependentUpon>
       <LastGenOutput>DAPSAppModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\ajaxcompatibilityvalidation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
