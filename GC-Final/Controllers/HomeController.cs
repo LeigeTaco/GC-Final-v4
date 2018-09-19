@@ -53,7 +53,7 @@ namespace GC_Final.Controllers
         {
             int Index = -1;
 
-            for (int i = 0; i <= Data.Length; i++ )
+            for (int i = 0; i < Data.Length; i++ )
             {
                 if (Data[i].ToLower().Contains("res"))
                 {
@@ -87,7 +87,7 @@ namespace GC_Final.Controllers
         public static string GetSocketType(string[] Data)
         {
 
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("socket"))
                 {
@@ -107,7 +107,7 @@ namespace GC_Final.Controllers
 
         public static string GetFormFactor(string[] Data)
         {
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("form factor"))
                 {
@@ -171,7 +171,7 @@ namespace GC_Final.Controllers
 
         public static string GetChipset(string[] Data)
         {
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("chipset"))
                 {
@@ -193,7 +193,7 @@ namespace GC_Final.Controllers
         public static string GetRAMType(string[] Data)
         {
 
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("DDR2") || Data[i].ToLower().Contains("DDR3") || Data[i].ToLower().Contains("DDR3 ECC") || Data[i].ToLower().Contains("DDR4") || Data[i].ToLower().Contains("DDR4 ECC"))
                 {
@@ -208,7 +208,7 @@ namespace GC_Final.Controllers
         public static int GetRAMSlots (string[] Data)
         {
             int Index = -1;
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("memory slots"))
                 {
@@ -243,6 +243,31 @@ namespace GC_Final.Controllers
 
             return 0;
         }
+
+        public static byte GetSATA_Slots(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("slots"))
+                {
+
+                }
+            }
+
+            return 0;
+        }
+
+        /*
+        public static byte GetPCI_Slots(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i ++)
+            {
+
+            }
+
+            return 0;
+        }
+        */
 
     }
 }
