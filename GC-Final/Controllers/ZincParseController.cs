@@ -29,7 +29,7 @@ namespace GC_Final.Controllers
             StreamReader responseData = new StreamReader(apiResponse.GetResponseStream());
 
             string info = responseData.ReadToEnd();
-
+            
             JObject jsoninfo = JObject.Parse(info);
 
             return jsoninfo;
