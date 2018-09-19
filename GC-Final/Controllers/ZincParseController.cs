@@ -145,10 +145,11 @@ namespace GC_Final.Controllers
                 tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempGPU.ImageLink = chosenpart["main_image"].ToString();
                 tempGPU.Manufacturer = "x";
-                tempGPU.ResX = null;
-                tempGPU.ResY = null;
-                tempGPU.RAMType = null;
-                tempGPU.RAMAmount = null;
+                int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
+                tempGPU.ResX = res[0];
+                tempGPU.ResY = res[1];
+                tempGPU.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                tempGPU.RAMAmount = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                 tempGPU.MultiGPULimit = null;
                 tempGPU.MultiGPUType = null;
                 tempGPU.MaxMonitors = null;
@@ -309,9 +310,7 @@ namespace GC_Final.Controllers
                 ORM.Motherboards.Add(tempObj);
                 ORM.SaveChanges();
             }
-        }
-
-      
+        }      
 
         public static void SavePSUsToDB()
         {
@@ -371,7 +370,7 @@ namespace GC_Final.Controllers
                 tempObj.Wattage = null;
                 tempObj.Length = null;
                 tempObj.Height = null;
-                tempObj.FormFactor = null;
+                tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
 
                 ORM.PSUs.Add(tempObj);
                 ORM.SaveChanges();
@@ -502,7 +501,7 @@ namespace GC_Final.Controllers
                 tempObj.Manufacturer = "x";
                 tempObj.BusSpeed = null;
                 tempObj.Quantity = null;
-                tempObj.RAMType = null;
+                tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.TotalCapacity = null;
                 tempObj.Voltage = null;
 
@@ -537,7 +536,6 @@ namespace GC_Final.Controllers
                     tempObj.ResX = null;
                     tempObj.ResY = null;
                     
-
                     ORM.Monitors.Add(tempObj);
                     ORM.SaveChanges();
                 }
@@ -563,8 +561,9 @@ namespace GC_Final.Controllers
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
                 tempObj.RefreshRate = null;
-                tempObj.ResX = null;
-                tempObj.ResY = null;
+                int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.ResX = res[0];
+                tempObj.ResY = res[1];
 
                 ORM.Monitors.Add(tempObj);
                 ORM.SaveChanges();
@@ -574,7 +573,7 @@ namespace GC_Final.Controllers
         public static void SaveHardDrivesToDB()
         {
             List<JObject> searchedparts = new List<JObject>();
-            searchedparts = GetPartData(GetParts("HardDrive"));
+            searchedparts = GetPartData(GetParts("Internal+Hard+Drive"));
             Entities ORM = new Entities();
 
             foreach (JObject part in searchedparts)

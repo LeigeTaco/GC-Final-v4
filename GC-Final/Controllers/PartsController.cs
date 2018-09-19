@@ -35,11 +35,13 @@ namespace GC_Final.Controllers
             { ZincParseController.SavePSUToDB(chosenPartID); }
             if (partType == "RAM")
             { ZincParseController.SaveRAMToDB(chosenPartID); }
-            if (partType == "OpticalDrive")
+            if (partType == "Optical+Drive")
             { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
             if (partType == "HardDrive")
             { ZincParseController.SaveHardDriveToDB(chosenPartID); }
             if (partType == "Monitor")
+            { ZincParseController.SaveMonitorToDB(chosenPartID); }
+            if (partType == "PCICard")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
 
             return RedirectToAction("Create", "Builds");
@@ -72,30 +74,15 @@ namespace GC_Final.Controllers
         public ActionResult MoreParts(string partType)
         {
             if (partType == "PCCase") { partType = "Computer+Case"; }
+            if (partType == "OpticalDriver") { partType = "Optical+Drive"; }
+            if (partType == "HardDrive") { partType = "Internal+Hard+Drive"; }
+            if (partType == "PCICard") { partType = "PCI+Card"; }
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             ViewBag.PartType = partType;
 
             return View();
         }
-
-        
-
-        //public ActionResult Create(string newPart)
-        //{
-        //    Entities ORM = new Entities();
-
-        //    ViewBag.GPUs = ORM.GPUs;
-        //    ViewBag.CPUs = ORM.CPUs;
-        //    ViewBag.Motherboards = ORM.Motherboards;
-        //    ViewBag.PSUs = ORM.PSUs;
-        //    ViewBag.RAMs = ORM.RAMs;
-        //    ViewBag.Monitors = ORM.Monitors;
-        //    ViewBag.PCCases = ORM.PCCases;
-        //    ViewBag.HardDrives = ORM.HardDrives;
-        //    ViewBag.OpticalDrivers = ORM.OpticalDrivers;
-        //    ViewBag.PCICards = ORM.PCICards;
-        //    return View();
-        //}
+       
     }
 }
