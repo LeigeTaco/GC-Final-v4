@@ -42,7 +42,7 @@ namespace GC_Final.Controllers
             if (partType == "Monitor")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
             if (partType == "PCICard")
-            { ZincParseController.SaveMonitorToDB(chosenPartID); }
+            { ZincParseController.SavePCICardToDB(chosenPartID); }
 
             return RedirectToAction("Create", "Builds");
 
@@ -77,6 +77,7 @@ namespace GC_Final.Controllers
             if (partType == "OpticalDriver") { partType = "Optical+Drive"; }
             if (partType == "HardDrive") { partType = "Internal+Hard+Drive"; }
             if (partType == "PCICard") { partType = "PCI+Card"; }
+            if (partType == "Monitor") { partType = "Monitor"; }
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             ViewBag.PartType = partType;
