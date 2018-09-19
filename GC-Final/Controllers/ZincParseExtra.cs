@@ -605,7 +605,7 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("sata"))
                 {
-                    byte SATA_Slots = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\( )?dx").Value, @"\d").Value);
+                    byte SATA_Slots = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\( )?\dx").Value, @"\d").Value);
                     return SATA_Slots;
                 }
             }
