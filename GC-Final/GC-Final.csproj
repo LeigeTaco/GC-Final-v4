@@ -386,6 +386,7 @@
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Users\Display.cshtml" />
     <Content Include="Views\Parts\MoreParts.cshtml" />
+    <Content Include="Views\Parts\MoreDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
