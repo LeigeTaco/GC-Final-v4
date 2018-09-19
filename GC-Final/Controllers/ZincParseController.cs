@@ -296,15 +296,15 @@ namespace GC_Final.Controllers
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
                 tempObj.Wattage = null;
-                tempObj.Socket = HomeController.GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.Socket = GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.SLILimit = null;
-                tempObj.SATASlots = null;
-                tempObj.RAMType = HomeController.GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.RAMSlots = null;  HomeController.GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.PCISlots = null;
-                tempObj.FormFactor = HomeController.GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.RAMSlots = null; GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.CrossfireLimit = null;
-                tempObj.Chipset = HomeController.GetChipset(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                 ORM.Motherboards.Add(tempObj);
                 ORM.SaveChanges();

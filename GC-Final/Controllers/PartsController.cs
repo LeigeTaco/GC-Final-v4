@@ -49,7 +49,7 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreDetails(string chosenPartID)
         {
-            @ViewBag.Part = ZincParseController.GetParts(chosenPartID);
+            @ViewBag.PartDetails = ZincParseController.GetParts(chosenPartID);
             
             return View();
         }

@@ -32,10 +32,11 @@ namespace GC_Final.Controllers
 
         public ActionResult Contact()
         {
+            ViewBag.Parts = GetPartData()
 
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("MotherBoard"));
+            //@ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
 
-            //ZincParseController.SaveCPUsToDB();
+            //ZincParseController.SaveGPUsToDB();
 
 
             return View();
