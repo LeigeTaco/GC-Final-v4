@@ -619,7 +619,11 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("pci"))
                 {
-                    byte PCI_Slots = byte.Parse(Regex.Match(Regex.Match(Regex.Match(Data[i], @"^\d+x( )?PCI-([Ee]|Express)( )?\d(\d)?( )?([xX]\d+)?( )?Slots$").Value, @"\d+x").Value, @"\d").Value);
+                    byte PCI_Slots = 0;
+                    string temp = Regex.Match(Data[i], @"\d+( )?[Xx]( )?[Pp][Cc][Ii](-| )?[Ee]([Xx][Pp][Rr][Ee][Ss][Ss])?( )?(\d(.0)?)?( )?[Xx]( )?(\d+)?").Value;
+                    temp = Regex.Match(temp, @"\d+( )?[Xx]").Value;
+                    temp = Regex.Match(temp, @"\d+").Value;
+                    PCI_Slots = byte.Parse(temp);
 
                     return PCI_Slots;
                 }
