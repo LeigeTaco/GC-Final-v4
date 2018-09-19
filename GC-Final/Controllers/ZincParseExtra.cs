@@ -550,7 +550,7 @@ namespace GC_Final.Controllers
 
             for (int i = 0; i < Data.Length; i++)
             {
-                if (Data[i].ToLower().Contains("DDR2") || Data[i].ToLower().Contains("DDR3") || Data[i].ToLower().Contains("DDR3 ECC") || Data[i].ToLower().Contains("DDR4") || Data[i].ToLower().Contains("DDR4 ECC"))
+                if (Data[i].ToLower().Contains("ddr2") || Data[i].ToLower().Contains("ddr3") || Data[i].ToLower().Contains("ddr3 ecc") || Data[i].ToLower().Contains("ddr4") || Data[i].ToLower().Contains("ddr4 ecc"))
                 {
                     return Regex.Match(Data[i], @"^DDR\d( ECC)?$").Value;
                 }
