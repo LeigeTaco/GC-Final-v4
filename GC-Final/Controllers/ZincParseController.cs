@@ -141,7 +141,7 @@ namespace GC_Final.Controllers
                 tempGPU.ProductID = chosenpart["product_id"].ToString();
                 tempGPU.Description = null; //chosenpart["product_description"].ToString();
                 tempGPU.Brand = chosenpart["brand"].ToString();
-                tempGPU.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempGPU.Price = int.Parse(chosenpart["price"].ToString());
                 tempGPU.Stars = null; //float.Parse(part["stars"].ToString());
                 tempGPU.ImageLink = chosenpart["main_image"].ToString();
                 tempGPU.Manufacturer = null;

@@ -1,0 +1,66 @@
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    @*<script type="text/javascript">
+        $(function(){
+            $("#AddBtn").on("submit", function (input) {
+                var $this = $(this);
+                var frmValues = $this.serialize();
+                $.ajax({
+                    type: "GET",
+                    url: "/api/ZincParse/GetSaveGPUToDB?partid="+ input,
+                    data: '{ "input" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (input) {
+                        console.log("Success");
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            });
+        });*@
+
+@{
+    /**/
+
+    ViewBag.Title = "MoreParts";
+}
+<br /> <br />
+@for (int i = 0; i <= 14; i++)
+{
+    <div class="panel panel-group">
+        <div class="panel panel-default">
+            <div class="panel panel-body">
+                <div class="col-sm-4">
+                    <img src="@ViewBag.PartSearch["results"][i]["image"]" />
+                </div>
+                <div class="col-sm-4">
+                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["title"]]</p>
+                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["price"]</p>
+                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["stars"]</p>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        <form id="SavedPart" action="~/Parts/SavePart" method="post">
+                            @*<input type="hidden" name="partType" value="@ViewBag.PartType" />
+                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />*@
+                            <input type="submit" id="create" class="submit form-control" value="Save" />   
+                            <input type="hidden" name="partDetails" value="@ViewBag.PartType+@ViewBag.PartSearch["results"][i]["product_id"]" />
+                        </form>
+                        <br /><br />
+                              <form id="SavedPart" action="~/Parts/MoreDetails" method="post">
+                                  <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
+                                  <input type="submit" id="create" class="submit form-control" value="More Details" />
+                                  <input type="hidden" name="partType" value="@ViewBag.PartType" />
+                              </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

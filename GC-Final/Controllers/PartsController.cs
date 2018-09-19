@@ -18,8 +18,11 @@ namespace GC_Final.Controllers
     public class PartsController : Controller
     {
         // GET: Parts
-        public ActionResult SavePart(string partType, string chosenPartID)
+        public ActionResult SavePart(string partDetails)//, string chosenPartID)
         {
+            string[] variables = partDetails.Split('+');
+            string partType = variables[0];
+            string chosenPartID = variables[1];
             if (partType == "GPU")
             { ZincParseController.GetSaveGPUToDB(chosenPartID); }
             if (partType == "CPU")
