@@ -34,7 +34,7 @@ namespace GC_Final.Controllers
         {
             //ViewBag.Parts = GetPartData()
 
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("Motherboard"));
 
             //ZincParseController.SaveGPUsToDB();
 

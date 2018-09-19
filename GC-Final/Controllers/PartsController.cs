@@ -51,22 +51,25 @@ namespace GC_Final.Controllers
 
         public ActionResult MoreDetails(string chosenPartID)
         {               
-            JObject x = ZincParseController.GetParts(chosenPartID);
-            List<string> images = new List<string>();
+            JObject x = ZincParseController.GetPartData(chosenPartID);
+            //List<string> images = new List<string>();
+            ViewBag.Part = x;
+            ViewBag.PartDetails = ZincParseController.ParseToArray(x["feature_bullets"]);
+            ViewBag.PartImages = ZincParseController.ParseToArray(x["images"]);
 
-            for (int i=0; i <5; i++)
-            {
-                //if (x["images"][i].ToString() == null)5
-                //{
-                //    i = 11;
-                //}
-                images.Add(x["images"][i].ToString());
-            }
+            //for (int i=0; i <5; i++)
+            //{
+            //    //if (x["images"][i].ToString() == null)5
+            //    //{
+            //    //    i = 11;
+            //    //}
+            //    images.Add(x["images"][i].ToString());
+            //}
             //foreach (string y in x["images"])
             //{
             //    images.Add(y.ToString());
             //}
-            ViewBag.PartDetails = images;
+            //ViewBag.PartDetails = images;
 
             return View();
         }
