@@ -11,6 +11,9 @@ namespace GC_Final.Controllers
     public class VerifyController : ApiController
     {
         [HttpPost]
+        public string Test() { return "Success"; }
+
+        [HttpPost]
         public string GetID(string partType, string partName)
         {
             Entities ORM = new Entities();

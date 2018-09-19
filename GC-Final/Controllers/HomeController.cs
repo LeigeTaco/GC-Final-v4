@@ -48,6 +48,11 @@ namespace GC_Final.Controllers
 
             return View();
         }
+
+        public ActionResult Testing()
+        {
+            return View();
+        }
       
     }
 }

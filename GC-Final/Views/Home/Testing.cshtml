@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Testing";
+}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<h2>Testing</h2>
+
+<input type="text" id="yeet" value="" /><p id="hand"></p>
+<input type="password" id="skeet" value="" /><p id="feet"></p>
+
+<script>
+    function update() {
+        var temp = { p1: $("#yeet").val(), p2: $("#skeet").val() };
+        var eel = document.getElementById("feet");
+        var ele = $("#hand");
+        ele.innerHTML = temp["p1"];
+        eel.innerHTML = temp["p2"];
+        return;
+    }
+    $("#skeet").keyup(update);
+    $("#yeet").keyup(update);
+</script>
