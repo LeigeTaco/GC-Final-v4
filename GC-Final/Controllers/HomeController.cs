@@ -33,9 +33,9 @@ namespace GC_Final.Controllers
         public ActionResult Contact()
         {
 
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("MotherBoard"));
 
-            ZincParseController.GetSaveGPUToDB("B01MA62JSZ");
+            //ZincParseController.SaveCPUsToDB();
 
 
             return View();
@@ -107,7 +107,7 @@ namespace GC_Final.Controllers
 
         public static string GetFormFactor(string[] Data)
         {
-            for (int i = 0; i <= Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
                 if (Data[i].ToLower().Contains("form factor"))
                 {

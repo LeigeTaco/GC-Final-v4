@@ -210,7 +210,12 @@ namespace GC_Final.Controllers
                     tempCPU.ProductID = part["product_id"].ToString();
                     tempCPU.Description = "x";
                     tempCPU.Brand = part["brand"].ToString();
-                    tempCPU.Price = int.Parse(part["price"].ToString());
+                    int price;
+                    if (part["price"] == null)
+                        { price = 0; }
+                    else
+                        { price = int.Parse(part["price"].ToString()); }
+                    tempCPU.Price = price;
                     tempCPU.Stars = float.Parse(part["stars"].ToString());
                     tempCPU.ImageLink = part["main_image"].ToString();
                     tempCPU.Manufacturer = "x";
@@ -299,7 +304,7 @@ namespace GC_Final.Controllers
                 tempObj.RAMType = null;
                 tempObj.RAMSlots = null;
                 tempObj.PCISlots = null;
-                tempObj.FormFactor = null;
+                tempObj.FormFactor = HomeController.GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.CrossfireLimit = null;
                 tempObj.Chipset = null;
 
@@ -307,6 +312,8 @@ namespace GC_Final.Controllers
                 ORM.SaveChanges();
             }
         }
+
+      
 
         public static void SavePSUsToDB()
         {
@@ -747,6 +754,24 @@ namespace GC_Final.Controllers
                 ORM.PCICards.Add(tempObj);
                 ORM.SaveChanges();
             }
+        }
+
+        public static string[] ParseToArray(JToken specs)
+        {
+            int x = 0;
+            foreach (JToken y in specs)
+            {
+                x = x + 1;
+            }
+
+            string[] specarray = new string[x];
+
+            foreach (JToken z in specs)
+            {
+                x = x - 1;
+                specarray[x] = z.ToString();
+            }
+            return specarray;
         }
     }
 }
