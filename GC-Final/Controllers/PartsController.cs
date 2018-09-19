@@ -64,8 +64,6 @@ namespace GC_Final.Controllers
             return View();
         }
 
-
-
         
 
         //public ActionResult Create(string newPart)

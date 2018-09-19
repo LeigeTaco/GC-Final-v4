@@ -295,18 +295,16 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
-                tempObj.RAMType = null;
                 tempObj.Wattage = null;
-                tempObj.Socket = null;
-                tempObj.Socket = null;
+                tempObj.Socket = HomeController.GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.SLILimit = null;
                 tempObj.SATASlots = null;
-                tempObj.RAMType = null;
-                tempObj.RAMSlots = null;
+                tempObj.RAMType = HomeController.GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.RAMSlots = null;  HomeController.GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.PCISlots = null;
                 tempObj.FormFactor = HomeController.GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.CrossfireLimit = null;
-                tempObj.Chipset = null;
+                tempObj.Chipset = HomeController.GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                 ORM.Motherboards.Add(tempObj);
                 ORM.SaveChanges();
