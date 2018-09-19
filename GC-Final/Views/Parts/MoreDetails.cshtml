@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "MoreDetails";
+}
+<br /><br />
+<h2>More Details</h2>
+<br /><br />
+<div class="panel panel-group">
+    <div class="panel panel-default">
+        <div class="col-sm-4">
+            <p>@ViewBag.PartDetails["title"]</p>
+            <p>@ViewBag.PartDetails["brand"]</p>
+        </div>
+        <div class="panel panel-body">
+            <div class="col-sm-4">
+                @foreach (var x in ViewBag.PartDetails["images"])
+                {
+
+                    <img src="@x"/>
+                }
+            </div>
+            <div class="col-sm-4">
+                @foreach (var y in ViewBag.PartDetails["feature_bullets"])
+                {
+                    <p><span>&#8226; @y</span></p>
+                }
+                <p><span>&#8226;</span> @ViewBag.PartDetails["price"]</p>
+                <p>@ViewBag.PartDetails["product_desription"]</p>
+                <p><span>&#8226;</span> @ViewBag.PartDetails["stars"]</p>
+            </div>
+        </div>
+    </div>
+</div>
