@@ -20,7 +20,7 @@ namespace GC_Final.Controllers
 
         public static JObject GetParts(string partType)
         {
-            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=2&retailer=amazon");
+            HttpWebRequest apiRequest = WebRequest.CreateHttp($"https://api.zinc.io/v1/search?query={partType}&page=1&retailer=amazon");
             apiRequest.Headers.Add("Authorization", ConfigurationManager.AppSettings["ZINCkey"]);
             apiRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)";
 
