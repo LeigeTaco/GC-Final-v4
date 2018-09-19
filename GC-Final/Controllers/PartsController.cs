@@ -47,14 +47,16 @@ namespace GC_Final.Controllers
            // return RedirectToAction("Create", "Builds" , new { newPart = chosenPartID });
         }
 
-        public ActionResult PartDetails(string partid)
+        public ActionResult MoreDetails(string chosenPartID)
         {
-            return View("SavePart");
+            @ViewBag.Part = ZincParseController.GetParts(chosenPartID);
+            
+            return View();
         }
 
         public ActionResult MoreParts(string partType)
         {
-
+            if (partType == "PCCase") { partType = "Computer+Case"; }
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             ViewBag.PartType = partType;
@@ -62,21 +64,25 @@ namespace GC_Final.Controllers
             return View();
         }
 
-        public ActionResult Create(string newPart)
-        {
-            Entities ORM = new Entities();
 
-            ViewBag.GPUs = ORM.GPUs;
-            ViewBag.CPUs = ORM.CPUs;
-            ViewBag.Motherboards = ORM.Motherboards;
-            ViewBag.PSUs = ORM.PSUs;
-            ViewBag.RAMs = ORM.RAMs;
-            ViewBag.Monitors = ORM.Monitors;
-            ViewBag.PCCases = ORM.PCCases;
-            ViewBag.HardDrives = ORM.HardDrives;
-            ViewBag.OpticalDrivers = ORM.OpticalDrivers;
-            ViewBag.PCICards = ORM.PCICards;
-            return View();
-        }
+
+        
+
+        //public ActionResult Create(string newPart)
+        //{
+        //    Entities ORM = new Entities();
+
+        //    ViewBag.GPUs = ORM.GPUs;
+        //    ViewBag.CPUs = ORM.CPUs;
+        //    ViewBag.Motherboards = ORM.Motherboards;
+        //    ViewBag.PSUs = ORM.PSUs;
+        //    ViewBag.RAMs = ORM.RAMs;
+        //    ViewBag.Monitors = ORM.Monitors;
+        //    ViewBag.PCCases = ORM.PCCases;
+        //    ViewBag.HardDrives = ORM.HardDrives;
+        //    ViewBag.OpticalDrivers = ORM.OpticalDrivers;
+        //    ViewBag.PCICards = ORM.PCICards;
+        //    return View();
+        //}
     }
 }

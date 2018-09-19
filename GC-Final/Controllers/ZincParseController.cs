@@ -105,12 +105,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempGPU.ProductID = part["product_id"].ToString();
-                    tempGPU.Description = null; //part["product_description"].ToString();
+                    tempGPU.Description = "x";
                     tempGPU.Brand = part["brand"].ToString();
-                    tempGPU.Price = (int.Parse(part["price"].ToString())) / 100;
+                    tempGPU.Price = int.Parse(part["price"].ToString());
                     tempGPU.Stars = float.Parse(part["stars"].ToString());
                     tempGPU.ImageLink = part["main_image"].ToString();
-                    tempGPU.Manufacturer = null;
+                    tempGPU.Manufacturer = "x";
                     tempGPU.ResX = null;
                     tempGPU.ResY = null;
                     tempGPU.RAMType = null;
@@ -139,12 +139,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempGPU.ProductID = chosenpart["product_id"].ToString();
-                tempGPU.Description = null; //chosenpart["product_description"].ToString();
+                tempGPU.Description = "x"; //chosenpart["product_description"].ToString();
                 tempGPU.Brand = chosenpart["brand"].ToString();
                 tempGPU.Price = int.Parse(chosenpart["price"].ToString());
-                tempGPU.Stars = null; //float.Parse(part["stars"].ToString());
+                tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempGPU.ImageLink = chosenpart["main_image"].ToString();
-                tempGPU.Manufacturer = null;
+                tempGPU.Manufacturer = "x";
                 tempGPU.ResX = null;
                 tempGPU.ResY = null;
                 tempGPU.RAMType = null;
@@ -172,12 +172,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempCPU.ProductID = chosenpart["product_id"].ToString();
-                //tempCPU.Description = chosenpart["product_description"].ToString();
+                tempCPU.Description = "x";
                 tempCPU.Brand = chosenpart["brand"].ToString();
-                tempCPU.Price = null; // (int.Parse(chosenpart["price"].ToString())) / 100;
-                tempCPU.Stars = null; //float.Parse(part["stars"].ToString());
+                tempCPU.Price = int.Parse(chosenpart["price"].ToString());
+                tempCPU.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempCPU.ImageLink = chosenpart["main_image"].ToString();
-                tempCPU.Manufacturer = null;
+                tempCPU.Manufacturer = "x";
                 tempCPU.MaxSpeed = null;
                 tempCPU.Wattage = null;
                 tempCPU.Threads = null;
@@ -208,12 +208,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempCPU.ProductID = part["product_id"].ToString();
-                    tempCPU.Description = part["product_description"].ToString();
+                    tempCPU.Description = "x";
                     tempCPU.Brand = part["brand"].ToString();
-                    tempCPU.Price = null; // (int.Parse(chosenpart["price"].ToString())) / 100;
-                    tempCPU.Stars = null; //float.Parse(chosenpart["stars"].ToString());
+                    tempCPU.Price = int.Parse(part["price"].ToString());
+                    tempCPU.Stars = float.Parse(part["stars"].ToString());
                     tempCPU.ImageLink = part["main_image"].ToString();
-                    tempCPU.Manufacturer = null;
+                    tempCPU.Manufacturer = "x";
                     tempCPU.MaxSpeed = null;
                     tempCPU.Wattage = null;
                     tempCPU.Threads = null;
@@ -246,12 +246,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempMB.ProductID = part["product_id"].ToString();
-                    tempMB.Description = null;//part["product_description"].ToString();
+                    tempMB.Description = "x";
                     tempMB.Brand = part["brand"].ToString();
-                    tempMB.Price = (int.Parse(part["price"].ToString())) / 100;
+                    tempMB.Price = int.Parse(part["price"].ToString());
                     tempMB.Stars = float.Parse(part["stars"].ToString());
                     tempMB.ImageLink = part["main_image"].ToString();
-                    tempMB.Manufacturer = null;
+                    tempMB.Manufacturer = "x";
                     tempMB.RAMType = null;
                     tempMB.Wattage = null;
                     tempMB.Socket = null;
@@ -284,12 +284,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x"; //chosenpart["product_description"].ToString();
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.RAMType = null;
                 tempObj.Wattage = null;
                 tempObj.Socket = null;
@@ -325,12 +325,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempPSU.ProductID = part["product_id"].ToString();
-                    tempPSU.Description = null;//part["product_description"].ToString();
+                    tempPSU.Description = "x";//part["product_description"].ToString();
                     tempPSU.Brand = part["brand"].ToString();
-                    tempPSU.Price = (int.Parse(part["price"].ToString())) / 100;
+                    tempPSU.Price = int.Parse(part["price"].ToString());
                     tempPSU.Stars = float.Parse(part["stars"].ToString());
                     tempPSU.ImageLink = part["main_image"].ToString();
-                    tempPSU.Manufacturer = null;
+                    tempPSU.Manufacturer = "x";
                     tempPSU.Width = null;
                     tempPSU.Wattage = null;
                     tempPSU.Length = null;
@@ -356,12 +356,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.Width = null;
                 tempObj.Wattage = null;
                 tempObj.Length = null;
@@ -390,12 +390,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempPCCase.ProductID = part["product_id"].ToString();
-                    tempPCCase.Description = null;//part["product_description"].ToString();
+                    tempPCCase.Description = "x";//part["product_description"].ToString();
                     tempPCCase.Brand = part["brand"].ToString();
-                    tempPCCase.Price = null;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempPCCase.Stars = null;  //float.Parse(part["stars"].ToString());
+                    tempPCCase.Price = int.Parse(part["price"].ToString());
+                    tempPCCase.Stars = float.Parse(part["stars"].ToString());
                     tempPCCase.ImageLink = part["main_image"].ToString();
-                    tempPCCase.Manufacturer = null;
+                    tempPCCase.Manufacturer = "x";
                     tempPCCase.Width = null;
                     tempPCCase.TwoSlots = null;
                     tempPCCase.ThreeSlots = null;
@@ -423,12 +423,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.Width = null;
                 tempObj.TwoSlots = null;
                 tempObj.ThreeSlots = null;
@@ -459,12 +459,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempRAM.ProductID = part["product_id"].ToString();
-                    tempRAM.Description = null;//part["product_description"].ToString();
+                    tempRAM.Description = "x";//part["product_description"].ToString();
                     tempRAM.Brand = part["brand"].ToString();
-                    tempRAM.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempRAM.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempRAM.Price = int.Parse(part["price"].ToString());
+                    tempRAM.Stars = float.Parse(part["stars"].ToString());
                     tempRAM.ImageLink = part["main_image"].ToString();
-                    tempRAM.Manufacturer = null;
+                    tempRAM.Manufacturer = "x";
                     tempRAM.BusSpeed = null;
                     tempRAM.Quantity = null;
                     tempRAM.RAMType = null;
@@ -489,12 +489,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.BusSpeed = null;
                 tempObj.Quantity = null;
                 tempObj.RAMType = null;
@@ -522,12 +522,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempObj.ProductID = part["product_id"].ToString();
-                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Description = "x";//part["product_description"].ToString();
                     tempObj.Brand = part["brand"].ToString();
-                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.Price = int.Parse(part["price"].ToString());
+                    tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
-                    tempObj.Manufacturer = null;
+                    tempObj.Manufacturer = "x";
                     tempObj.RefreshRate = null;
                     tempObj.ResX = null;
                     tempObj.ResY = null;
@@ -551,12 +551,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.RefreshRate = null;
                 tempObj.ResX = null;
                 tempObj.ResY = null;
@@ -582,12 +582,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempObj.ProductID = part["product_id"].ToString();
-                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Description = "x";//part["product_description"].ToString();
                     tempObj.Brand = part["brand"].ToString();
-                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.Price = int.Parse(part["price"].ToString());
+                    tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
-                    tempObj.Manufacturer = null;
+                    tempObj.Manufacturer = "x";
                     tempObj.BuildDisks = null;
                     tempObj.Capacity = 0;//null;
                     tempObj.CapacityUnits = null;
@@ -613,12 +613,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.Capacity = 0;//null;
                 tempObj.CapacityUnits = null;
                 tempObj.Interface = null;
@@ -645,12 +645,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempObj.ProductID = part["product_id"].ToString();
-                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Description = "x";//part["product_description"].ToString();
                     tempObj.Brand = part["brand"].ToString();
-                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.Price = int.Parse(part["price"].ToString());
+                    tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
-                    tempObj.Manufacturer = null;
+                    tempObj.Manufacturer = "x";
                     tempObj.WriteSpeed = 0;// null;
                     tempObj.Wattage = 0;// null;
                     tempObj.Type = null;
@@ -677,12 +677,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString())) / 100;
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
                 tempObj.WriteSpeed = 0;// null;
                 tempObj.Wattage = 0;// null;
                 tempObj.Type = null;
@@ -711,12 +711,12 @@ namespace GC_Final.Controllers
                 if (z.Count < 1)
                 {
                     tempObj.ProductID = part["product_id"].ToString();
-                    tempObj.Description = null;//part["product_description"].ToString();
+                    tempObj.Description = "x";//part["product_description"].ToString();
                     tempObj.Brand = part["brand"].ToString();
-                    tempObj.Price = 99;  //(int.Parse(part["price"].ToString())) / 100;
-                    tempObj.Stars = 99;  //float.Parse(part["stars"].ToString());
+                    tempObj.Price = int.Parse(part["price"].ToString());
+                    tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
-                    tempObj.Manufacturer = null;
+                    tempObj.Manufacturer = "x";
 
 
                     ORM.PCICards.Add(tempObj);
@@ -737,12 +737,12 @@ namespace GC_Final.Controllers
             if (z.Count < 1)
             {
                 tempObj.ProductID = chosenpart["product_id"].ToString();
-                tempObj.Description = chosenpart["product_description"].ToString();
+                tempObj.Description = "x";
                 tempObj.Brand = chosenpart["brand"].ToString();
-                tempObj.Price = (int.Parse(chosenpart["price"].ToString()));
+                tempObj.Price = int.Parse(chosenpart["price"].ToString());
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
-                tempObj.Manufacturer = null;
+                tempObj.Manufacturer = "x";
 
                 ORM.PCICards.Add(tempObj);
                 ORM.SaveChanges();
