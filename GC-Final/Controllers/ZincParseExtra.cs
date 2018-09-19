@@ -747,11 +747,11 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public static int GetHardDrive_ReadSpeeds(string[] Data)
+        public static int GetHardDrive_ReadSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
-                if (Data[i].ToLower().Contains("mb/s"))
+                if (Data[i].ToLower().Contains("read"))
                 {
                     int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
                     return Speeds;
@@ -767,17 +767,90 @@ namespace GC_Final.Controllers
             return 0;
         }
 
+        public static int GetHardDrive_WriteSpeed(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("write"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
+                    return Speeds;
+                }
+                else if (Data[i].ToLower().Contains("gb/s"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
+                    Speeds *= 1024;
+                    return Speeds;
+                }
+            }
 
+            return 0;
+        }
 
+        public static string GetOpticalDrive_Types(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("cd"))
+                {
+                    return "CD";
+                }
+                else if (Data[i].ToLower().Contains("dvd"))
+                {
+                    return "DVD";
+                }
+                else if (Data[i].ToLower().Contains("blu-ray"))
+                {
+                    return "Blu-Ray";
+                }
+                else if (Data[i].ToLower().Contains("floppy"))
+                {
+                    return "Floppy";
+                }
+            }
 
-        /*
+            return null;
+        }
 
-        Optical Drive:
-        Type of Drive(CD, DVD, Blu-Ray, Floppy) - string/string[] and return string.
-        Read/Write Speed - Definitely need two methods for this one, re-use the HD ones.
-        Writable Drive - string/string[] and return bool.
-        */
+        public static int GetOpticalDrive_ReadSpead(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("read"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
+                    return Speeds;
+                }
+                else if (Data[i].ToLower().Contains("gb/s"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
+                    Speeds *= 1024;
+                    return Speeds;
+                }
+            }
 
+            return 0;
+        }
+
+        public static int GetOpticalDrive_WriteSpeed(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("write"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
+                    return Speeds;
+                }
+                else if (Data[i].ToLower().Contains("gb/s"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
+                    Speeds *= 1024;
+                    return Speeds;
+                }
+            }
+
+            return 0;
+        }
 
     }
 }
