@@ -13,10 +13,12 @@
         </div>
         <div class="panel panel-body">
             <div class="col-sm-4">
+                <img src="@ViewBag.PartDetails["images"]" alt="part images"/>
+
                 @foreach (var x in ViewBag.PartDetails["images"])
                 {
 
-                    <img src="@x"/>
+                    <img src="@x" alt="part images"/>
                 }
             </div>
             <div class="col-sm-4">
