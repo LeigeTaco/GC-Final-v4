@@ -446,7 +446,7 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("socket"))
                 {
-                    return Regex.Match(Data[i], @"^[lpLP][Gg][Aa] \d+$").Value;
+                    return Regex.Match(Data[i], @"[lpLP][Gg][Aa] \d+").Value;
                 }
             }
 
