@@ -94,27 +94,28 @@ namespace GC_Final.Controllers
             gpuparts = GetPartData(GetParts("GPU"));
             Entities ORM = new Entities();
 
-            foreach (JObject part in gpuparts)
+            foreach (JObject chosenpart in gpuparts)
             {
-                string y = part["product_id"].ToString();
-                GPU tempGPU = new GPU(part["title"].ToString());
+                string y = chosenpart["product_id"].ToString();
+                GPU tempGPU = new GPU(chosenpart["title"].ToString());
 
                 List<GPU> z = new List<GPU>();
                 z = ORM.GPUs.Where(x => x.ProductID == y).ToList();
 
                 if (z.Count < 1)
                 {
-                    tempGPU.ProductID = part["product_id"].ToString();
-                    tempGPU.Description = "x";
-                    tempGPU.Brand = part["brand"].ToString();
-                    tempGPU.Price = int.Parse(part["price"].ToString());
-                    tempGPU.Stars = float.Parse(part["stars"].ToString());
-                    tempGPU.ImageLink = part["main_image"].ToString();
+                    tempGPU.ProductID = chosenpart["product_id"].ToString();
+                    tempGPU.Description = "x"; //chosenpart["product_description"].ToString();
+                    tempGPU.Brand = chosenpart["brand"].ToString();
+                    tempGPU.Price = int.Parse(chosenpart["price"].ToString());
+                    tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
+                    tempGPU.ImageLink = chosenpart["main_image"].ToString();
                     tempGPU.Manufacturer = "x";
-                    tempGPU.ResX = null;
-                    tempGPU.ResY = null;
-                    tempGPU.RAMType = null;
-                    tempGPU.RAMAmount = null;
+                    int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
+                    tempGPU.ResX = res[0];
+                    tempGPU.ResY = res[1];
+                    tempGPU.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                    tempGPU.RAMAmount = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempGPU.MultiGPULimit = null;
                     tempGPU.MultiGPUType = null;
                     tempGPU.MaxMonitors = null;
@@ -175,7 +176,12 @@ namespace GC_Final.Controllers
                 tempCPU.ProductID = chosenpart["product_id"].ToString();
                 tempCPU.Description = "x";
                 tempCPU.Brand = chosenpart["brand"].ToString();
-                tempCPU.Price = int.Parse(chosenpart["price"].ToString());
+                int price;
+                if (chosenpart["price"] == null)
+                { price = 0; }
+                else
+                { price = int.Parse(chosenpart["price"].ToString()); }
+                tempCPU.Price = price;
                 tempCPU.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempCPU.ImageLink = chosenpart["main_image"].ToString();
                 tempCPU.Manufacturer = "x";
@@ -241,37 +247,35 @@ namespace GC_Final.Controllers
             searchedparts = GetPartData(GetParts("Motherboard"));
             Entities ORM = new Entities();
 
-            foreach (JObject part in searchedparts)
+            foreach (JObject chosenpart in searchedparts)
             {
-                string y = part["product_id"].ToString();
-                Motherboard tempMB = new Motherboard(part["title"].ToString());
+                string y = chosenpart["product_id"].ToString();
+                Motherboard tempObj = new Motherboard(chosenpart["title"].ToString());
 
                 List<Motherboard> z = new List<Motherboard>();
                 z = ORM.Motherboards.Where(x => x.ProductID == y).ToList();
 
                 if (z.Count < 1)
                 {
-                    tempMB.ProductID = part["product_id"].ToString();
-                    tempMB.Description = "x";
-                    tempMB.Brand = part["brand"].ToString();
-                    tempMB.Price = int.Parse(part["price"].ToString());
-                    tempMB.Stars = float.Parse(part["stars"].ToString());
-                    tempMB.ImageLink = part["main_image"].ToString();
-                    tempMB.Manufacturer = "x";
-                    tempMB.RAMType = null;
-                    tempMB.Wattage = null;
-                    tempMB.Socket = null;
-                    tempMB.Socket = null;
-                    tempMB.SLILimit = null;
-                    tempMB.SATASlots = null;
-                    tempMB.RAMType = null;
-                    tempMB.RAMSlots = null;
-                    tempMB.PCISlots = null;
-                    tempMB.FormFactor = null;
-                    tempMB.CrossfireLimit = null;
-                    tempMB.Chipset = null;
+                    tempObj.ProductID = chosenpart["product_id"].ToString();
+                    tempObj.Description = "x"; //chosenpart["product_description"].ToString();
+                    tempObj.Brand = chosenpart["brand"].ToString();
+                    tempObj.Price = int.Parse(chosenpart["price"].ToString());
+                    tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
+                    tempObj.ImageLink = chosenpart["main_image"].ToString();
+                    tempObj.Manufacturer = "x";
+                    tempObj.Wattage = null;
+                    tempObj.Socket = GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.SLILimit = null;
+                    tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.RAMSlots = null; GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.CrossfireLimit = null;
+                    tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
-                    ORM.Motherboards.Add(tempMB);
+                    ORM.Motherboards.Add(tempObj);
                     ORM.SaveChanges();
                 }
             }
