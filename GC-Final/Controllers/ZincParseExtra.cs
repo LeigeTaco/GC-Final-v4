@@ -560,7 +560,7 @@ namespace GC_Final.Controllers
 
         }
 
-        public static int GetRAMSlots(string[] Data)
+        public static byte GetRAMSlots(string[] Data)
         {
             int Index = -1;
             for (int i = 0; i < Data.Length; i++)
@@ -574,7 +574,7 @@ namespace GC_Final.Controllers
             if (Index < 0)
                 return 0;
 
-            int MemorySlots = int.Parse(Regex.Match(Regex.Match(Data[Index], @"\d x").Value, @"\d").Value);
+            byte MemorySlots = byte.Parse(Regex.Match(Regex.Match(Data[Index], @"\d x").Value, @"\d").Value);
             return MemorySlots;
 
         }
@@ -628,9 +628,87 @@ namespace GC_Final.Controllers
             return 0;
         }
 
+        public static byte MultiGPU_Limit(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("gpu"))
+                {
+                    byte GPU_Limit = byte.Parse(Regex.Match(Data[i], @"\d").Value);
+                }
+            }
+
+            return 0;
+        }
+
+        public static byte Crossfire_Limit(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("crossfire"))
+                {
+                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
+                    {
+                        if (Data[i].ToLower().Contains("two"))
+                        {
+                            return 2;
+                        }
+                        else if (Data[i].ToLower().Contains("three"))
+                        {
+                            return 3;
+                        }
+                        else if (Data[i].ToLower().Contains("four"))
+                        {
+                            return 4;
+                        }
+                    }
+
+                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
+                    return Limit;
+                    
+                }
+                
+            }
+
+            return 0;
+        }
+
+        public static byte SLI_Limit(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("sli"))
+                {
+                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
+                    {
+                        if (Data[i].ToLower().Contains("two"))
+                        {
+                            return 2;
+                        }
+                        else if (Data[i].ToLower().Contains("three"))
+                        {
+                            return 3;
+                        }
+                        else if (Data[i].ToLower().Contains("four"))
+                        {
+                            return 4;
+                        }
+                    }
+
+                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
+                    return Limit;
+
+                }
+
+            }
+
+            return 0;
+        }
+
+
+
+
         /*
-        PCI 3.0 x 16 slots - string/string[] and return a byte.
-        MultiGPU Limit - string/string[] and return byte. (May need one for Crossfire and one for SLI)
 
         Hard Drive:
         Type of Drive(HDD, SSHD, SSD) - string/string[] and return string.
