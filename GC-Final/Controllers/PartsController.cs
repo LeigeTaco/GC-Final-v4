@@ -18,60 +18,71 @@ namespace GC_Final.Controllers
     public class PartsController : Controller
     {
         // GET: Parts
-        public ActionResult SavePart(string chosenPartID, string partType)
+        public ActionResult SavePart(string partDetails)//, string chosenPartID)
         {
-            if (chosenPartID == "GPU")
+            string[] variables = partDetails.Split('+');
+            string partType = variables[0];
+            string chosenPartID = variables[1];
+            if (partType == "GPU")
             { ZincParseController.GetSaveGPUToDB(chosenPartID); }
-            if (chosenPartID == "CPU")
+            if (partType == "CPU")
             { ZincParseController.SaveCPUToDB(chosenPartID); }
-            if (chosenPartID == "Motherboard")
+            if (partType == "Motherboard")
             { ZincParseController.SaveMotherboardToDB(chosenPartID); }
-            if (chosenPartID == "PCCase")
+            if (partType == "PCCase")
             { ZincParseController.SavePCCaseToDB(chosenPartID); }
-            if (chosenPartID == "PSU")
+            if (partType == "PSU")
             { ZincParseController.SavePSUToDB(chosenPartID); }
-            if (chosenPartID == "RAM")
+            if (partType == "RAM")
             { ZincParseController.SaveRAMToDB(chosenPartID); }
-            if (chosenPartID == "OpticalDrive")
+            if (partType == "OpticalDrive")
             { ZincParseController.SaveOpticalDriverToDB(chosenPartID); }
-            if (chosenPartID == "HardDrive")
+            if (partType == "HardDrive")
             { ZincParseController.SaveHardDriveToDB(chosenPartID); }
-            if (chosenPartID == "Monitor")
+            if (partType == "Monitor")
             { ZincParseController.SaveMonitorToDB(chosenPartID); }
 
-            //return RedirectToAction("Create?newPart=" + chosenPartID, new { Controller = "Builds" });     //From Ash <3
-            return RedirectToAction("Create", "Builds" , new { newPart = chosenPartID });
+            return RedirectToAction("Create", "Builds");
+
+           // return RedirectToAction("Create", "Builds" , new { newPart = chosenPartID });
         }
 
-        public ActionResult PartDetails(string partid)
+        public ActionResult MoreDetails(string chosenPartID)
         {
-            return View("SavePart");
+            @ViewBag.Part = ZincParseController.GetParts(chosenPartID);
+            
+            return View();
         }
 
         public ActionResult MoreParts(string partType)
         {
-
+            if (partType == "PCCase") { partType = "Computer+Case"; }
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
-            //ViewBag.PartSearch= ZincParseController.GetParts(partType);
+            ViewBag.PartType = partType;
 
             return View();
         }
-        public ActionResult Create(string newPart)
-        {
-            Entities ORM = new Entities();
 
-            ViewBag.GPUs = ORM.GPUs;
-            ViewBag.CPUs = ORM.CPUs;
-            ViewBag.Motherboards = ORM.Motherboards;
-            ViewBag.PSUs = ORM.PSUs;
-            ViewBag.RAMs = ORM.RAMs;
-            ViewBag.Monitors = ORM.Monitors;
-            ViewBag.PCCases = ORM.PCCases;
-            ViewBag.HardDrives = ORM.HardDrives;
-            ViewBag.OpticalDrivers = ORM.OpticalDrivers;
-            ViewBag.PCICards = ORM.PCICards;
-            return View();
-        }
+
+
+        
+
+        //public ActionResult Create(string newPart)
+        //{
+        //    Entities ORM = new Entities();
+
+        //    ViewBag.GPUs = ORM.GPUs;
+        //    ViewBag.CPUs = ORM.CPUs;
+        //    ViewBag.Motherboards = ORM.Motherboards;
+        //    ViewBag.PSUs = ORM.PSUs;
+        //    ViewBag.RAMs = ORM.RAMs;
+        //    ViewBag.Monitors = ORM.Monitors;
+        //    ViewBag.PCCases = ORM.PCCases;
+        //    ViewBag.HardDrives = ORM.HardDrives;
+        //    ViewBag.OpticalDrivers = ORM.OpticalDrivers;
+        //    ViewBag.PCICards = ORM.PCICards;
+        //    return View();
+        //}
     }
 }

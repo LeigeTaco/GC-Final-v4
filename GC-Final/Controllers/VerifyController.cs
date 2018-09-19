@@ -10,6 +10,43 @@ namespace GC_Final.Controllers
 {
     public class VerifyController : ApiController
     {
+        [HttpPost]
+        public string GetID(string partType, string partName)
+        {
+            Entities ORM = new Entities();
+            if (partType == "Motherboard")
+            {
+                return ORM.Motherboards.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "CPU")
+            {
+                return ORM.CPUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "GPU")
+            {
+                return ORM.GPUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "PSU")
+            {
+                return ORM.PSUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "PCCase")
+            {
+                return ORM.PCCases.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "RAM")
+            {
+                return ORM.RAMs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else if (partType == "Monitor")
+            {
+                return ORM.Monitors.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         [HttpPost]
         public Dictionary<string, string> CheckCompataibility(string motherboard_id, string cpu_id, string psu_id, string case_id, string gpu_id, byte gpu_count, string[] ram_ids, string[] harddrive_ids, string[] optical_ids, string[] pci_ids, string[] peripheral_ids, string[] monitor_ids)

@@ -1,4 +1,4 @@
-﻿@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     @*<script type="text/javascript">
         $(function(){
@@ -26,16 +26,16 @@
         });*@
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "MoreParts";
+    ViewBag.Title = "MoreParts";
 }
 <br /> <br />
 @for (int i = 0; i <= 14; i++)
 {
     <div class="panel panel-group">
         <div class="panel panel-default">
-            <div class="panel panel-body"> 
+            <div class="panel panel-body">
                 <div class="col-sm-4">
                     <img src="@ViewBag.PartSearch["results"][i]["image"]" />
                 </div>
@@ -46,17 +46,17 @@
                 </div>
                 <div class="col-sm-4">
                     <div>
-                        <form id="SavedPart" action="~/Parts/SavePart" method="get">
-                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
-                            <input type="submit" id="create" class="submit form-control" value="Save" />
-                            <input type="hidden" name="partType" value="@ViewBag.PartType" />
+                        <form id="SavedPart" action="~/Parts/SavePart" method="post">
+                            @*<input type="hidden" name="partType" value="@ViewBag.PartType" />
+                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />*@
+                            <input type="submit" id="create" class="submit form-control" value="Save" />   
+                            <input type="hidden" name="partDetails" value="@ViewBag.PartType+@ViewBag.PartSearch["results"][i]["product_id"]" />
                         </form>
-                        <br/><br/>
-                        <form id="SavedPart" action="~/Parts/MoreDetails" method="get">
-                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
-                            <input type="submit" id="create" class="submit form-control" value="More Details" />
-                            <input type="hidden" name="partType" value="@ViewBag.PartType" />
-                        </form>
+                        <br /><br />
+                              <form id="SavedPart" action="~/Parts/MoreDetails" method="post">
+                                  <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
+                                  <input type="submit" id="create" class="submit form-control" value="More Details" />
+                              </form>
                     </div>
                 </div>
             </div>

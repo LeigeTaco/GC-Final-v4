@@ -33,9 +33,9 @@ namespace GC_Final.Controllers
         public ActionResult Contact()
         {
 
-            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("PSU"));
+            @ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("MotherBoard"));
 
-            ZincParseController.GetSaveGPUToDB("B01MA62JSZ");
+            //ZincParseController.SaveCPUsToDB();
 
 
             return View();
