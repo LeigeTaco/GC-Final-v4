@@ -705,15 +705,72 @@ namespace GC_Final.Controllers
             return 0;
         }
 
+        public static string GetHardDrive_Type(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("hdd"))
+                {
+                    return "HDD";
+                }
+                else if (Data[i].ToLower().Contains("sshd"))
+                {
+                    return "SSHD";
+                }
+                else if (Data[i].ToLower().Contains("ssd"))
+                {
+                    return "SSD";
+                }
+            }
+
+            return null;
+        }
+
+        public static string GetHardDrive_Size(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("2.5\""))
+                {
+                    return "2.5";
+                }
+                else if (Data[i].ToLower().Contains("3.5\""))
+                {
+                    return "3.5";
+                }
+                else if (Data[i].ToLower().Contains("msata"))
+                {
+                    return "mSATA";
+                }
+            }
+
+            return null;
+        }
+
+        public static int GetHardDrive_ReadSpeeds(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("mb/s"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
+                    return Speeds;
+                }
+                else if (Data[i].ToLower().Contains("gb/s"))
+                {
+                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
+                    Speeds *= 1024;
+                    return Speeds;
+                }
+            }
+
+            return 0;
+        }
+
 
 
 
         /*
-
-        Hard Drive:
-        Type of Drive(HDD, SSHD, SSD) - string/string[] and return string.
-        Size(2.5", 3.5", mSATA) - string/string[] and return string.
-        Read/Write Speed - string/string[] and return int. (Maybe separate Read and Write speeds into to methods and take the lower for HD)
 
         Optical Drive:
         Type of Drive(CD, DVD, Blu-Ray, Floppy) - string/string[] and return string.
