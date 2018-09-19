@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using GC_Final.Models;
+using System.Text.RegularExpressions;
 
 namespace GC_Final.Controllers
 {
@@ -403,7 +404,244 @@ namespace GC_Final.Controllers
 
     public partial class ZincParseController : ApiController
     {
+        public static int[] GetMaxScreenResolution(string[] Data)
+        {
+            int Index = -1;
 
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("res"))
+                {
+                    Index = i;
+                }
+            }
+
+            int MaxResX;
+            int MaxResY;
+
+            if (Index < 0)
+                return null;
+
+            string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").Value;
+            string[] SplitScreenRes = ScreenResolution.Split(' ');
+
+            MaxResX = int.Parse(SplitScreenRes[0]);
+            MaxResY = int.Parse(SplitScreenRes[2]);
+
+            int[] MaxScreenResolution = { MaxResX, MaxResY };
+            return MaxScreenResolution;
+
+        }
+
+        public static string GetSocketType(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetSocketType(_dataArray);
+        }
+
+        public static string GetSocketType(string[] Data)
+        {
+
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("socket"))
+                {
+                    return Regex.Match(Data[i], @"^[lpLP][Gg][Aa] \d+$").Value;
+                }
+            }
+
+            return null;
+
+        }
+
+        public static string GetFormFactor(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetFormFactor(_dataArray);
+        }
+
+        public static string GetFormFactor(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("form factor"))
+                {
+                    string _FFDetails = "";
+
+                    if (Data[i].ToLower().Contains("at"))
+                    {
+                        _FFDetails += "AT,";
+                    }
+
+                    if (Data[i].ToLower().Contains("baby at"))
+                    {
+                        _FFDetails += "Baby AT,";
+                    }
+
+                    if (Data[i].ToLower().Contains("atx"))
+                    {
+                        _FFDetails += "ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("mini atx"))
+                    {
+                        _FFDetails += "Mini ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("micro atx"))
+                    {
+                        _FFDetails += "Micro ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("flex atx"))
+                    {
+                        _FFDetails += "Flex ATX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("lpx"))
+                    {
+                        _FFDetails += "LPX,";
+                    }
+
+                    if (Data[i].ToLower().Contains("nlx"))
+                    {
+                        _FFDetails += "NLX,";
+                    }
+
+                    return _FFDetails;
+
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static string GetChipset(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetChipset(_dataArray);
+        }
+
+        public static string GetChipset(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("chipset"))
+                {
+                    return Regex.Match(Data[i], @"[a-zA-Z]+\d+[a-zA-Z]?+").Value;
+                }
+
+            }
+
+            return null;
+
+        }
+
+        public static string GetRAMType(string Data)
+        {
+            string[] _dataArray = { Data };
+            return GetRAMType(_dataArray);
+        }
+
+        public static string GetRAMType(string[] Data)
+        {
+
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("DDR2") || Data[i].ToLower().Contains("DDR3") || Data[i].ToLower().Contains("DDR3 ECC") || Data[i].ToLower().Contains("DDR4") || Data[i].ToLower().Contains("DDR4 ECC"))
+                {
+                    return Regex.Match(Data[i], @"^DDR\d( ECC)?$").Value;
+                }
+            }
+
+            return null;
+
+        }
+
+        public static int GetRAMSlots(string[] Data)
+        {
+            int Index = -1;
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("memory slots"))
+                {
+                    Index = i;
+                }
+            }
+
+            if (Index < 0)
+                return 0;
+
+            int MemorySlots = int.Parse(Regex.Match(Regex.Match(Data[Index], @"\d x").Value, @"\d").Value);
+            return MemorySlots;
+
+        }
+
+        public static int GetPowerSupply(string Data)
+        {
+            int PowerSupply = int.Parse(Regex.Match(Regex.Match(Data, @"\d+W").Value, @"\d+").Value);
+            return PowerSupply;
+        }
+
+        public static double GetCPU_Speed(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("ghz"))
+                {
+                    double CPU_Speed = double.Parse(Regex.Match(Data[i], @"\d+( )?GHz").Value);
+                    return CPU_Speed;
+                }
+            }
+
+            return 0;
+        }
+
+        public static byte GetSATA_Slots(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("sata"))
+                {
+                    byte SATA_Slots = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\( )?dx").Value, @"\d").Value);
+                    return SATA_Slots;
+                }
+            }
+
+            return 0;
+        }
+
+        public static byte GetPCI_Slots(string[] Data)
+        {
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (Data[i].ToLower().Contains("pci"))
+                {
+                    byte PCI_Slots = byte.Parse(Regex.Match(Data[i], @"^\d+x( )?PCI-([Ee]|Express)( )?\d(\d)?( )?([xX]\d+)?( )?Slots$").Value);
+
+                    return PCI_Slots;
+                }
+            }
+
+            return 0;
+        }
+
+        /*
+        PCI 3.0 x 16 slots - string/string[] and return a byte.
+        MultiGPU Limit - string/string[] and return byte. (May need one for Crossfire and one for SLI)
+
+        Hard Drive:
+        Type of Drive(HDD, SSHD, SSD) - string/string[] and return string.
+        Size(2.5", 3.5", mSATA) - string/string[] and return string.
+        Read/Write Speed - string/string[] and return int. (Maybe separate Read and Write speeds into to methods and take the lower for HD)
+
+        Optical Drive:
+        Type of Drive(CD, DVD, Blu-Ray, Floppy) - string/string[] and return string.
+        Read/Write Speed - Definitely need two methods for this one, re-use the HD ones.
+        Writable Drive - string/string[] and return bool.
+        */
 
 
     }
