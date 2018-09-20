@@ -425,8 +425,16 @@ namespace GC_Final.Controllers
             string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").Value;
             string[] SplitScreenRes = ScreenResolution.Split(' ');
 
-            MaxResX = int.Parse(SplitScreenRes[0]);
-            MaxResY = int.Parse(SplitScreenRes[2]);
+            try
+            {
+                MaxResX = int.Parse(SplitScreenRes[0]);
+                MaxResY = int.Parse(SplitScreenRes[2]);
+            }
+            catch
+            {
+                MaxResX = 0;
+                MaxResY = 0;
+            }
 
             int[] MaxScreenResolution = { MaxResX, MaxResY };
             return MaxScreenResolution;
