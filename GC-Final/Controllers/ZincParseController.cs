@@ -270,7 +270,7 @@ namespace GC_Final.Controllers
                     tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
-                    tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.PCISlots = null; // GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.CrossfireLimit = Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
                     tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));

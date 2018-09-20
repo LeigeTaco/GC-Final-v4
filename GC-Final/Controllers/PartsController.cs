@@ -84,6 +84,7 @@ namespace GC_Final.Controllers
             ViewBag.PartSearch = ZincParseController.GetParts(partType);
 
             ViewBag.PartType = partType;
+            ViewBag.page = 1;
 
             return View();
         }
