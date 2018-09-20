@@ -475,7 +475,7 @@ namespace GC_Final.Controllers
 
                     if (Data[i].ToLower().Contains("baby") && Data[i].ToLower().Contains("at"))
                     {
-                        _FFDetails += Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
+                        _FFDetails = Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
                     }
 
                     if (Data[i].ToLower().Contains("atx"))
