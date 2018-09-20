@@ -551,7 +551,7 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("ddr2") || Data[i].ToLower().Contains("ddr3") || Data[i].ToLower().Contains("ddr3 ecc") || Data[i].ToLower().Contains("ddr4") || Data[i].ToLower().Contains("ddr4 ecc"))
                 {
-                    return Regex.Match(Data[i], @"DDR\d( ECC)?").Value;
+                    return Regex.Match(Data[i], @"(\b(ddr2|ddr3|ddr4)\b)?(.)?(\b(ecc)\b)?").Value;
                 }
             }
 
