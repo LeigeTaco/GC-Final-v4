@@ -444,23 +444,27 @@ namespace GC_Final.Controllers
 
         public static string GetSocketType(string Data)
         {
-            string[] _dataArray = { Data };
-            return GetSocketType(_dataArray);
+            string _out = "";
+            return _out + Regex.Match(Data, @"[PpLl][Gg][Aa] \d+").Value;
         }
 
         public static string GetSocketType(string[] Data)
         {
-
-            for (int i = 0; i < Data.Length; i++)
+            try
             {
-                if (Data[i].ToLower().Contains("socket"))
+                foreach (string d in Data)
                 {
-                    return Regex.Match(Data[i], @"[lpLP][Gg][Aa] \d+").Value;
+                    if (Regex.IsMatch(d, @"[PpLl][Gg][Aa] \d+"))
+                    {
+                        return GetSocketType(d);
+                    }
                 }
             }
-
+            catch (Exception)
+            {
+                return null;
+            }
             return null;
-
         }
 
         public static string GetFormFactor(string Data)
