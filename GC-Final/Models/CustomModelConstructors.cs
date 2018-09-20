@@ -507,7 +507,7 @@ namespace GC_Final.Models
                 _out.Add("Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}");
                 //Add more specific error
             }
-            //MB and RAM
+           // MB and RAM
             if (Motherboard.RAMSlots < _ramCount && (Motherboard.RAMSlots != null && _ramCount != null))
             {
                 _out.Add("RAM Quantity Error (MB)", $"You have {_ramCount - Motherboard.RAMSlots} too many sticks of RAM (Non-Fatal)");
@@ -544,10 +544,10 @@ namespace GC_Final.Models
                 _out.Add("RAM Capacity Error", "Your CPU cannot handle this amount of RAM (Fatal).");
             }
             //Case and MB
-            if (!PCCase.Style.Contains(Motherboard.FormFactor))
-            {
-                _out.Add("Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards.");
-            }
+            //if (!PCCase.Style.Contains(Motherboard.FormFactor))
+            //{
+            //    _out.Add("Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards.");
+            //}
             //Case and PSU
             if (PSU.Width > PCCase.Width || PSU.Length > PCCase.Length || PSU.Height > PCCase.Height)
             {

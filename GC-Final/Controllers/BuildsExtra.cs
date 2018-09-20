@@ -72,8 +72,8 @@ namespace GC_Final.Controllers
                 ViewBag.SetMonitor = ORM.Monitors.Find(UserBuild.BuildMonitors.First().MonitorID);
                 ViewBag.SetPCCase = UserBuild.PCCase;
                 ViewBag.SetHardDrive = ORM.HardDrives.Find(UserBuild.BuildDisks.First().HDID);
-                ViewBag.SetOpticalDriver = ORM.OpticalDrivers.Find(UserBuild.BuildODs.First().ODID);
-                ViewBag.SetPCICard = ORM.PCICards.Find(UserBuild.BuildPCIs.First().PCIID);
+                //ViewBag.SetOpticalDriver = ORM.OpticalDrivers.Find(UserBuild.BuildODs.First().ODID);
+                //ViewBag.SetPCICard = ORM.PCICards.Find(UserBuild.BuildPCIs.First().PCIID);
 
                 return View("Create");
             }
@@ -119,12 +119,12 @@ namespace GC_Final.Controllers
             _od.ODID = optical_id;
             _od.OpticalDriver = ORM.OpticalDrivers.Find(optical_id);
             Dictionary<string, string> flags = temp.GetCompat();
-            if (flags == null && c)
-            {
+            //if (flags == null && c)
+            //{
                 ORM.Builds.Add(temp);
                 ORM.SaveChanges();
                 return RedirectToAction("Display", "Builds", new { id = temp.BuildID});
-            }
+            //}
 
             return _Create(temp, User.Identity.GetUserId());
         }
