@@ -128,57 +128,109 @@
         <br />
         <div class="form-group">
             <div class="col-sm-2">
-                <input type="radio" name="c" value="true" /> Create <br />
-                <input type="radio" name="c" value="false" /> Validate <br />
-                <br />
-                <input type="submit" class="form-control" id="createBuild" value="Create Build" />
+                <div class="col-sm-2">
+                    <input type="radio" name="c" value="true" /> Create <br />
+                    <input type="radio" name="c" value="false" /> Validate <br />
+                    <br />
+                    <input type="submit" class="form-control" id="createBuild" value="Create Build" />
+                </div>
             </div>
         </div>
     </form>
 </div>
 <br />
-
-            <form action="~/Parts/MoreParts" method="post">
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More Motherboards" />
-                    <input type="hidden" name="partType" value="Motherboard" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More GPUs" />
-                    <input type="hidden" name="partType" value="GPU" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More CPUs" />
-                    <input type="hidden" name="partType" value="CPU" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More PSUs" />
-                    <input type="hidden" name="partType" value="PSU" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More Cases" />
-                    <input type="hidden" name="partType" value="Computer+Case" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More RAM" />
-                    <input type="hidden" name="partType" value="RAM" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More Monitors" />
-                    <input type="hidden" name="partType" value="Monitor" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More PCI Cards" />
-                    <input type="hidden" name="partType" value="PCICard" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More Hard Drives" />
-                    <input type="hidden" name="partType" value="HardDrive" />
-                </div>
-                <div class="col-sm-3">
-                    <input type="submit" id="create" class="submit form-control" value="More Optical Drives" />
-                    <input type="hidden" name="partType" value="OpticalDriver" />
-                </div>
-            </form>
-
-    
+<div class="container">
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Motherboards" />
+                <input type="hidden" name="partType" value="Motherboard" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More GPUs" />
+                <input type="hidden" name="partType" value="GPU" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More CPUs" />
+                <input type="hidden" name="partType" value="CPU" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More PSUs" />
+                <input type="hidden" name="partType" value="PSU" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Cases" />
+                <input type="hidden" name="partType" value="Computer+Case" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More RAM" />
+                <input type="hidden" name="partType" value="RAM" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Monitors" />
+                <input type="hidden" name="partType" value="Monitor" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More PCI Cards" />
+                <input type="hidden" name="partType" value="PCICard" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Hard Drives" />
+                <input type="hidden" name="partType" value="HardDrive" />
+            </div>
+        </div>
+    </form>
+    <form action="~/Parts/MoreParts" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <input type="submit" id="create" class="submit form-control" value="More Optical Drives" />
+                <input type="hidden" name="partType" value="OpticalDriver" />
+            </div>
+        </div>
+    </form>
+</div>
+      
+          
+     
