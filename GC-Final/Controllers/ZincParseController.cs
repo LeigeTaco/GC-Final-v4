@@ -226,10 +226,10 @@ namespace GC_Final.Controllers
                     tempCPU.Stars = float.Parse(part["stars"].ToString());
                     tempCPU.ImageLink = part["main_image"].ToString();
                     tempCPU.Manufacturer = "x";
-                    tempCPU.MaxSpeed = null;
+                    tempCPU.MaxSpeed = float.Parse(GetCPU_Speed(ParseToArray(part["feature_bullets"])).ToString());
                     tempCPU.Wattage = null;
                     tempCPU.Threads = null;
-                    tempCPU.Speed = null;
+                    tempCPU.Speed = GetHardDrive_WriteSpeed(ParseToArray(part["feature_bullets"]));
                     tempCPU.MaxRAM = null;
                     tempCPU.Fan = null;
                     tempCPU.Cores = null;
@@ -269,10 +269,10 @@ namespace GC_Final.Controllers
                     tempObj.SLILimit = null;
                     tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
-                    tempObj.RAMSlots = null; GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
+                    tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
-                    tempObj.CrossfireLimit = null;
+                    tempObj.CrossfireLimit = Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
                     tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                     ORM.Motherboards.Add(tempObj);
@@ -302,13 +302,13 @@ namespace GC_Final.Controllers
                 tempObj.Manufacturer = "x";
                 tempObj.Wattage = null;
                 tempObj.Socket = GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.SLILimit = null;
+                tempObj.SLILimit = SLI_Limit(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.RAMSlots = null; GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.CrossfireLimit = null;
+                tempObj.CrossfireLimit = Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                 ORM.Motherboards.Add(tempObj);
@@ -343,7 +343,7 @@ namespace GC_Final.Controllers
                     tempPSU.Wattage = null;
                     tempPSU.Length = null;
                     tempPSU.Height = null;
-                    tempPSU.FormFactor = null;
+                    tempPSU.FormFactor = GetFormFactor(ParseToArray(part["feature_bullets"]));
 
                     ORM.PSUs.Add(tempPSU);
                     ORM.SaveChanges();
@@ -475,7 +475,7 @@ namespace GC_Final.Controllers
                     tempRAM.Manufacturer = "x";
                     tempRAM.BusSpeed = null;
                     tempRAM.Quantity = null;
-                    tempRAM.RAMType = null;
+                    tempRAM.RAMType = GetRAMType(ParseToArray(part["feature_bullets"]));
                     tempRAM.TotalCapacity = null;
                     tempRAM.Voltage = null;
 
@@ -537,8 +537,9 @@ namespace GC_Final.Controllers
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = "x";
                     tempObj.RefreshRate = null;
-                    tempObj.ResX = null;
-                    tempObj.ResY = null;
+                    int[] res = GetMaxScreenResolution(ParseToArray(part["feature_bullets"]));
+                    tempObj.ResX = res[0];
+                    tempObj.ResY = res[1];
                     
                     ORM.Monitors.Add(tempObj);
                     ORM.SaveChanges();
@@ -597,7 +598,7 @@ namespace GC_Final.Controllers
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = "x";
                     tempObj.BuildDisks = null;
-                    tempObj.Capacity = 0;//null;
+                    tempObj.Capacity = GetHardDrive_ReadSpeed(ParseToArray(part["feature_bullets"]));
                     tempObj.CapacityUnits = null;
                     tempObj.Interface = null;
                     tempObj.SlotSize = false;//null;
@@ -627,7 +628,7 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
-                tempObj.Capacity = 0;//null;
+                tempObj.Capacity = GetHardDrive_ReadSpeed(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.CapacityUnits = null;
                 tempObj.Interface = null;
                 tempObj.SlotSize = false;//null;
@@ -659,11 +660,11 @@ namespace GC_Final.Controllers
                     tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = "x";
-                    tempObj.WriteSpeed = 0;// null;
+                    tempObj.WriteSpeed = GetOpticalDrive_WriteSpeed(ParseToArray(part["feature_bullets"]));// null;
                     tempObj.Wattage = 0;// null;
-                    tempObj.Type = null;
-                    tempObj.Rewritable = false;// null;
-                    tempObj.ReadSpeed = 0;// null;
+                    tempObj.Type = GetOpticalDrive_Types(ParseToArray(part["feature_bullets"]));
+                    tempObj.Rewritable = false; //null;
+                    tempObj.ReadSpeed = GetOpticalDrive_ReadSpead(ParseToArray(part["feature_bullets"]));
                     tempObj.Interface = null;
 
 
@@ -691,11 +692,11 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
-                tempObj.WriteSpeed = 0;// null;
+                tempObj.WriteSpeed = GetOpticalDrive_WriteSpeed(ParseToArray(chosenpart["feature_bullets"]));// null;
                 tempObj.Wattage = 0;// null;
-                tempObj.Type = null;
-                tempObj.Rewritable = false;// null;
-                tempObj.ReadSpeed = 0;// null;
+                tempObj.Type = GetOpticalDrive_Types(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.Rewritable = false; //null;
+                tempObj.ReadSpeed = GetOpticalDrive_ReadSpead(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.Interface = null;
 
                 ORM.OpticalDrivers.Add(tempObj);
