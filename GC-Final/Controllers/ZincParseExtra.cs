@@ -468,44 +468,44 @@ namespace GC_Final.Controllers
                 {
                     string _FFDetails = "";
 
-                    if (Data[i].ToLower().Contains("at"))
+                    if (Data[i].ToLower().Contains("at") || Data[i].ToLower().Contains("at."))
                     {
-                        _FFDetails += "AT,";
+                        _FFDetails = Regex.Match("AT", @"( )[Aa][Tt]( |.)?").Value;
                     }
 
-                    if (Data[i].ToLower().Contains("baby at"))
+                    if (Data[i].ToLower().Contains("baby") && Data[i].ToLower().Contains("at"))
                     {
-                        _FFDetails += "Baby AT,";
+                        _FFDetails += Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
                     }
 
                     if (Data[i].ToLower().Contains("atx"))
                     {
-                        _FFDetails += "ATX,";
+                        _FFDetails = Regex.Match("ATX", @"( )?[Aa][Tt][Xx]( |.)?").Value;
                     }
 
-                    if (Data[i].ToLower().Contains("mini atx"))
+                    if (Data[i].ToLower().Contains("mini") && Data[i].ToLower().Contains("atx"))
                     {
-                        _FFDetails += "Mini ATX,";
+                        _FFDetails = Regex.Match("Mini ATX", @"( )?[Mm][Ii][Nn][Ii] [Aa][Tt][Xx]( |.)?").Value;
                     }
 
-                    if (Data[i].ToLower().Contains("micro atx"))
+                    if (Data[i].ToLower().Contains("micro") && Data[i].ToLower().Contains("atx"))
                     {
-                        _FFDetails += "Micro ATX,";
+                        _FFDetails = Regex.Match("Micro ATX", @"( )?[M][Ii][Cc][Rr][Oo] [A][T][X]( |.)?").Value;
                     }
 
-                    if (Data[i].ToLower().Contains("flex atx"))
+                    if (Data[i].ToLower().Contains("flex") && Data[i].ToLower().Contains("atx"))
                     {
-                        _FFDetails += "Flex ATX,";
+                        _FFDetails = Regex.Match("Flex ATX", @"( )?[Ff][Ll][Ee][Xx] [Aa][Tt][Xx]( |.)?").Value;
                     }
 
                     if (Data[i].ToLower().Contains("lpx"))
                     {
-                        _FFDetails += "LPX,";
+                        _FFDetails = Regex.Match("LPX", @"( )?[Ll][Pp][Xx]( |.)?").Value;
                     }
 
                     if (Data[i].ToLower().Contains("nlx"))
                     {
-                        _FFDetails += "NLX,";
+                        _FFDetails = Regex.Match("NLX", @"( )?[Nn][Ll][Xx]( |.)?").Value;
                     }
 
                     return _FFDetails;
@@ -515,7 +515,6 @@ namespace GC_Final.Controllers
             }
 
             return null;
-
         }
 
         public static string GetChipset(string Data)
@@ -552,7 +551,7 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("ddr2") || Data[i].ToLower().Contains("ddr3") || Data[i].ToLower().Contains("ddr3 ecc") || Data[i].ToLower().Contains("ddr4") || Data[i].ToLower().Contains("ddr4 ecc"))
                 {
-                    return Regex.Match(Data[i], @"^DDR\d( ECC)?$").Value;
+                    return Regex.Match(Data[i], @"DDR\d( ECC)?").Value;
                 }
             }
 
