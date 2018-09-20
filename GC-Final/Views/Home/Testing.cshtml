@@ -1,21 +1,35 @@
 ﻿@{
     ViewBag.Title = "Testing";
 }
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <h2>Testing</h2>
 
-<input type="text" id="yeet" value="" /><p id="hand"></p>
-<input type="password" id="skeet" value="" /><p id="feet"></p>
+<input type="text" id="yeet" value="" /><p id="hand"></p><br />
+<input type="text" id="skeet" value="" /><p id="feet"></p>
+<input type="button" id="skiddaddle" value="Test" /><p id="yesmst"></p>
 
 <script>
     function update() {
         var temp = { p1: $("#yeet").val(), p2: $("#skeet").val() };
         var eel = document.getElementById("feet");
-        var ele = $("#hand");
-        ele.innerHTML = temp["p1"];
-        eel.innerHTML = temp["p2"];
+        var ele = document.getElementById("hand");
+        ele.innerHTML = temp["p2"];
+        eel.innerHTML = temp["p1"];
         return;
     }
+</script>
+<script>
+    function testAPI() {
+        $.post("http://localhost:53796/api/Verify/Test", {} , function (response, status) { var mansplain = document.getElementById("yesmst"); mansplain.innerHTML = response; });
+    }
+</script>
+<script>
+    $("#skiddaddle").click(testAPI);
+</script>
+<script>
     $("#skeet").keyup(update);
+</script>
+<script>
+
     $("#yeet").keyup(update);
 </script>

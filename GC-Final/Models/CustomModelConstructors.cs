@@ -502,7 +502,7 @@ namespace GC_Final.Models
 
             Dictionary<string, string> _out = new Dictionary<string, string>();
             //MB and CPU
-            if (Motherboard.Socket != CPU.Socket)
+            if (Motherboard.Brand != CPU.Brand)//(Motherboard.Socket != CPU.Socket)
             {
                 _out.Add("Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}");
                 //Add more specific error

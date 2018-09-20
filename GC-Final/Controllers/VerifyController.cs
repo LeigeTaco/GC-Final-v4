@@ -10,40 +10,60 @@ namespace GC_Final.Controllers
 {
     public class VerifyController : ApiController
     {
-        [HttpPost]
-        public string Test() { return "Success"; }
 
         [HttpPost]
-        public string GetID(string partType, string partName)
+        [AllowAnonymous]
+        public object Verify(string id/*, string partType, string partName, string motherboard_id, string cpu_id, string psu_id, string case_id, string gpu_id, byte gpu_count, string[] ram_ids, string[] harddrive_ids, string[] optical_ids, string[] pci_ids, string[] peripheral_ids, string[] monitor_ids*/)
         {
+            if (id.ToLower() == "getid")
+            {
+                return "GetID";//Ok(GetID(partType, partName));
+            }
+            else if (id.ToLower() == "checkcompatability")
+            {
+                return "Check";//Ok(CheckCompatability(motherboard_id, cpu_id, psu_id, case_id, gpu_id, gpu_count, ram_ids, harddrive_ids, optical_ids, pci_ids, peripheral_ids, monitor_ids));
+            }
+            else
+            {
+                return "Fail";
+            }
+        }
+
+        private object GetID(string partType, string partName)
+        {
+            if (partType == null || partName == null)
+            {
+                return "Cannot accept null values in request.";
+            }
+
             Entities ORM = new Entities();
             if (partType == "Motherboard")
             {
-                return ORM.Motherboards.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.Motherboards.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "CPU")
             {
-                return ORM.CPUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.CPUs.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "GPU")
             {
-                return ORM.GPUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.GPUs.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "PSU")
             {
-                return ORM.PSUs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.PSUs.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "PCCase")
             {
-                return ORM.PCCases.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.PCCases.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "RAM")
             {
-                return ORM.RAMs.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.RAMs.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else if (partType == "Monitor")
             {
-                return ORM.Monitors.Where(x => x.Name == partName).Select(x => x.ProductID).First();
+                return ORM.Monitors.Where(x => x.Name.Contains(partName)).Select(x => x.ProductID).First();
             }
             else
             {
@@ -52,7 +72,9 @@ namespace GC_Final.Controllers
         }
 
         [HttpPost]
-        public Dictionary<string, string> CheckCompataibility(string motherboard_id, string cpu_id, string psu_id, string case_id, string gpu_id, byte gpu_count, string[] ram_ids, string[] harddrive_ids, string[] optical_ids, string[] pci_ids, string[] peripheral_ids, string[] monitor_ids)
+        [AllowAnonymous]
+        [RequireParameter("motherboard_id")]
+        private object CheckCompatability(string motherboard_id, string cpu_id, string psu_id, string case_id, string gpu_id, byte gpu_count, string[] ram_ids, string[] harddrive_ids, string[] optical_ids, string[] pci_ids, string[] peripheral_ids, string[] monitor_ids)
         {
             Entities ORM = new Entities();
 
@@ -86,10 +108,12 @@ namespace GC_Final.Controllers
             }
             Peripheral[] tempPE = _tempPE.ToArray();
 
-
-
             return temp.GetCompat();
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        private object Test() { return "Success"; }
 
     }
 }

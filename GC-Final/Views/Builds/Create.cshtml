@@ -1,13 +1,14 @@
 ﻿﻿@{
     ViewBag.Title = "Create";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <br />
 <br />
 <h2>Create Your Own Custom Build</h2>
 <br />
 <br />
 <div class="container">
-    <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" id="buildName">Build Name: </label>
             <div class="col-sm-10">
@@ -26,6 +27,9 @@
                 <input type="submit" id="create" class="submit form-control" value="More Motherboards" />
                 <input type="hidden" name="partType" value="Motherboard" />
             </div>
+            <div class="col-sm-2">
+                <p id="motherboard_print_id"></p>
+            </div>
         </div>
     </form>
     <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
@@ -37,6 +41,9 @@
             <div class="col-sm-2">
                 <input type="submit" id="create" class="submit form-control" value="More GPUs" />
                 <input type="hidden" name="partType" value="GPU" />
+            </div>
+            <div class="col-sm-2">
+                <p id="gpu_print_id"></p>
             </div>
         </div>
     </form>
@@ -50,6 +57,9 @@
                 <input type="submit" id="create" class="submit form-control" value="More CPUs" />
                 <input type="hidden" name="partType" value="CPU" />
             </div>
+            <div class="col-sm-2">
+                <p id="cpu_print_id"></p>
+            </div>
         </div>
     </form>
     <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
@@ -61,6 +71,9 @@
             <div class="col-sm-2">
                 <input type="submit" id="create" class="submit form-control" value="More PSUs" />
                 <input type="hidden" name="partType" value="PSU" />
+            </div>
+            <div class="col-sm-2">
+                <p id="psu_print_id"></p>
             </div>
         </div>
     </form>
@@ -74,6 +87,9 @@
                 <input type="submit" id="create" class="submit form-control" value="More Cases" />
                 <input type="hidden" name="partType" value="Case" />
             </div>
+            <div class="col-sm-2">
+                <p id="case_print_id"></p>
+            </div>
         </div>
     </form>
     <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
@@ -86,6 +102,9 @@
                 <input type="submit" id="create" class="submit form-control" value="More RAM" />
                 <input type="hidden" name="partType" value="RAM" />
             </div>
+            <div class="col-sm-2">
+                <p id="ram_print_id"></p>
+            </div>
         </div>
     </form>
     <form class="form-horizontal" action="~/Parts/MoreParts" method="get">
@@ -97,6 +116,9 @@
             <div class="col-sm-2">
                 <input type="submit" id="create" class="submit form-control" value="More Monitors" />
                 <input type="hidden" name="partType" value="Monitor" />
+            </div>
+            <div class="col-sm-2">
+                <p id="monitor_print_id"></p>
             </div>
         </div>
     </form>
@@ -161,18 +183,99 @@
             </div>
         </form>
     </div>
-    <!--<div class="col-sm-2">
-
-    </div>-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-
-    </script>
 </div>
-
-
-<form id="SavedPart" action="~/Parts/MoreDetails" method="get">
+<p id="debug"></p>
+<br />
+<br />
+<p id="debug1"></p>
+@*<form id="SavedPart" action="~/Parts/MoreDetails" method="get">
     <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />
     <input type="submit" id="create" class="submit form-control" value="More Details" />
     <input type="hidden" name="partType" value="@ViewBag.PartType" />
-</form>
+</form>*@
+<script>
+    function getID(_partName, _partType) {
+        var __return = '';
+        $.post("http://localhost:53796/api/Verify/GetID",
+            { partType: _partType, partName: _partName },
+            function (response, status) { __return = response });
+        var idc = document.getElementById("debug1");
+        idc.innerHTML = __return;
+        return __return;
+    }
+</script>
+<script>
+    function updateFlags() {
+        var data2Post = {
+            motherboard: $("#motherboard_search").val(),
+            gpu: $("#gpu_search").val(),
+            cpu: $("#cpu_search").val(),
+            psu: $("#psu_search").val(),
+            case: $("#case_search").val(),
+            ram: $("#ram_search").val(),
+            monitor: $("#monitor_search").val()
+        }
+        var data3Post;
+
+        if (!data2Post['motherboard'] && !data2Post['gpu'] && !data2Post['cpu'] && !data2Post['psu'] && !data2Post['case'] && !data2Post['ram'] && !data2Post['monitor']) {
+        data3Post = {
+            motherboard_id: getID(data2Post["motherboard"], 'Motherboard'),
+            cpu_id: getID(data2Post['cpu'], 'CPU'),
+            gpu_id: getID(data2Post['gpu'], 'GPU'),
+            gpu_count: 1,
+            psu_id: getID(data2Post['psu'], 'PSU'),
+            case_id: getID(data2Post['case'], 'PCCase'),
+            ram_ids: [getID(data2Post['ram'], 'RAM')],
+            monitor_ids: [getID(data2Post['monitor'], 'Monitor')]
+            }
+
+            var printMB = document.getElementById("motherboard_print_id");
+            var printMon = document.getElementById("monitor_print_id");
+            var printC = document.getElementById("case_print_id");
+            var printCPU = document.getElementById("cpu_print_id");
+            var printGPU = document.getElementById("gpu_print_id");
+            var printRAM = document.getElementById("ram_print_id");
+            var printPSU = document.getElementById("psu_print_id");
+
+            printMB.innerHTML = data3Post["motherboard_id"];
+            printC.innerHTML = data3Post["case_id"];
+            printCPU.innerHTML = data3Post["cpu_id"];
+            printGPU.innerHTML = data3Post["gpu_id"];
+            printRAM.innerHTML = data3Post["ram_ids"]
+            printPSU.innerHTML = data3Post["psu_id"];
+            printMon.innerHTML = data3Post["monitor_ids"];
+
+        }
+
+        if (!data3Post) {
+            $.post("http://localhost:53796/api/Verify/CheckCompatability", 
+            data3Post,
+                function (response, status) {
+                    var thisIsntThat = document.getElementById("debug");
+                    thisIsntThat.innerHTML = response;
+                });
+        }
+
+    }
+</script>
+<script>
+    $("#motherboard_search").keyup(updateFlags);
+</script>
+<script>
+    $("#cpu_search").keyup(updateFlags);
+</script>
+<script>
+    $("#gpu_search").keyup(updateFlags);
+</script>
+<script>
+    $("#ram_search").keyup(updateFlags);
+</script>
+<script>
+    $("#case_search").keyup(updateFlags);
+</script>
+<script>
+    $("#monitor_search").keyup(updateFlags);
+</script>
+<script>
+    $("#psu_search").keyup(updateFlags);
+</script>

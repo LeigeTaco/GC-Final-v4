@@ -27,8 +27,8 @@ namespace GC_Final.Controllers
     }
 
     [Authorize]
-    public class BuildsController : Controller
-    {
+    public partial class BuildsController : Controller
+    {/*
         private Build _Algorithm(string bName, string bID, string oID, Motherboard _MB, CPU _CPU, GPU _GPU, PSU _PSU, RAM _RAM, PCCase _CASE, double? maxPrice)
         {
             //Strings: bName, bID, oID
@@ -78,6 +78,7 @@ namespace GC_Final.Controllers
             ViewBag.HardDrives = ORM.HardDrives;
             ViewBag.OpticalDrivers = ORM.OpticalDrivers;
             ViewBag.PCICards = ORM.PCICards;
+
             return View();
         }
 
@@ -296,6 +297,6 @@ namespace GC_Final.Controllers
             }
 
             return View();
-        }
+        }*/
     }
 }
