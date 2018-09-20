@@ -529,7 +529,7 @@ namespace GC_Final.Controllers
             {
                 if (Data[i].ToLower().Contains("chipset"))
                 {
-                    return Regex.Match(Data[i], @"[a-zA-Z]+\d+([a-zA-Z]+)?").Value;
+                    return Regex.Match(Data[i], @"([A-Za-z]+)?( )([A-Za-z]+)?\d+( )?([A-Za-z]+)?").Value;
                 }
 
             }
