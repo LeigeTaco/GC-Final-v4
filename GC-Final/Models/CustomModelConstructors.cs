@@ -364,8 +364,8 @@ namespace GC_Final.Models
             byte? _ramCount = 0;
             int? _ramCap = 0;
             int? TotalWattage = 0;
-            byte? _3 = Convert.ToByte(_od.Length + _hd.Where(x => x.SlotSize).ToArray().Length);
-            byte? _2 = (byte?)_hd.Where(x => !x.SlotSize).ToArray().Length;
+            byte? _3 = Convert.ToByte(_od.Length + _hd.Where(x => x.SlotSize == true).ToArray().Length);
+            byte? _2 = (byte?)_hd.Where(x => !x.SlotSize == true).ToArray().Length;
             byte? _x = Convert.ToByte(GPUCount + _pci.Length);
             foreach (RAM r in _ram)
             {
@@ -474,9 +474,9 @@ namespace GC_Final.Models
             byte? _ramCount = 0;
             int? _ramCap = 0;
             int? TotalWattage = 0;
-            byte? _3 = Convert.ToByte(BuildODs.Select(x => x.OpticalDriver).ToArray().Length + BuildDisks.Select(x => x.HardDrive).Where(x => x.SlotSize).ToArray().Length);
-            byte? _2 = (byte?)BuildDisks.Select(x => x.HardDrive).Where(x => !x.SlotSize).ToArray().Length;
-            byte? _x = Convert.ToByte(GPUCount + BuildPCIs.Select(x => x.PCICard).ToArray().Length);
+            //byte _3 = Convert.ToByte(BuildODs.Select(x => x.OpticalDriver).ToArray().Length + BuildDisks.Select(x => x.HardDrive).Where(x => x.SlotSize == true).ToArray().Length);
+            //byte _2 = (byte)BuildDisks.Select(x => x.HardDrive).Where(x => !x.SlotSize == true).ToArray().Length;
+            //byte _x = Convert.ToByte(GPUCount + BuildPCIs.Select(x => x.PCICard).ToArray().Length);
             foreach (RAM r in _ram)
             {
                 _ramCount += r.Quantity;
@@ -484,7 +484,7 @@ namespace GC_Final.Models
                 //TotalWattage += r.Voltage * AMPERAGE;
             }
             //TotalWattage += GPU.Wattage * GPUCount;
-            TotalWattage += Motherboard.Wattage + CPU.Wattage;
+            //TotalWattage += Motherboard.Wattage + CPU.Wattage;
             /*
             foreach (PCICard p in BuildPCIs.Select(x => x.PCICard).ToArray())
             {
@@ -554,14 +554,14 @@ namespace GC_Final.Models
                 _out.Add("PSU Dim Error", "Your power supply is too large for your case.");
             }
             //Case and Drives
-            if (PCCase.ThreeSlots < _3)
+            /*if (PCCase.ThreeSlots < _3)
             {
                 _out.Add("3.5\" Drive Error", "Your case cannot hold this many 3.5\" drives (Non-Fatal)");
             }
             if (PCCase.TwoSlots < _2)
             {
                 _out.Add("2.5\" Drive Error", "Your case cannot hold this many 2.5\" drives (Non-Fatal)");
-            }
+            }*/
             //MB and Drives
             if (Motherboard.SATASlots < BuildDisks.Select(x => x.HardDrive).ToArray().Length + BuildODs.Select(x => x.OpticalDriver).ToArray().Length)
             {
