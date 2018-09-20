@@ -419,6 +419,7 @@ namespace GC_Final.Controllers
             return MaxScreenResolution;
         }
 
+
         public static int[] GetMaxScreenResolution(string[] Data)
         {
             try
@@ -430,12 +431,15 @@ namespace GC_Final.Controllers
                         return GetMaxScreenResolution(_data);
                     }
                 }
+
             }
             catch (Exception)
             {
                 return new int[] { 0, 0 };
             }
+
             return new int[] { 0, 0 };
+
         }
 
         public static string GetSocketType(string Data)

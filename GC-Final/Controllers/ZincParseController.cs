@@ -112,8 +112,8 @@ namespace GC_Final.Controllers
                     tempGPU.ImageLink = chosenpart["main_image"].ToString();
                     tempGPU.Manufacturer = "x";
                     int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
-                    tempGPU.ResX = res[0];
-                    tempGPU.ResY = res[1];
+                    //tempGPU.ResX = res[0];
+                    //tempGPU.ResY = res[1];
                     tempGPU.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
                     tempGPU.RAMAmount = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempGPU.MultiGPULimit = null;
