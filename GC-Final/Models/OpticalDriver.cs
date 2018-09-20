@@ -22,17 +22,17 @@ namespace GC_Final.Models
     
         public string OpticalDriverID { get; set; }
         public string ProductID { get; set; }
-        public bool Rewritable { get; set; }
+        public Nullable<bool> Rewritable { get; set; }
         public string Interface { get; set; }
-        public int ReadSpeed { get; set; }
-        public int WriteSpeed { get; set; }
-        public int Wattage { get; set; }
+        public Nullable<int> ReadSpeed { get; set; }
+        public Nullable<int> WriteSpeed { get; set; }
+        public Nullable<int> Wattage { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Brand { get; set; }
-        public int Price { get; set; }
-        public float Stars { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<float> Stars { get; set; }
         public string Manufacturer { get; set; }
         public string ImageLink { get; set; }
     

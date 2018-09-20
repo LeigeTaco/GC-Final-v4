@@ -25,8 +25,8 @@ namespace GC_Final.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Brand { get; set; }
-        public int Price { get; set; }
-        public float Stars { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<float> Stars { get; set; }
         public string Manufacturer { get; set; }
         public string ImageLink { get; set; }
     

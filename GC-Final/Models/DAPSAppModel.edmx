@@ -73,6 +73,7 @@
           </Key>
           <Property Name="CPUID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ProductID" Type="nchar" MaxLength="10" />
+          <Property Name="Chipset" Type="nvarchar" MaxLength="500" />
           <Property Name="Socket" Type="nchar" MaxLength="50" />
           <Property Name="Cache" Type="nvarchar" MaxLength="500" />
           <Property Name="Wattage" Type="smallint" />
@@ -116,17 +117,17 @@
             <PropertyRef Name="HardDriveID" />
           </Key>
           <Property Name="HardDriveID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Interface" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="SlotSize" Type="bit" Nullable="false" />
-          <Property Name="Capacity" Type="int" Nullable="false" />
-          <Property Name="CapacityUnits" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ProductID" Type="nchar" MaxLength="10" />
+          <Property Name="Interface" Type="nvarchar" MaxLength="500" />
+          <Property Name="SlotSize" Type="bit" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="CapacityUnits" Type="nchar" MaxLength="2" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Monitor">
@@ -139,11 +140,11 @@
           <Property Name="RefreshRate" Type="real" />
           <Property Name="ResY" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Motherboard">
@@ -163,11 +164,11 @@
           <Property Name="CrossfireLimit" Type="tinyint" />
           <Property Name="FormFactor" Type="nvarchar" MaxLength="500" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="OpticalDriver">
@@ -175,19 +176,19 @@
             <PropertyRef Name="OpticalDriverID" />
           </Key>
           <Property Name="OpticalDriverID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Rewritable" Type="bit" Nullable="false" />
-          <Property Name="Interface" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ReadSpeed" Type="int" Nullable="false" />
-          <Property Name="WriteSpeed" Type="int" Nullable="false" />
-          <Property Name="Wattage" Type="int" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductID" Type="nchar" MaxLength="10" />
+          <Property Name="Rewritable" Type="bit" />
+          <Property Name="Interface" Type="nvarchar" MaxLength="500" />
+          <Property Name="ReadSpeed" Type="int" />
+          <Property Name="WriteSpeed" Type="int" />
+          <Property Name="Wattage" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="500" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PCCase">
@@ -216,13 +217,13 @@
             <PropertyRef Name="PCIcardID" />
           </Key>
           <Property Name="PCIcardID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductID" Type="nchar" MaxLength="10" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Peripherals">
@@ -230,13 +231,13 @@
             <PropertyRef Name="PeripheralsID" />
           </Key>
           <Property Name="PeripheralsID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProductID" Type="nchar" MaxLength="10" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PSU">
@@ -251,11 +252,11 @@
           <Property Name="Length" Type="float" />
           <Property Name="Wattage" Type="smallint" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="RAM">
@@ -270,11 +271,11 @@
           <Property Name="Voltage" Type="int" />
           <Property Name="Quantity" Type="tinyint" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Stars" Type="real" Nullable="false" />
-          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Stars" Type="real" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageLink" Type="nchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_BuildDisks_Builds">
@@ -681,6 +682,7 @@
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_CPU" FromRole="CPU" ToRole="Builds" />
           <Property Name="Socket" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Chipset" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GPU">
           <Key>
@@ -709,17 +711,17 @@
             <PropertyRef Name="HardDriveID" />
           </Key>
           <Property Name="HardDriveID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Interface" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SlotSize" Type="Boolean" Nullable="false" />
-          <Property Name="Capacity" Type="Int32" Nullable="false" />
-          <Property Name="CapacityUnits" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SlotSize" Type="Boolean" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="CapacityUnits" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildDisks" Relationship="Self.FK_BuildDisks_HardDrive" FromRole="HardDrive" ToRole="BuildDisks" />
         </EntityType>
@@ -733,11 +735,11 @@
           <Property Name="RefreshRate" Type="Single" />
           <Property Name="ResY" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildMonitors" Relationship="Self.FK_BuildMonitors_Monitor" FromRole="Monitor" ToRole="BuildMonitors" />
         </EntityType>
@@ -758,11 +760,11 @@
           <Property Name="CrossfireLimit" Type="Byte" />
           <Property Name="FormFactor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_Motherboard" FromRole="Motherboard" ToRole="Builds" />
         </EntityType>
@@ -771,19 +773,19 @@
             <PropertyRef Name="OpticalDriverID" />
           </Key>
           <Property Name="OpticalDriverID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Rewritable" Type="Boolean" Nullable="false" />
-          <Property Name="Interface" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ReadSpeed" Type="Int32" Nullable="false" />
-          <Property Name="WriteSpeed" Type="Int32" Nullable="false" />
-          <Property Name="Wattage" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Rewritable" Type="Boolean" />
+          <Property Name="Interface" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ReadSpeed" Type="Int32" />
+          <Property Name="WriteSpeed" Type="Int32" />
+          <Property Name="Wattage" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildODs" Relationship="Self.FK_BuildODs_OpticalDriver" FromRole="OpticalDriver" ToRole="BuildODs" />
         </EntityType>
@@ -814,13 +816,13 @@
             <PropertyRef Name="PCIcardID" />
           </Key>
           <Property Name="PCIcardID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildPCIs" Relationship="Self.FK_BuildPCIs_PCICards" FromRole="PCICards" ToRole="BuildPCIs" />
         </EntityType>
@@ -829,13 +831,13 @@
             <PropertyRef Name="PeripheralsID" />
           </Key>
           <Property Name="PeripheralsID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildsPeripherals" Relationship="Self.FK_BuildsPeripherals_Peripherals" FromRole="Peripherals" ToRole="BuildsPeripherals" />
         </EntityType>
@@ -851,11 +853,11 @@
           <Property Name="Length" Type="Double" />
           <Property Name="Wattage" Type="Int16" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Builds" Relationship="Self.FK_Builds_PSU" FromRole="PSU" ToRole="Builds" />
         </EntityType>
@@ -871,11 +873,11 @@
           <Property Name="Voltage" Type="Int32" />
           <Property Name="Quantity" Type="Byte" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Stars" Type="Single" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Stars" Type="Single" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageLink" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="BuildsRAMs" Relationship="Self.FK_BuildsRAM_RAM" FromRole="RAM" ToRole="BuildsRAM" />
         </EntityType>
@@ -1249,6 +1251,7 @@
           <EntitySetMapping Name="CPUs">
             <EntityTypeMapping TypeName="DAPSFinalDBModel.CPU">
               <MappingFragment StoreEntitySet="CPU">
+                <ScalarProperty Name="Chipset" ColumnName="Chipset" />
                 <ScalarProperty Name="Socket" ColumnName="Socket" />
                 <ScalarProperty Name="CPUID" ColumnName="CPUID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
