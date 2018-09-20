@@ -35,28 +35,35 @@
 {
     <div class="panel panel-group">
         <div class="panel panel-default">
+            <div class="panel-heading">
+                <p><strong>@ViewBag.PartSearch["results"][i]["title"]</strong></p>
+            </div>
             <div class="panel panel-body">
                 <div class="col-sm-4">
                     <img src="@ViewBag.PartSearch["results"][i]["image"]" alt="part cover image" />
                 </div>
                 <div class="col-sm-4">
-                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["title"]]</p>
-                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["price"]</p>
-                    <p><span>&#8226;</span> @ViewBag.PartSearch["results"][i]["stars"]</p>
+                    <p><span>&#8226; <strong>Price: </strong></span>$@ViewBag.PartSearch["results"][i]["price"]</p>
+                    <p><span>&#8226; <strong> Star Rating: </strong></span> @ViewBag.PartSearch["results"][i]["stars"]</p>
                 </div>
                 <div class="col-sm-4">
                     <div>
                         <form id="SavedPart" action="~/Parts/SavePart" method="post">
                             @*<input type="hidden" name="partType" value="@ViewBag.PartType" />
-                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />*@
-                            <input type="submit" id="create" class="submit form-control" value="Save" />   
+            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"] " />*@
+                            <input type="submit" id="create" class="submit form-control" value="Save" />
                             <input type="hidden" name="partDetails" value="@ViewBag.PartType+@ViewBag.PartSearch["results"][i]["product_id"]" />
                         </form>
                         <br /><br />
-                              <form id="SavedPart" action="~/Parts/MoreDetails" method="post">
-                                  <input type="submit" id="create" class="submit form-control" value="More Details" />
-                                  <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"]" />
-                              </form>
+                        <form id="SavedPart" action="~/Parts/MoreDetails" method="post">
+                            <input type="submit" id="create" class="submit form-control" value="More Details" />
+                            <input type="hidden" name="chosenPartID" value="@ViewBag.PartSearch["results"][i]["product_id"]" />
+                        </form>
+                        <br /><br />
+                        <form id="SavedPart" action="~/Parts/MoreParts" method="post">
+                            <input type="submit" id="create" class="submit form-control" value="More Details" />
+                            <input type="hidden" name="partType" value="@ViewBag.PartSearch["results"][i]["product_id"]" />
+                        </form>
                     </div>
                 </div>
             </div>

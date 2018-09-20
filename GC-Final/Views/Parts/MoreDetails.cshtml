@@ -1,4 +1,45 @@
-﻿
+﻿@*@{
+        ViewBag.Title = "MoreDetails";
+    }
+    <br /><br />
+    <h2>More Details</h2>
+    <br /><br />
+    <div class="panel panel-group">
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <p>@ViewBag.Part["title"]</p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        @foreach (var x in ViewBag.PartImages)
+                        {
+                            <img src="@x" alt="part images" />
+                        }
+
+                        @foreach (var x in ViewBag.PartDetails)
+                        {
+                            <p>@x</p>
+                        }
+                    </div>
+                    <div class="col-sm-4">
+                        <br /><br />
+                        <p>@ViewBag.Part["brand"]</p>
+                        <p><span>&#8226;</span> @ViewBag.Part["price"]</p>
+                        <p><span>&#8226;</span>@ViewBag.Part["product_desription"]</p>
+                        <p><span>&#8226;</span> @ViewBag.Part["stars"]</p>
+                        <p><span>&#8226;</span> @ViewBag.Part["brand"]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
 @{
     ViewBag.Title = "MoreDetails";
 }
@@ -7,30 +48,90 @@
 <br /><br />
 <div class="panel panel-group">
     <div class="panel panel-default">
-        <div class="col-sm-4">
-            <p>@ViewBag.Part["title"]</p>
+        <div class="panel panel-heading">
+            <p><strong>@ViewBag.Part["title"]</strong></p>
         </div>
-        <div class="panel panel-body">
-            <div class="col-sm-4">
-                <img src="@ViewBag.PartImages" alt="part images"/>
-
-                @foreach (var x in ViewBag.PartDetails)
+        <div class="panel-body">
+            <div class="row">
+                @foreach (var x in ViewBag.PartImages)
                 {
-
-                    <img src="@x" alt="part images"/>
+                    <div class="col-sm-1"><img src="@x" alt="part images" height="160" width="160" /></div>
                 }
             </div>
-            <div class="col-sm-4">
-                <p>@ViewBag.Part["brand"]</p>
-                @*@foreach (var y in ViewBag.PartDetails["feature_bullets"])
-        {
-            <p><span>&#8226; @y</span></p>
-        }*@
-                <p><span>&#8226;</span> @ViewBag.Part["price"]</p>
-                <p><span>&#8226;</span>@ViewBag.Part["product_desription"]</p>
-                <p><span>&#8226;</span> @ViewBag.Part["stars"]</p>
-                <p><span>&#8226;</span> @ViewBag.Part["brand"]</p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <br /><br />
+                    <p><span>&#8226; </span><strong>Brand:</strong> @ViewBag.Part["brand"]</p>
+                    <p><span>&#8226; </span><strong>Price:</strong> $@ViewBag.Part["price"]</p>
+                    <p><span>&#8226; </span><strong>Description:</strong> @ViewBag.Part["product_desription"]</p>
+                    <p><span>&#8226; </span><strong>Star Rating:</strong> @ViewBag.Part["stars"]</p>
+                </div>
+                <div class="col-sm-8">
+                    <p><strong>Details: </strong></p>
+                    @foreach (var x in ViewBag.PartDetails)
+                    {
+                        <p><span>&#8226;</span>@x</p>
+                    }
+                </div>
             </div>
         </div>
     </div>
 </div>
+<br/><br/>
+<form class="form-horizontal" action="~/Parts/MoreParts" method="post">
+    <input type="submit" class="form-control" value="Back to Parts"/>
+    <input type="hidden" class="form-control" name="partType" value="@ViewBag.PartType" />
+</form>
+
+
+
+
+
+
+
+
+
+@*<div class="container-fluid">
+    <h1>Hello World!</h1>
+    <p>Resize the browser window to see the effect.</p>
+    <p>The columns will automatically stack on top of each other when the screen is less than 768px wide.</p>
+    <div class="panel-header">HELLO</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+            <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+            <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+        </div>
+    </div>
+</div>*@
+
+@*<div class="panel-body">
+    <div class="row">
+        <p>images would loop</p>
+    </div>
+    <br />
+    <div class="col-sm-4">
+        <p>foreach loop here</p>
+    </div>
+    <div class="col-sm-8">
+        <br /><br />
+        <p>@ViewBag.Part["brand"]</p>
+        <p><span>&#8226;</span> @ViewBag.Part["price"]</p>
+        <p><span>&#8226;</span>@ViewBag.Part["product_desription"]</p>
+        <p><span>&#8226;</span> @ViewBag.Part["stars"]</p>
+        <p><span>&#8226;</span> @ViewBag.Part["brand"]</p>
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
