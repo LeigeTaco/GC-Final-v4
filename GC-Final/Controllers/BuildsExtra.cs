@@ -118,7 +118,7 @@ namespace GC_Final.Controllers
             _od.BuildID = temp.BuildID;
             _od.ODID = optical_id;
             _od.OpticalDriver = ORM.OpticalDrivers.Find(optical_id);
-            Dictionary<string, string> flags = temp.GetCompat();
+            List<string[]> flags = temp.GetCompat();
             //if (flags == null && c)
             //{
                 ORM.Builds.Add(temp);

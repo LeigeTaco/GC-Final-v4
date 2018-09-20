@@ -358,7 +358,7 @@ namespace GC_Final.Models
             return _total;
         }
 
-        public Dictionary<string, string> GetCompat(RAM[] _ram, PCICard[] _pci, HardDrive[] _hd, OpticalDriver[] _od)
+        public List<string[]> GetCompat(RAM[] _ram, PCICard[] _pci, HardDrive[] _hd, OpticalDriver[] _od)
         {
             //RAM[] _ram = BuildsRAMs.Select(x => x.RAM).ToArray();
             byte? _ramCount = 0;
@@ -390,85 +390,85 @@ namespace GC_Final.Models
             }
             */
 
-            Dictionary<string, string> _out = new Dictionary<string, string>();
+            List<string[]> _out = new List<string[]>();
             //MB and CPU
             if (Motherboard.Socket != CPU.Socket)
             {
-                _out.Add("Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}");
+                _out.Add(new string[] { "Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}"});
                 //Add more specific error
             }
             //MB and RAM
             if (Motherboard.RAMSlots < _ramCount && (Motherboard.RAMSlots != null && _ramCount != null))
             {
-                _out.Add("RAM Quantity Error (MB)", $"You have {_ramCount - Motherboard.RAMSlots} too many sticks of RAM (Non-Fatal)");
+                _out.Add(new string[] { "RAM Quantity Error (MB)", $"You have {_ramCount - Motherboard.RAMSlots} too many sticks of RAM (Non-Fatal)"});
             }
             for (int i = 0; i < _ram.Length; i++)
             {
                 if (Motherboard.RAMType != _ram[i].RAMType)
                 {
-                    _out.Add($"RAM Type Error{i}", $"Your RAM selection in index {i + 1} does not match the motherboard's type.");
+                    _out.Add(new string[] { $"RAM Type Error{i}", $"Your RAM selection in index {i + 1} does not match the motherboard's type."});
                 }
             }
             //MB and GPU(s)
             if (Motherboard.PCISlots < GPUCount + BuildPCIs.Select(x => x.PCICard).ToArray().Length)
             {
-                _out.Add("PCI Quantity Error", "Your motherboard cannot support this many GPUs and PCI Cards.");
+                _out.Add(new string[] { "PCI Quantity Error", "Your motherboard cannot support this many GPUs and PCI Cards."});
             }
             if (GPU.MultiGPUType == true)   //True is SLI
             {
                 if (GPUCount > Motherboard.SLILimit || GPUCount > GPU.MultiGPULimit)
                 {
-                    _out.Add("SLI Error", "You have too many GPUs for your build. You are too powerful.");
+                    _out.Add(new string[] { "SLI Error", "You have too many GPUs for your build. You are too powerful."});
                 }
             }
             if (GPU.MultiGPUType == false)
             {
                 if (GPU.MultiGPULimit > Motherboard.CrossfireLimit)
                 {
-                    _out.Add("Crossfire Error", "You have too many GPUs for your build. You are too powerful.");
+                    _out.Add(new string[] { "Crossfire Error", "You have too many GPUs for your build. You are too powerful."});
                 }
             }
             //CPU and RAM
             if (CPU.MaxRAM < _ramCap)
             {
-                _out.Add("RAM Capacity Error", "Your CPU cannot handle this amount of RAM (Fatal).");
+                _out.Add(new string[] { "RAM Capacity Error", "Your CPU cannot handle this amount of RAM (Fatal)."});
             }
             //Case and MB
             if (!PCCase.Style.Contains(Motherboard.FormFactor))
             {
-                _out.Add("Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards.");
+                _out.Add(new string[] { "Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards." });
             }
             //Case and PSU
             if (PSU.Width > PCCase.Width || PSU.Length > PCCase.Length || PSU.Height > PCCase.Height)
             {
-                _out.Add("PSU Dim Error", "Your power supply is too large for your case.");
+                _out.Add(new string[] { "PSU Dim Error", "Your power supply is too large for your case."});
             }
             //Case and Drives
             if (PCCase.ThreeSlots < _3)
             {
-                _out.Add("3.5\" Drive Error", "Your case cannot hold this many 3.5\" drives (Non-Fatal)");
+                _out.Add(new string[] { "3.5\" Drive Error", "Your case cannot hold this many 3.5\" drives (Non-Fatal)"});
             }
             if (PCCase.TwoSlots < _2)
             {
-                _out.Add("2.5\" Drive Error", "Your case cannot hold this many 2.5\" drives (Non-Fatal)");
+                _out.Add(new string[] { "2.5\" Drive Error", "Your case cannot hold this many 2.5\" drives (Non-Fatal)"});
             }
             //MB and Drives
             if (Motherboard.SATASlots < BuildDisks.Select(x => x.HardDrive).ToArray().Length + BuildODs.Select(x => x.OpticalDriver).ToArray().Length)
             {
-                _out.Add("Too Many SATAs", "Your build has too many SATA drives for your motherboard (Non-Fatal).");
+                _out.Add(new string[] { "Too Many SATAs", "Your build has too many SATA drives for your motherboard (Non-Fatal)."});
             }
             //GPU and Monitors
 
             //Final Boss: PSU and Total
             if (TotalWattage > PSU.Wattage)
             {
-                _out.Add("Brown", "Your PC does not have enough power, use a better PSU (Very Fatal).");
+                _out.Add(new string[] {"Brown", "Your PC does not have enough power, use a better PSU (Very Fatal)."});
             }
 
             return _out;
         }
 
-        public Dictionary<string, string> GetCompat()
+        public List<string[]> GetCompat()
         {
             RAM[] _ram = BuildsRAMs.Select(x => x.RAM).ToArray();
             byte? _ramCount = 0;
@@ -500,77 +500,79 @@ namespace GC_Final.Models
             }
             */
 
-            Dictionary<string, string> _out = new Dictionary<string, string>();
-            //MB and CPU
-            if (Motherboard.Brand != CPU.Brand)//(Motherboard.Socket != CPU.Socket)
+            List<string[]> _out = new List<string[]>();
+
+            if (Motherboard.Socket != CPU.Socket)
             {
-                _out.Add("Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}");
+                _out.Add(new string[] { "Socket Mismatch", $"Your motherboard has a {Motherboard.Socket} socket and your CPU has a {CPU.Socket}" });
                 //Add more specific error
             }
-           // MB and RAM
+            //MB and RAM
             if (Motherboard.RAMSlots < _ramCount && (Motherboard.RAMSlots != null && _ramCount != null))
             {
-                _out.Add("RAM Quantity Error (MB)", $"You have {_ramCount - Motherboard.RAMSlots} too many sticks of RAM (Non-Fatal)");
+                _out.Add(new string[] { "RAM Quantity Error (MB)", $"You have {_ramCount - Motherboard.RAMSlots} too many sticks of RAM (Non-Fatal)" });
             }
             for (int i = 0; i < _ram.Length; i++)
             {
                 if (Motherboard.RAMType != _ram[i].RAMType)
                 {
-                    _out.Add($"RAM Type Error{i}", $"Your RAM selection in index {i + 1} does not match the motherboard's type.");
+                    _out.Add(new string[] { $"RAM Type Error{i}", $"Your RAM selection in index {i + 1} does not match the motherboard's type." });
                 }
             }
             //MB and GPU(s)
             if (Motherboard.PCISlots < GPUCount + BuildPCIs.Select(x => x.PCICard).ToArray().Length)
             {
-                _out.Add("PCI Quantity Error", "Your motherboard cannot support this many GPUs and PCI Cards.");
+                _out.Add(new string[] { "PCI Quantity Error", "Your motherboard cannot support this many GPUs and PCI Cards." });
             }
             if (GPU.MultiGPUType == true)   //True is SLI
             {
                 if (GPUCount > Motherboard.SLILimit || GPUCount > GPU.MultiGPULimit)
                 {
-                    _out.Add("SLI Error", "You have too many GPUs for your build. You are too powerful.");
+                    _out.Add(new string[] { "SLI Error", "You have too many GPUs for your build. You are too powerful." });
                 }
             }
             if (GPU.MultiGPUType == false)
             {
                 if (GPU.MultiGPULimit > Motherboard.CrossfireLimit)
                 {
-                    _out.Add("Crossfire Error", "You have too many GPUs for your build. You are too powerful.");
+                    _out.Add(new string[] { "Crossfire Error", "You have too many GPUs for your build. You are too powerful." });
                 }
             }
             //CPU and RAM
             if (CPU.MaxRAM < _ramCap)
             {
-                _out.Add("RAM Capacity Error", "Your CPU cannot handle this amount of RAM (Fatal).");
+                _out.Add(new string[] { "RAM Capacity Error", "Your CPU cannot handle this amount of RAM (Fatal)." });
             }
             //Case and MB
             //if (!PCCase.Style.Contains(Motherboard.FormFactor))
             //{
-            //    _out.Add("Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards.");
+            //    _out.Add(new string[] { "Form Factor Mismatch", $"Your case does not support {Motherboard.FormFactor} motherboards." });
             //}
             //Case and PSU
             if (PSU.Width > PCCase.Width || PSU.Length > PCCase.Length || PSU.Height > PCCase.Height)
             {
-                _out.Add("PSU Dim Error", "Your power supply is too large for your case.");
+                _out.Add(new string[] { "PSU Dim Error", "Your power supply is too large for your case." });
             }
             //Case and Drives
-            /*if (PCCase.ThreeSlots < _3)
-            {
-                _out.Add("3.5\" Drive Error", "Your case cannot hold this many 3.5\" drives (Non-Fatal)");
-            }
-            if (PCCase.TwoSlots < _2)
-            {
-                _out.Add("2.5\" Drive Error", "Your case cannot hold this many 2.5\" drives (Non-Fatal)");
-            }*/
+            //if (PCCase.ThreeSlots < _3)
+            //{
+            //    _out.Add(new string[] { "3.5\" Drive Error", "Your case cannot hold this many 3.5\" drives (Non-Fatal)" });
+            //}
+            //if (PCCase.TwoSlots < _2)
+            //{
+            //    _out.Add(new string[] { "2.5\" Drive Error", "Your case cannot hold this many 2.5\" drives (Non-Fatal)" });
+            //}
             //MB and Drives
             if (Motherboard.SATASlots < BuildDisks.Select(x => x.HardDrive).ToArray().Length + BuildODs.Select(x => x.OpticalDriver).ToArray().Length)
             {
-                _out.Add("Too Many SATAs", "Your build has too many SATA drives for your motherboard (Non-Fatal).");
+                _out.Add(new string[] { "Too Many SATAs", "Your build has too many SATA drives for your motherboard (Non-Fatal)." });
             }
+            //GPU and Monitors
+
             //Final Boss: PSU and Total
             if (TotalWattage > PSU.Wattage)
             {
-                _out.Add("Brown", "Your PC does not have enough power, use a better PSU (Very Fatal).");
+                _out.Add(new string[] { "Brown", "Your PC does not have enough power, use a better PSU (Very Fatal)." });
             }
 
             return _out;

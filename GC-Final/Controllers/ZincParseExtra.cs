@@ -404,41 +404,38 @@ namespace GC_Final.Controllers
 
     public partial class ZincParseController : ApiController
     {
-        public static int[] GetMaxScreenResolution(string[] Data)
+
+        public static int[] GetMaxScreenResolution(string Data)
         {
-            int Index = -1;
-
-            for (int i = 0; i < Data.Length; i++)
-            {
-                if (Data[i].ToLower().Contains("res"))
-                {
-                    Index = i;
-                }
-            }
-
             int MaxResX;
             int MaxResY;
-
-            if (Index < 0)
-                return null;
-
-            string ScreenResolution = Regex.Match(Data[Index], @"\d+ x \d+").Value;
-            string[] SplitScreenRes = ScreenResolution.Split(' ');
-
-            try
-            {
-                MaxResX = int.Parse(SplitScreenRes[0]);
-                MaxResY = int.Parse(SplitScreenRes[2]);
-            }
-            catch
-            {
-                MaxResX = 0;
-                MaxResY = 0;
-            }
-
+            string ScreenResolution = Regex.Match(Data, @"\d+( )?x( )?\d+").Value;
+            string[] SplitScreenRes = ScreenResolution.Split('x');
+            SplitScreenRes[0] = Regex.Match(SplitScreenRes[0], @"\d+").Value;
+            SplitScreenRes[1] = Regex.Match(SplitScreenRes[1], @"\d+").Value;
+            MaxResX = int.Parse(SplitScreenRes[0]);
+            MaxResY = int.Parse(SplitScreenRes[1]);
             int[] MaxScreenResolution = { MaxResX, MaxResY };
             return MaxScreenResolution;
+        }
 
+        public static int[] GetMaxScreenResolution(string[] Data)
+        {
+            try
+            {
+                foreach (string _data in Data)
+                {
+                    if (Regex.IsMatch(_data, @"\d+( )?[Xx]( )?\d+"))
+                    {
+                        return GetMaxScreenResolution(_data);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new int[] { 0, 0 };
+            }
+            return new int[] { 0, 0 };
         }
 
         public static string GetSocketType(string Data)

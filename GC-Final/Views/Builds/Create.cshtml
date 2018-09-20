@@ -230,6 +230,15 @@
             </div>
         </div>
     </form>
+<div class="col-sm-9">
+    @if (ViewBag.Flags != null)
+    {
+        foreach (string[] flag in ViewBag.Flags)
+        {
+            <p>@flag[0]: @flag[1]</p>
+        }
+    }
+</div>
 </div>
       
           
