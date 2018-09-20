@@ -44,7 +44,7 @@ namespace GC_Final.Controllers
                 return null;
             }
 
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 9; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -598,7 +598,7 @@ namespace GC_Final.Controllers
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = "x";
                     tempObj.BuildDisks = null;
-                    tempObj.Capacity = GetHardDrive_ReadSpeed(ParseToArray(part["feature_bullets"]));
+                    tempObj.Capacity = null; //GetHardDrive_ReadSpeed(ParseToArray(part["feature_bullets"]));
                     tempObj.CapacityUnits = null;
                     tempObj.Interface = null;
                     tempObj.SlotSize = false;//null;
