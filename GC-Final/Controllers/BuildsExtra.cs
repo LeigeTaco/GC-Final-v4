@@ -129,7 +129,21 @@ namespace GC_Final.Controllers
             return _Create(temp, User.Identity.GetUserId());
         }
 
+        public ActionResult Display()
+        {
+            Entities ORM = new Entities();
+            Random R = new Random();
+            Build[] arr = ORM.Builds.ToArray();
+            List<Build> _arr = new List<Build>();
+            for (int i = 0; i < arr.Length % 15; i++)
+            {
+                _arr.Add(arr[R.Next(arr.Length)]);
+            }
+            ViewBag.UserBuilds = _arr.ToArray();
+            return View("Display2");
+        }
 
+        [RequireParameter("id")]
         public ActionResult Display(string id)
         {
             Entities ORM = new Entities();

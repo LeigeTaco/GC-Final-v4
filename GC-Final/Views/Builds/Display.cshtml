@@ -4,12 +4,9 @@
 }
 <br />
 <br />
-<br />
-
 <h2>Display</h2>
-
 <div id="Motherboard">
-    @if (ViewBag.MB_Exists)
+    @if (ViewBag.MB_Exists != null && ViewBag.MB_Exists != false)
     {
         <h1>Motherboard</h1>
         <p>@ViewBag.MB_Name</p>
