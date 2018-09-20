@@ -45,7 +45,7 @@ namespace GC_Final.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
-            ZincParseController.SaveMotherBoardsToDB();
+            ZincParseController.SaveHardDrivesToDB();
 
             return View();
         }
