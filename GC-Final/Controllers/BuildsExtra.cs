@@ -30,6 +30,9 @@ namespace GC_Final.Controllers
             ViewBag.HardDrives = ORM.HardDrives;
             ViewBag.OpticalDrivers = ORM.OpticalDrivers;
             ViewBag.PCICards = ORM.PCICards;
+            List<string[]> _saveMe = new List<string[]>();
+            _saveMe.Add(new string[] { "End", "End" });
+            ViewBag.Flags = _saveMe;
 
             return View();
         }
@@ -119,13 +122,13 @@ namespace GC_Final.Controllers
             _od.ODID = optical_id;
             _od.OpticalDriver = ORM.OpticalDrivers.Find(optical_id);
             List<string[]> flags = temp.GetCompat();
-            //if (flags == null && c)
-            //{
+            if (flags[0][0] == "End" && c)
+            {
                 ORM.Builds.Add(temp);
                 ORM.SaveChanges();
-                return RedirectToAction("Display", "Builds", new { id = temp.BuildID});
-            //}
-
+                return RedirectToAction("Display", "Builds", new { id = temp.BuildID });
+            }
+            ViewBag.Flags = flags;
             return _Create(temp, User.Identity.GetUserId());
         }
 

@@ -229,10 +229,11 @@
         </div>
     </form>
 <div class="col-sm-9">
-    @if (ViewBag.Flags != null)
+    @if (ViewBag.Flags[0][0] != "End")
     {
-        foreach (string[] flag in ViewBag.Flags)
+        for (int i = 0; i < ViewBag.Flags.Count - 1; i++)
         {
+            string[] flag = ViewBag.Flags[i];
             <p>@flag[0]: @flag[1]</p>
         }
     }

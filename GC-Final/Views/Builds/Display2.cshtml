@@ -3,59 +3,58 @@
 }
 <h2>Builds</h2>
 <div class="panel panel-group">
-            <div class="row">
-                @foreach (GC_Final.Models.Build b in ViewBag.UserBuilds)
-                {
-                <div class="panel">
-                    <h3 class="panel-heading col-sm-1">@b.BuildName</h3>
-                    <img src="@b.Motherboard.ImageLink" alt="part images" height="80" width="80" /></div>
-                    <p class="panel-body">@b.Motherboard.Name</p>
-                    <p class="panel-body">@b.CPU.Name</p>
-                    </div>
-                </div>
-                }
+    <div class="row">
+        @foreach (GC_Final.Models.Build b in ViewBag.UserBuilds)
+        {
+            <div class="panel">
+                <h3 class="panel-heading">@b.BuildName</h3>
+                <img src="@b.Motherboard.ImageLink" alt="part images" height="80" width="80" />
+                <p class="panel-body">@b.Motherboard.Name</p>
+                <p class="panel-body">@b.CPU.Name</p>
             </div>
+        }
+    </div>
 </div>
 
 
 
 @*<h2>More Details</h2>
-<br /><br />
-<div class="panel panel-group">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <p><strong>@ViewBag.Part["title"]</strong></p>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                @foreach (var x in ViewBag.PartImages)
-                {
-                    <div class="col-sm-1"><img src="@x" alt="part images" height="160" width="160" /></div>
-                }
+    <br /><br />
+    <div class="panel panel-group">
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <p><strong>@ViewBag.Part["title"]</strong></p>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <br /><br />
-                    <p><span>&#8226; </span><strong>Brand:</strong> @ViewBag.Part["brand"]</p>
-                    <p><span>&#8226; </span><strong>Price:</strong> $@ViewBag.Part["price"]</p>
-                    <p><span>&#8226; </span><strong>Description:</strong> @ViewBag.Part["product_desription"]</p>
-                    <p><span>&#8226; </span><strong>Star Rating:</strong> @ViewBag.Part["stars"]</p>
-                </div>
-                <div class="col-sm-8">
-                    <p><strong>Details: </strong></p>
-                    @foreach (var x in ViewBag.PartDetails)
+            <div class="panel-body">
+                <div class="row">
+                    @foreach (var x in ViewBag.PartImages)
                     {
-                        <p><span>&#8226;</span>@x</p>
+                        <div class="col-sm-1"><img src="@x" alt="part images" height="160" width="160" /></div>
                     }
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <br /><br />
+                        <p><span>&#8226; </span><strong>Brand:</strong> @ViewBag.Part["brand"]</p>
+                        <p><span>&#8226; </span><strong>Price:</strong> $@ViewBag.Part["price"]</p>
+                        <p><span>&#8226; </span><strong>Description:</strong> @ViewBag.Part["product_desription"]</p>
+                        <p><span>&#8226; </span><strong>Star Rating:</strong> @ViewBag.Part["stars"]</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p><strong>Details: </strong></p>
+                        @foreach (var x in ViewBag.PartDetails)
+                        {
+                            <p><span>&#8226;</span>@x</p>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br /><br />
-<form class="form-horizontal" action="~/Parts/MoreParts" method="post">
-    <input type="submit" class="form-control" value="Back to Parts" />
-    <input type="hidden" class="form-control" name="partType" value="@ViewBag.PartType" />*@
+    <br /><br />
+    <form class="form-horizontal" action="~/Parts/MoreParts" method="post">
+        <input type="submit" class="form-control" value="Back to Parts" />
+        <input type="hidden" class="form-control" name="partType" value="@ViewBag.PartType" />*@
 </form>
 
 
