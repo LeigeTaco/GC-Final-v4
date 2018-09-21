@@ -36,10 +36,9 @@ namespace GC_Final.Controllers
                     _arr.Add(arr[R.Next(arr.Length)]);
                 }
                 ViewBag.UserBuilds = _arr.ToArray();
+                return View();
             }
             return View("Error");
         }
-
-
     }
 }
