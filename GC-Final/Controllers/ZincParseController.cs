@@ -286,7 +286,7 @@ namespace GC_Final.Controllers
                     tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.PCISlots = null; // GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
-                    tempObj.CrossfireLimit = null;  Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
+                    tempObj.CrossfireLimit = null;  //Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
                     tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                     ORM.Motherboards.Add(tempObj);
@@ -316,13 +316,13 @@ namespace GC_Final.Controllers
                 tempObj.Manufacturer = "x";
                 tempObj.Wattage = null;
                 tempObj.Socket = GetSocketType(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.SLILimit = SLI_Limit(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.SLILimit = null; // (ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.SATASlots = GetSATA_Slots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.PCISlots = GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
-                tempObj.CrossfireLimit = Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.CrossfireLimit = null; // (ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                 ORM.Motherboards.Add(tempObj);
