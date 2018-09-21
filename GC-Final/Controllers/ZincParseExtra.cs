@@ -402,9 +402,30 @@ namespace GC_Final.Controllers
         }
     }
     #endregion
-
+    
     public partial class ZincParseController : ApiController
     {
+        private static string[] FormFactors = new string[]
+        {
+            "at",
+            "baby at",
+            "atx",
+            "mini atx",
+            "micro atx",
+            "flex atx",
+            "lpx",
+            "nlx",
+            "form factor"
+        };
+
+        private static int SafeNextIndex(int index, int collectionLength)
+        {
+            if (index < collectionLength)
+            {
+                return index;
+            }
+            return collectionLength - 1;
+        }
 
         public static int[] GetMaxScreenResolution(string Data)
         {
@@ -470,62 +491,97 @@ namespace GC_Final.Controllers
 
         public static string GetFormFactor(string Data)
         {
-            string[] _dataArray = { Data };
-            return GetFormFactor(_dataArray);
+            string _FFDetails = "";
+            #region commented
+            /*if (Data.ToLower().Contains("at") || Data.ToLower().Contains("at."))
+            {
+                _FFDetails = Regex.Match("AT", @"( )[Aa][Tt]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("baby") && Data.ToLower().Contains("at"))
+            {
+                _FFDetails = Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("atx"))
+            {
+                _FFDetails = Regex.Match("ATX", @"( )?[Aa][Tt][Xx]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("mini") && Data.ToLower().Contains("atx"))
+            {
+                _FFDetails = Regex.Match("Mini ATX", @"( )?[Mm][Ii][Nn][Ii] [Aa][Tt][Xx]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("micro") && Data.ToLower().Contains("atx"))
+            {
+                _FFDetails = Regex.Match("Micro ATX", @"( )?[M][Ii][Cc][Rr][Oo] [A][T][X]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("flex") && Data.ToLower().Contains("atx"))
+            {
+                _FFDetails = Regex.Match("Flex ATX", @"( )?[Ff][Ll][Ee][Xx] [Aa][Tt][Xx]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("lpx"))
+            {
+                _FFDetails = Regex.Match("LPX", @"( )?[Ll][Pp][Xx]( |.)?").Value;
+            }
+            if (Data.ToLower().Contains("nlx"))
+            {
+                _FFDetails = Regex.Match("NLX", @"( )?[Nn][Ll][Xx]( |.)?").Value;
+            }*/
+            #endregion
+
+            string[] _data = Data.Split(' ');
+            int j = 0;
+            for (int i = 0; i < _data.Length; i++)
+            {
+                if (_data[i].ToLower().Contains("at") && !_data[j].ToLower().Contains("baby"))
+                {
+                    _FFDetails += "AT,";
+                }
+                else if (_data[i].ToLower().Contains("baby") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("at"))
+                {
+                    _FFDetails += "Baby AT,";
+                }
+                else if (Regex.IsMatch(_data[i], @"[Aa][Tt][Xx]") && !(_data[j].ToLower().Contains("mini") || _data[j].ToLower().Contains("micro") || _data[j].ToLower().Contains("flex")))
+                {
+                    _FFDetails += "ATX,";
+                }
+                else if (_data[i].ToLower().Contains("mini") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Mini ATX,";
+                }
+                else if (_data[i].ToLower().Contains("micro") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Micro ATX,";
+                }
+                else if (_data[i].ToLower().Contains("flex") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Flex ATX,";
+                }
+                else if (_data[i].ToLower().Contains("lpx"))
+                {
+                    _FFDetails += "LPX,";
+                }
+                else if (_data[i].ToLower().Contains("nlx"))
+                {
+                    _FFDetails += "NLX,";
+                }
+            }
+            if (_FFDetails != "")
+            {
+                _FFDetails = _FFDetails.Substring(0, _FFDetails.Length - 1);
+            }
+            return _FFDetails;
         }
 
         public static string GetFormFactor(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("form factor"))
+                foreach (string ff in FormFactors)
                 {
-                    string _FFDetails = "";
-
-                    if (Data[i].ToLower().Contains("at") || Data[i].ToLower().Contains("at."))
+                    if (s.ToLower().Contains(ff))
                     {
-                        _FFDetails = Regex.Match("AT", @"( )[Aa][Tt]( |.)?").Value;
+                        return GetFormFactor(s);
                     }
-
-                    if (Data[i].ToLower().Contains("baby") && Data[i].ToLower().Contains("at"))
-                    {
-                        _FFDetails = Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("ATX", @"( )?[Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("mini") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Mini ATX", @"( )?[Mm][Ii][Nn][Ii] [Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("micro") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Micro ATX", @"( )?[M][Ii][Cc][Rr][Oo] [A][T][X]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("flex") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Flex ATX", @"( )?[Ff][Ll][Ee][Xx] [Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("lpx"))
-                    {
-                        _FFDetails = Regex.Match("LPX", @"( )?[Ll][Pp][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("nlx"))
-                    {
-                        _FFDetails = Regex.Match("NLX", @"( )?[Nn][Ll][Xx]( |.)?").Value;
-                    }
-
-                    return _FFDetails;
-
                 }
-
             }
 
             return null;
@@ -645,80 +701,75 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public static byte MultiGPU_Limit(string[] Data)
+        public byte GetMultiGPULimit(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("gpu"))
+                if (s.ToLower().Contains("sli"))
                 {
-                    byte GPU_Limit = byte.Parse(Regex.Match(Data[i], @"\d").Value);
+                    return GetMultiGPULimit(s);
+                }
+                else if (Regex.IsMatch(s.ToLower(), @"^(cross|x)(-| )?fire$"))
+                {
+                    return GetMultiGPULimit(s);
                 }
             }
-
             return 0;
         }
 
-        public static byte Crossfire_Limit(string[] Data)
+        public byte GetMultiGPULimit(string Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (Data.ToLower().Contains("sli"))
             {
-                if (Data[i].ToLower().Contains("crossfire"))
-                {
-                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
-                    {
-                        if (Data[i].ToLower().Contains("two"))
-                        {
-                            return 2;
-                        }
-                        else if (Data[i].ToLower().Contains("three"))
-                        {
-                            return 3;
-                        }
-                        else if (Data[i].ToLower().Contains("four"))
-                        {
-                            return 4;
-                        }
-                    }
-
-                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
-                    return Limit;
-                    
-                }
-                
+                return GetMultiGPULimit(Data, false);
             }
-
+            else if (Regex.IsMatch(Data.ToLower(), @"(cross|x)(-| )?fire"))
+            {
+                return GetMultiGPULimit(Data, true);
+            }
             return 0;
         }
 
-        public static byte SLI_Limit(string[] Data)
+        private byte GetMultiGPULimit(string Data, bool SOX)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (SOX)    //Crossfire
             {
-                if (Data[i].ToLower().Contains("sli"))
+                if (Regex.IsMatch(Data.ToLower(), @"two(-| )?way"))
                 {
-                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
-                    {
-                        if (Data[i].ToLower().Contains("two"))
-                        {
-                            return 2;
-                        }
-                        else if (Data[i].ToLower().Contains("three"))
-                        {
-                            return 3;
-                        }
-                        else if (Data[i].ToLower().Contains("four"))
-                        {
-                            return 4;
-                        }
-                    }
-
-                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
-                    return Limit;
-
+                    return 2;
                 }
-
+                else if (Regex.IsMatch(Data.ToLower(), @"three(-| )?way"))
+                {
+                    return 3;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"four(-| )?way"))
+                {
+                    return 4;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"\d(-| )?way"))
+                {
+                    return byte.Parse(Regex.Match(Data.ToLower(), @"\d(-| )?way").Value);
+                }
             }
-
+            else        //SLI
+            {
+                if (Regex.IsMatch(Data.ToLower(), @"two(-| )?way"))
+                {
+                    return 2;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"three(-| )?way"))
+                {
+                    return 3;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"four(-| )?way"))
+                {
+                    return 4;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"\d(-| )?way"))
+                {
+                    return byte.Parse(Regex.Match(Data.ToLower(), @"\d(-| )?way").Value);
+                }
+            }
             return 0;
         }
 
