@@ -5,3 +5,23 @@
 
 <h2>Display</h2>
 
+@foreach (GC_Final.Models.Build b in ViewBag.UserBuilds)
+{
+    <div class="panel panel-group">
+        <div class="panel panel-default">
+            <a href="@Url.Action("Display", "Builds", new { id = b.BuildID })"><h3 class="panel-heading">@b.BuildName</h3></a>
+            <div class="col-sm-2"><img src="@b.PCCase.ImageLink" alt="part images" height="80" width="80" /></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><span>&#8226;</span>@b.Motherboard.Name</p>
+                        <p><span>&#8226;</span>@b.CPU.Name</p>
+                        <p><span>&#8226;</span>@b.GPU.Name</p>
+                        <p><span>&#8226;</span>@b.PSU.Name</p>
+                        <p><span>&#8226;</span>@b.PCCase.Name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
