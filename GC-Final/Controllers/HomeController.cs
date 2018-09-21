@@ -36,7 +36,7 @@ namespace GC_Final.Controllers
 
             //@ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("Motherboard"));
 
-            ZincParseController.SavePCCasesToDB();
+            ZincParseController.SaveRAMsToDB();
 
 
             return View();

@@ -3,140 +3,17 @@
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <br />
-<br />
 <h2>Create Your Own Custom Build</h2>
-<br />
-<br />
-<div class="container">
-    <form class="form-horizontal" action="/Builds/Display" method="post">
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Build Name: </strong></label>
-            <div class="col-sm-2">
-                <input type="text" name="buildName" pattern="[a-zA-Z0-9 ]+" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Motherboard: </strong></label>
-            <div class="col-sm-2">
-                <select name="motherboard_id" id="Motherboard">
-                    @foreach (var x in ViewBag.Motherboards)
-                    {
-                        <option value="@x.MotherboardID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>GPU: </strong></label>
-            <div class="col-sm-2">
-                <select name="gpu_id" id="Motherboard">
-                    @foreach (var x in ViewBag.GPUs)
-                    {
-                        <option value="@x.GPUID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>PSU: </strong></label>
-            <div class="col-sm-2">
-                <select name="psu_id" id="PSU">
-                    @foreach (var x in ViewBag.PSUs)
-                    {
-                        <option value="@x.PSUID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>CPU: </strong></label>
-            <div class="col-sm-2">
-                <select name="cpu_id" id="CPU">
-                    @foreach (var x in ViewBag.CPUs)
-                    {
-                        <option value="@x.CPUID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Case: </strong></label>
-            <div class="col-sm-2">
-                <select name="case_id" id="case">
-                    @foreach (var x in ViewBag.PCCases)
-                    {
-                        <option value="@x.CaseID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>RAM: </strong></label>
-            <div class="col-sm-2">
-                <select name="ram_id" id="case">
-                    @foreach (var x in ViewBag.RAMs)
-                    {
-                        <option value="@x.RAMID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Monitor: </strong></label>
-            <div class="col-sm-2">
-                <select name="monitor_id" id="case">
-                    @foreach (var x in ViewBag.Monitors)
-                    {
-                        <option value="@x.MonitorID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>PCI: </strong></label>
-            <div class="col-sm-2">
-                <select name="pci_id" id="case">
-                    @foreach (var x in ViewBag.PCICards)
-                    {
-                        <option value="@x.PCIcardID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Hard Drive: </strong></label>
-            <div class="col-sm-2">
-                <select name="hard_id" id="case">
-                    @foreach (var x in ViewBag.HardDrives)
-                    {
-                        <option value="@x.HardDriveID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2"><strong>Optical Drive: </strong></label>
-            <div class="col-sm-2">
-                <select name="optical_id" id="case">
-                    @foreach (var x in ViewBag.OpticalDrivers)
-                    {
-                        <option value="@x.OpticalDriverID">@x.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <br />
-        <div class="form-group">
-                <div class="col-sm-3">
-                    <input type="radio" name="c" value="true" checked="checked" /> Create <br />
-                    <input type="radio" name="c" value="false" /> Validate <br />
-                    <br />
-                    <input type="submit" class="form-control" id="createBuild" value="Create Build" />
-                </div>
-        </div>
-    </form>
+<div class="col-sm-9">
+    @if (ViewBag.Flags[0][0] != "End")
+    {
+        for (int i = 0; i < ViewBag.Flags.Count - 1; i++)
+        {
+            string[] flag = ViewBag.Flags[i];
+            <p>@flag[0]: @flag[1]</p>
+        }
+    }
 </div>
-<br />
 <div class="container">
     <form action="~/Parts/MoreParts" method="post">
         <div class="form-group">
@@ -228,17 +105,141 @@
             </div>
         </div>
     </form>
-<div class="col-sm-9">
-    @if (ViewBag.Flags[0][0] != "End")
-    {
-        for (int i = 0; i < ViewBag.Flags.Count - 1; i++)
-        {
-            string[] flag = ViewBag.Flags[i];
-            <p>@flag[0]: @flag[1]</p>
-        }
-    }
-</div>
-</div>
-      
-          
-     
+    </div>
+<br/>
+<br/>
+
+    <div class="container">
+        <form class="form-horizontal" action="/Builds/Display" method="post">
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Build Name: </strong></label>
+                <div class="col-sm-2">
+                    <input type="text" name="buildName" pattern="[a-zA-Z0-9 ]+" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Motherboard: </strong></label>
+                <div class="col-sm-2">
+                    <select name="motherboard_id" id="Motherboard">
+                        @foreach (var x in ViewBag.Motherboards)
+                        {
+                            <option value="@x.MotherboardID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>GPU: </strong></label>
+                <div class="col-sm-2">
+                    <select name="gpu_id" id="Motherboard">
+                        @foreach (var x in ViewBag.GPUs)
+                        {
+                            <option value="@x.GPUID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>PSU: </strong></label>
+                <div class="col-sm-2">
+                    <select name="psu_id" id="PSU">
+                        @foreach (var x in ViewBag.PSUs)
+                        {
+                            <option value="@x.PSUID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>CPU: </strong></label>
+                <div class="col-sm-2">
+                    <select name="cpu_id" id="CPU">
+                        @foreach (var x in ViewBag.CPUs)
+                        {
+                            <option value="@x.CPUID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Case: </strong></label>
+                <div class="col-sm-2">
+                    <select name="case_id" id="case">
+                        @foreach (var x in ViewBag.PCCases)
+                        {
+                            <option value="@x.CaseID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>RAM: </strong></label>
+                <div class="col-sm-2">
+                    <select name="ram_id" id="case">
+                        @foreach (var x in ViewBag.RAMs)
+                        {
+                            <option value="@x.RAMID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Monitor: </strong></label>
+                <div class="col-sm-2">
+                    <select name="monitor_id" id="case">
+                        @foreach (var x in ViewBag.Monitors)
+                        {
+                            <option value="@x.MonitorID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>PCI: </strong></label>
+                <div class="col-sm-2">
+                    <select name="pci_id" id="case">
+                        @foreach (var x in ViewBag.PCICards)
+                        {
+                            <option value="@x.PCIcardID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Hard Drive: </strong></label>
+                <div class="col-sm-2">
+                    <select name="hard_id" id="case">
+                        @foreach (var x in ViewBag.HardDrives)
+                        {
+                            <option value="@x.HardDriveID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><strong>Optical Drive: </strong></label>
+                <div class="col-sm-2">
+                    <select name="optical_id" id="case">
+                        @foreach (var x in ViewBag.OpticalDrivers)
+                        {
+                            <option value="@x.OpticalDriverID">@x.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="radio" name="c" value="true" checked="checked" /> Create <br />
+                    <input type="radio" name="c" value="false" /> Validate <br />
+                    <br />
+                    <input type="submit" class="form-control" id="createBuild" value="Create Build" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+

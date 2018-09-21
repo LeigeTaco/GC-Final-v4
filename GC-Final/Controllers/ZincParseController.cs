@@ -559,7 +559,8 @@ namespace GC_Final.Controllers
                     tempRAM.Manufacturer = "x";
                     tempRAM.BusSpeed = null;
                     tempRAM.Quantity = null;
-                    tempRAM.RAMType = GetRAMType(ParseToArray(part["feature_bullets"]));
+                    try { tempRAM.RAMType = GetRAMType(ParseToArray(part["feature_bullets"])); }
+                    catch{ tempRAM.RAMType = null; }
                     tempRAM.TotalCapacity = null;
                     tempRAM.Voltage = null;
 
@@ -589,7 +590,8 @@ namespace GC_Final.Controllers
                 tempObj.Manufacturer = "x";
                 tempObj.BusSpeed = null;
                 tempObj.Quantity = null;
-                tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
+                try { tempObj.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"])); }
+                catch { tempObj.RAMType = null; }
                 tempObj.TotalCapacity = null;
                 tempObj.Voltage = null;
 
