@@ -36,7 +36,7 @@ namespace GC_Final.Controllers
 
             //@ViewBag.Parts = ZincParseController.GetPartData(ZincParseController.GetParts("Motherboard"));
 
-            ZincParseController.SavePSUsToDB();
+            ZincParseController.SavePCCasesToDB();
 
 
             return View();
@@ -46,6 +46,13 @@ namespace GC_Final.Controllers
         public ActionResult Admin()
         {
             ZincParseController.SaveHardDrivesToDB();
+            ZincParseController.SaveOpticalDriversToDB();
+            ZincParseController.SaveGPUsToDB();
+            ZincParseController.SavePCCasesToDB();
+            ZincParseController.SavePSUsToDB();
+            ZincParseController.SaveRAMsToDB();
+            ZincParseController.SaveMotherBoardsToDB();
+
 
             return View();
         }

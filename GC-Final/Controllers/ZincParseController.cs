@@ -44,7 +44,7 @@ namespace GC_Final.Controllers
                 return null;
             }
 
-            for (int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 14; i++)
             {
                 string x = jsoninfo["results"][i]["product_id"].ToString();
 
@@ -108,12 +108,19 @@ namespace GC_Final.Controllers
                     tempGPU.Description = "x"; //chosenpart["product_description"].ToString();
                     tempGPU.Brand = chosenpart["brand"].ToString();
                     tempGPU.Price = int.Parse(chosenpart["price"].ToString());
-                    tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
+                    try
+                    {
+                        tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
+                    }
+                    catch
+                    {
+                        tempGPU.Stars = null;
+                    }
                     tempGPU.ImageLink = chosenpart["main_image"].ToString();
                     tempGPU.Manufacturer = "x";
                     int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
-                    //tempGPU.ResX = res[0];
-                    //tempGPU.ResY = res[1];
+                    tempGPU.ResX = res[0];
+                    tempGPU.ResY = res[1];
                     tempGPU.RAMType = GetRAMType(ParseToArray(chosenpart["feature_bullets"]));
                     tempGPU.RAMAmount = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempGPU.MultiGPULimit = null;
@@ -260,7 +267,14 @@ namespace GC_Final.Controllers
                     tempObj.ProductID = chosenpart["product_id"].ToString();
                     tempObj.Description = "x"; //chosenpart["product_description"].ToString();
                     tempObj.Brand = chosenpart["brand"].ToString();
-                    tempObj.Price = int.Parse(chosenpart["price"].ToString());
+                    try
+                    {
+                        tempObj.Price = int.Parse(chosenpart["price"].ToString());
+                    }
+                    catch
+                    {
+                        tempObj.Price = null;
+                    }
                     tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                     tempObj.ImageLink = chosenpart["main_image"].ToString();
                     tempObj.Manufacturer = "x";
@@ -272,7 +286,7 @@ namespace GC_Final.Controllers
                     tempObj.RAMSlots = GetRAMSlots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.PCISlots = null; // GetPCI_Slots(ParseToArray(chosenpart["feature_bullets"]));
                     tempObj.FormFactor = GetFormFactor(ParseToArray(chosenpart["feature_bullets"]));
-                    tempObj.CrossfireLimit = Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
+                    tempObj.CrossfireLimit = null;  Crossfire_Limit(ParseToArray(chosenpart["feature_bullets"])); ;
                     tempObj.Chipset = GetChipset(ParseToArray(chosenpart["feature_bullets"]));
 
                     ORM.Motherboards.Add(tempObj);
@@ -590,6 +604,7 @@ namespace GC_Final.Controllers
                 z = ORM.HardDrives.Where(x => x.ProductID == y).ToList();
                 if (z.Count < 1)
                 {
+                    //tempObj.HardDriveID = Guid.NewGuid().ToString("D");
                     tempObj.ProductID = part["product_id"].ToString();
                     tempObj.Description = "x";//part["product_description"].ToString();
                     tempObj.Brand = part["brand"].ToString();
@@ -660,11 +675,11 @@ namespace GC_Final.Controllers
                     tempObj.Stars = float.Parse(part["stars"].ToString());
                     tempObj.ImageLink = part["main_image"].ToString();
                     tempObj.Manufacturer = "x";
-                    tempObj.WriteSpeed = GetOpticalDrive_WriteSpeed(ParseToArray(part["feature_bullets"]));// null;
+                    tempObj.WriteSpeed = null;  //GetOpticalDrive_WriteSpeed(ParseToArray(part["feature_bullets"]));// null;
                     tempObj.Wattage = 0;// null;
                     tempObj.Type = GetOpticalDrive_Types(ParseToArray(part["feature_bullets"]));
                     tempObj.Rewritable = false; //null;
-                    tempObj.ReadSpeed = GetOpticalDrive_ReadSpead(ParseToArray(part["feature_bullets"]));
+                    tempObj.ReadSpeed = null;  //GetOpticalDrive_ReadSpead(ParseToArray(part["feature_bullets"]));
                     tempObj.Interface = null;
 
 
@@ -692,9 +707,9 @@ namespace GC_Final.Controllers
                 tempObj.Stars = float.Parse(chosenpart["stars"].ToString());
                 tempObj.ImageLink = chosenpart["main_image"].ToString();
                 tempObj.Manufacturer = "x";
-                tempObj.WriteSpeed = GetOpticalDrive_WriteSpeed(ParseToArray(chosenpart["feature_bullets"]));// null;
+                tempObj.WriteSpeed = null; // GetOpticalDrive_WriteSpeed(ParseToArray(chosenpart["feature_bullets"]));// null;
                 tempObj.Wattage = 0;// null;
-                tempObj.Type = GetOpticalDrive_Types(ParseToArray(chosenpart["feature_bullets"]));
+                tempObj.Type = null; // GetOpticalDrive_Types(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.Rewritable = false; //null;
                 tempObj.ReadSpeed = GetOpticalDrive_ReadSpead(ParseToArray(chosenpart["feature_bullets"]));
                 tempObj.Interface = null;

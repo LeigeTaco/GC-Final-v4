@@ -127,6 +127,7 @@ namespace GC_Final.Models
             Stars = 0.0F;
             ImageLink = " ";
             Manufacturer = " ";
+            Name = name;
         }
     }
 
