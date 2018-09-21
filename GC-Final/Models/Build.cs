@@ -52,5 +52,6 @@ namespace GC_Final.Models
         public virtual ICollection<BuildsPeripheral> BuildsPeripherals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuildsRAM> BuildsRAMs { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace GC_Final.Controllers
 {
-
+    #region PartDetails
     public class PartDetails
     {
 
@@ -401,6 +401,7 @@ namespace GC_Final.Controllers
             
         }
     }
+    #endregion
 
     public partial class ZincParseController : ApiController
     {

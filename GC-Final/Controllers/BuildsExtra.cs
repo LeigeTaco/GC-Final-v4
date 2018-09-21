@@ -132,13 +132,26 @@ namespace GC_Final.Controllers
             return _Create(temp, User.Identity.GetUserId());
         }
 
-        public ActionResult Display()
+        private int _displayLimit(int count)
+        {
+            if (count < 15)
+            {
+                return count % 15;
+            }
+            else
+            {
+                return 15;
+            }
+        }
+
+        [AllowAnonymous]
+        private ActionResult _Display()
         {
             Entities ORM = new Entities();
             Random R = new Random();
             Build[] arr = ORM.Builds.ToArray();
             List<Build> _arr = new List<Build>();
-            for (int i = 0; i < arr.Length % 15; i++)
+            for (int i = 0; i < _displayLimit(arr.Length); i++)
             {
                 _arr.Add(arr[R.Next(arr.Length)]);
             }
@@ -146,18 +159,26 @@ namespace GC_Final.Controllers
             return View("Display2");
         }
 
-        [RequireParameter("id")]
+        [AllowAnonymous]
         public ActionResult Display(string id)
         {
-            Entities ORM = new Entities();
-            ViewBag.Build = ORM.Builds.Find(id);
-            if (ViewBag.Build != null)
+            if (id != null)
             {
-                return View();
+                Entities ORM = new Entities();
+                ViewBag.Build = ORM.Builds.Find(id);
+                if (ViewBag.Build != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Error", new { error = "Invalid Build ID" });
             }
-            return View("Error");
+            else
+            {
+                return _Display();
+            }
         }
 
+        [AllowAnonymous]
         [RequireParameter("buildName")]
         public ActionResult Display(string buildName, string motherboard_id, string gpu_id, string cpu_id, string ram_id, string psu_id, string case_id, string monitor_id, string pci_id, string hard_id, string optical_id, bool c)
         {
