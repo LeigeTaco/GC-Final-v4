@@ -107,7 +107,8 @@ namespace GC_Final.Controllers
                     tempGPU.ProductID = chosenpart["product_id"].ToString();
                     tempGPU.Description = "x"; //chosenpart["product_description"].ToString();
                     tempGPU.Brand = chosenpart["brand"].ToString();
-                    tempGPU.Price = int.Parse(chosenpart["price"].ToString());
+                    try { tempGPU.Price = int.Parse(chosenpart["price"].ToString()); }
+                    catch { tempGPU.Price = null; }
                     try
                     {
                         tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
@@ -149,8 +150,10 @@ namespace GC_Final.Controllers
                 tempGPU.ProductID = chosenpart["product_id"].ToString();
                 tempGPU.Description = "x"; //chosenpart["product_description"].ToString();
                 tempGPU.Brand = chosenpart["brand"].ToString();
-                tempGPU.Price = int.Parse(chosenpart["price"].ToString());
-                tempGPU.Stars = float.Parse(chosenpart["stars"].ToString());
+                try { tempGPU.Price = int.Parse(chosenpart["price"].ToString()); }
+                catch { tempGPU.Price = null; }
+                try { tempGPU.Stars = float.Parse(chosenpart["stars"].ToString()); }
+                catch { tempGPU.Stars = null;  }
                 tempGPU.ImageLink = chosenpart["main_image"].ToString();
                 tempGPU.Manufacturer = "x";
                 int[] res = GetMaxScreenResolution(ParseToArray(chosenpart["feature_bullets"]));
