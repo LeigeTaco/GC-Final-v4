@@ -10,18 +10,19 @@ using System.Text.RegularExpressions;
 namespace GC_Final.Controllers
 {
     #region PartDetails
-    public class PartDetails
+    /*
+    public static class PartDetails
     {
 
-        public string Name { set; get; }
-        public string ProductID { set; get; }
-        public string Desc { set; get; }
-        public string Brand { set; get; }
-        public double Price { set { Price = value / 100; } get { return Price; } }
-        public string Stars { set; get; }
-        public string Manufacturer { set; get; }
+        public static string Name { set; get; }
+        public static string ProductID { set; get; }
+        public static string Desc { set; get; }
+        public static string Brand { set; get; }
+        public static double Price { set { Price = value / 100; } get { return Price; } }
+        public static string Stars { set; get; }
+        public static string Manufacturer { set; get; }
 
-        public PartDetails()
+        public static PartDetails()
         {
             Name = "";
             ProductID = "";
@@ -34,13 +35,13 @@ namespace GC_Final.Controllers
 
     }
 
-    public class PartBag
+    public static class PartBag
     {
-        private List<PartDetails> _Bag;
+        private static List<PartDetails> _Bag;
 
-        public int Count { get { return _Bag.Count; } }
-        public List<PartDetails> AsList { get { return _Bag; } }
-        public Dictionary<string, int> Quantities {
+        public static int Count { get { return _Bag.Count; } }
+        public static List<PartDetails> AsList { get { return _Bag; } }
+        public static Dictionary<string, int> Quantities {
             get
             {
                 Dictionary<string, int> _out = new Dictionary<string, int>();
@@ -61,41 +62,41 @@ namespace GC_Final.Controllers
             }
         }
 
-        public void Add(PartDetails part)
+        public static void Add(PartDetails part)
         {
             _Bag.Add(part);
         }
         //Add method to add by ID
-        public void Remove(PartDetails part)
+        public static void Remove(PartDetails part)
         {
             _Bag.Remove(part);
         }
-        public List<PartDetails> ToList()
+        public static List<PartDetails> ToList()
         {
             return _Bag;
         }
     }
 
-    public class BuildDetails
+    public static class BuildDetails
     {
         
-        public string Name { set; get; }
-        public string BuildID { set; get; }
-        public string OwnerID { set; get; }
-        public CaseDetails Case { set; get; }
-        public MotherBoardDetails MB { set; get; }
-        public CPUDetails CPU { set; get; }
-        public GPUDetails GPU { set; get; }
-        public byte GPUCount { set; get; }
-        public PSUDetails PSU { set; get; }
-        public PartBag RAM { set; get; }
-        public PartBag Monitor { set; get; }
-        public PartBag OD { set; get; }
-        public PartBag HD { set; get; }
-        public PartBag Peripherals { set; get; }
-        public PartBag PCI { set; get; }
+        public static string Name { set; get; }
+        public static string BuildID { set; get; }
+        public static string OwnerID { set; get; }
+        public static CaseDetails Case { set; get; }
+        public static MotherBoardDetails MB { set; get; }
+        public static CPUDetails CPU { set; get; }
+        public static GPUDetails GPU { set; get; }
+        public static byte GPUCount { set; get; }
+        public static PSUDetails PSU { set; get; }
+        public static PartBag RAM { set; get; }
+        public static PartBag Monitor { set; get; }
+        public static PartBag OD { set; get; }
+        public static PartBag HD { set; get; }
+        public static PartBag Peripherals { set; get; }
+        public static PartBag PCI { set; get; }
         /*
-        public Dictionary<string, string> CheckCompatability()
+        public static Dictionary<string, string> CheckCompatability()
         {
             Dictionary<string, string> Flags = new Dictionary<string, string>();
 
@@ -149,8 +150,8 @@ namespace GC_Final.Controllers
             return Flags;
         }
         */
-
-        public BuildDetails()
+        /*
+        public static BuildDetails()
         {
 
             Name = "";
@@ -170,7 +171,7 @@ namespace GC_Final.Controllers
 
         }
 
-        public BuildDetails(Build bass)
+        public static BuildDetails(Build bass)
         {
 
             Entities ORM = new Entities();
@@ -218,20 +219,20 @@ namespace GC_Final.Controllers
 
     }
 
-    public class CaseDetails : PartDetails
+    public static class CaseDetails : PartDetails
     {
 
-        public string CaseID { set; get; }
-        public string PID;
-        public int Size;
-        public int Dimensions;
-        public byte PortCount;
-        public string Drives;
-        public bool SSDSupport;
-        public string Ports;
-        public string Style;
+        public static string CaseID { set; get; }
+        public static string PID;
+        public static int Size;
+        public static int Dimensions;
+        public static byte PortCount;
+        public static string Drives;
+        public static bool SSDSupport;
+        public static string Ports;
+        public static string Style;
 
-        public CaseDetails() : base()
+        public static CaseDetails() : base()
         {
             CaseID = "";
             PID = "";
@@ -244,26 +245,26 @@ namespace GC_Final.Controllers
             Style = "";
         }
 
-        public CaseDetails(PCCase bass)
+        public static CaseDetails(PCCase bass)
         {
 
         }
 
     }
 
-    public class MotherBoardDetails : PartDetails
+    public static class MotherBoardDetails : PartDetails
     {
         
-        public string MBID { set; get; }
-        public string PID { set; get; }
-        public string Socket { set; get; }
-        public string Chipset { set; get; }
-        public byte RAMSlots { set; get; }
-        public byte SLI { set; get; }
-        public byte XFIRE { set; get; }
-        public string FormFactor { set; get; }
+        public static string MBID { set; get; }
+        public static string PID { set; get; }
+        public static string Socket { set; get; }
+        public static string Chipset { set; get; }
+        public static byte RAMSlots { set; get; }
+        public static byte SLI { set; get; }
+        public static byte XFIRE { set; get; }
+        public static string FormFactor { set; get; }
 
-        public MotherBoardDetails() : base()
+        public static MotherBoardDetails() : base()
         {
             MBID = "";
             PID = "";
@@ -276,27 +277,27 @@ namespace GC_Final.Controllers
 
         }
 
-        public MotherBoardDetails(Motherboard bass)
+        public static MotherBoardDetails(Motherboard bass)
         {
 
         }
 
     }
 
-    public class CPUDetails : PartDetails
+    public static class CPUDetails : PartDetails
     {
 
-        public string CPUID { set; get; }
-        public string PID { set; get; }
-        public string Cache { set; get; }
-        public string Socket { set; get; }
-        public int Wattage { set { Wattage = Convert.ToInt32(value); } get { return Wattage; } }
-        public bool Fan { set; get; }
-        public byte Threads { set { Threads = Convert.ToByte(value); } get { return Threads; } }
-        public string ProcessingUnits { set; get; }
-        public double Speed { set { Speed = Convert.ToDouble(value); } get { return Speed; } }
+        public static string CPUID { set; get; }
+        public static string PID { set; get; }
+        public static string Cache { set; get; }
+        public static string Socket { set; get; }
+        public static int Wattage { set { Wattage = Convert.ToInt32(value); } get { return Wattage; } }
+        public static bool Fan { set; get; }
+        public static byte Threads { set { Threads = Convert.ToByte(value); } get { return Threads; } }
+        public static string ProcessingUnits { set; get; }
+        public static double Speed { set { Speed = Convert.ToDouble(value); } get { return Speed; } }
 
-        public CPUDetails() : base()
+        public static CPUDetails() : base()
         {
 
             CPUID = "";
@@ -310,102 +311,102 @@ namespace GC_Final.Controllers
 
         }
 
-        public CPUDetails(CPU bass)
+        public static CPUDetails(CPU bass)
         {
 
         }
 
     }
 
-    public class PSUDetails
+    public static class PSUDetails
     {
-        public string PSUID;
-        public string PID;
-        public string PowerSource;
-        public string Dimensions;
-        public int Wattage;
+        public static string PSUID;
+        public static string PID;
+        public static string PowerSource;
+        public static string Dimensions;
+        public static int Wattage;
 
-        public PSUDetails() : base()
+        public static PSUDetails() : base()
         {
 
         }
 
-        public PSUDetails(PSU bass)
+        public static PSUDetails(PSU bass)
         {
 
         }
 
     }
 
-    public class GPUDetails : PartDetails
+    public static class GPUDetails : PartDetails
     {
-        public string GPUID;
+        public static string GPUID;
 
-        public GPUDetails(GPU bass)
+        public static GPUDetails(GPU bass)
         {
 
         }
 
-        public GPUDetails() : base()
+        public static GPUDetails() : base()
         {
             GPUID = "";
         }
     }
 
-    public class RAMDetails : PartDetails
+    public static class RAMDetails : PartDetails
     {
-        public RAMDetails(RAM bass)
+        public static RAMDetails(RAM bass)
         {
 
         }
     }
 
-    public class ODDetails : PartDetails
+    public static class ODDetails : PartDetails
     {
-        public ODDetails(OpticalDriver bass)
+        public static ODDetails(OpticalDriver bass)
         {
 
         }
     }
 
-    public class HDDetails : PartDetails
+    public static class HDDetails : PartDetails
     {
-        public string HDID;
+        public static string HDID;
 
-        public HDDetails(HardDrive bass)
+        public static HDDetails(HardDrive bass)
         {
 
         }
     }
 
-    public class MonitorDetails : PartDetails
+    public static class MonitorDetails : PartDetails
     {
-        public MonitorDetails(Monitor bass)
-        {
-            
-        }
-    }
-
-    public class PeripheralDetails : PartDetails
-    {
-        public PeripheralDetails(Peripheral bass)
-        {
-
-        }
-    }
-
-    public class PCIDetails : PartDetails
-    {
-        public PCIDetails(PCICard bass)
+        public static MonitorDetails(Monitor bass)
         {
             
         }
     }
+
+    public static class PeripheralDetails : PartDetails
+    {
+        public static PeripheralDetails(Peripheral bass)
+        {
+
+        }
+    }
+
+    public static class PCIDetails : PartDetails
+    {
+        public static PCIDetails(PCICard bass)
+        {
+            
+        }
+    }*/
     #endregion
     
     public partial class ZincParseController : ApiController
     {
-        private  string[] FormFactors = new string[]
+        private static  string[] FormFactors = new string[]
         {
             "at",
             "baby at",
@@ -418,7 +419,7 @@ namespace GC_Final.Controllers
             "form factor"
         };
 
-        private  int SafeNextIndex(int index, int collectionLength)
+        private static  int SafeNextIndex(int index, int collectionLength)
         {
             if (index < collectionLength)
             {
@@ -427,7 +428,7 @@ namespace GC_Final.Controllers
             return collectionLength - 1;
         }
 
-        public int[] GetMaxScreenResolution(string Data)
+        public static int[] GetMaxScreenResolution(string Data)
         {
             int MaxResX;
             int MaxResY;
@@ -442,7 +443,7 @@ namespace GC_Final.Controllers
         }
 
 
-        public int[] GetMaxScreenResolution(string[] Data)
+        public static int[] GetMaxScreenResolution(string[] Data)
         {
             try
             {
@@ -464,13 +465,13 @@ namespace GC_Final.Controllers
 
         }
 
-        public string GetSocketType(string Data)
+        public static string GetSocketType(string Data)
         {
             string _out = "";
             return _out + Regex.Match(Data, @"[PpLl][Gg][Aa] \d+").Value;
         }
 
-        public string GetSocketType(string[] Data)
+        public static string GetSocketType(string[] Data)
         {
             try
             {
@@ -489,7 +490,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public string GetFormFactor(string Data)
+        public static string GetFormFactor(string Data)
         {
             string _FFDetails = "";
             string[] _data = Data.Split(' ');
@@ -536,7 +537,7 @@ namespace GC_Final.Controllers
             return _FFDetails;
         }
 
-        public string GetFormFactor(string[] Data)
+        public static string GetFormFactor(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -552,7 +553,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public string GetChipset(string[] Data)
+        public static string GetChipset(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -563,7 +564,7 @@ namespace GC_Final.Controllers
             }
             return null;
         }
-        public string GetChipset(string Data)
+        public static string GetChipset(string Data)
         {
             if (Data.ToLower().Contains("chipset"))
             {
@@ -572,7 +573,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public string GetRAMType(string[] Data)
+        public static string GetRAMType(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -583,7 +584,7 @@ namespace GC_Final.Controllers
             }
             return null;
         }
-        public string GetRAMType(string Data)
+        public static string GetRAMType(string Data)
         {
             if (Regex.IsMatch(Data.ToLower(), @"ddr\d"))
             {
@@ -592,7 +593,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public byte GetRAMSlots(string[] Data)
+        public static byte GetRAMSlots(string[] Data)
         {
             int Index = -1;
             for (int i = 0; i < Data.Length; i++)
@@ -611,13 +612,13 @@ namespace GC_Final.Controllers
 
         }
 
-        public int GetPowerSupply(string Data)
+        public static int GetPowerSupply(string Data)
         {
             int PowerSupply = int.Parse(Regex.Match(Regex.Match(Data, @"\d+W").Value, @"\d+").Value);
             return PowerSupply;
         }
 
-        public float GetCPU_Speed(string[] Data)
+        public static float GetCPU_Speed(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -628,7 +629,7 @@ namespace GC_Final.Controllers
             }
             return 0;
         }
-        public float GetCPU_Speed(string Data)
+        public static float GetCPU_Speed(string Data)
         {
             if (Regex.IsMatch(Data.ToLower(), @"\d+\.\d+( )?ghz"))
             {
@@ -637,7 +638,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public byte GetSATA_Slots(string[] Data)
+        public static byte GetSATA_Slots(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -649,14 +650,14 @@ namespace GC_Final.Controllers
             return 6;
         }
 
-        public byte GetSATA_Slots(string Data)
+        public static byte GetSATA_Slots(string Data)
         {
             //This will do something eventually.
 
             return 6;
         }
 
-        public byte GetPCI_Slots(string[] Data)
+        public static byte GetPCI_Slots(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -675,7 +676,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public byte GetMultiGPULimit(string[] Data)
+        public static byte GetMultiGPULimit(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -691,7 +692,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public byte GetMultiGPULimit(string Data)
+        public static byte GetMultiGPULimit(string Data)
         {
             if (Data.ToLower().Contains("sli"))
             {
@@ -704,7 +705,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        private byte GetMultiGPULimit(string Data, bool SOX)
+        private static byte GetMultiGPULimit(string Data, bool SOX)
         {
             if (SOX)    //Crossfire
             {
@@ -747,7 +748,7 @@ namespace GC_Final.Controllers
             return 2;
         }
 
-        public string GetHardDrive_Type(string[] Data)
+        public static string GetHardDrive_Type(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -759,7 +760,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public string GetHardDrive_Type(string Data)
+        public static string GetHardDrive_Type(string Data)
         {
             if (Regex.IsMatch(Data.ToLower(), @"(ssd|sshd|hdd)"))
             {
@@ -768,7 +769,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public bool GetHardDrive_Size(string[] Data)
+        public static bool GetHardDrive_Size(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -780,7 +781,7 @@ namespace GC_Final.Controllers
             return false;
         }
 
-        public bool GetHardDrive_Size(string Data)
+        public static bool GetHardDrive_Size(string Data)
         {
             if (Regex.IsMatch(Data.ToLower(), "(2" + @"\." + "5(-| )?(\"|inch)|(two(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
             {
@@ -793,18 +794,18 @@ namespace GC_Final.Controllers
             return false;
         }
 
-        public int GetOpticalDrive_ReadSpeed(string[] Data)
+        public static int GetOpticalDrive_ReadSpead(string[] Data)     //omegaLuL speAd
         {
             foreach (string s in Data)
             {
                 if (Regex.IsMatch(s.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
                 {
-                    return GetOpticalDrive_ReadSpeed(s);
+                    return GetOpticalDrive_ReadSpead(s);
                 }
             }
             return 0;
         }
-        public int GetOpticalDrive_ReadSpeed(string Data)      //Convert to MB/s or GB/s
+        public static int GetOpticalDrive_ReadSpead(string Data)      //Convert to MB/s or GB/s
         {
             if (Regex.IsMatch(Data.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
             {
@@ -819,7 +820,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public int GetOpticalDrive_WriteSpeed(string[] Data)
+        public static int GetOpticalDrive_WriteSpeed(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -830,7 +831,7 @@ namespace GC_Final.Controllers
             }
             return 0;
         }
-        public int GetOpticalDrive_WriteSpeed(string Data)     //Also convert this
+        public static int GetOpticalDrive_WriteSpeed(string Data)     //Also convert this
         {
             if (Regex.IsMatch(Data.ToLower(), @"(write(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
             {
@@ -845,7 +846,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public string GetOpticalDrive_Types(string[] Data)
+        public static string GetOpticalDrive_Types(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -870,7 +871,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public int GetOpticalDrive_ReadSpead(string[] Data)
+        public static int GetHardDrive_ReadSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -890,7 +891,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public int GetOpticalDrive_WriteSpeed(string[] Data)
+        public static int GetHardDrive_WriteSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {

@@ -580,21 +580,21 @@ namespace GC_Final.Models
             return _out;
         }
 
-        public Build(Controllers.BuildDetails bass)
-        {
+        //public Build(Controllers.BuildDetails bass)
+        //{
 
-            BuildName = bass.Name;
-            BuildID = bass.BuildID;
-            OwnerID = bass.OwnerID;
-            CaseID = bass.Case.CaseID;
-            MBID = bass.MB.MBID;
-            CPUID = bass.CPU.CPUID;
-            PSUID = bass.PSU.PSUID;
-            GPUID = bass.GPU.GPUID;
-            PSUID = bass.PSU.PSUID;
-            GPUCount = bass.GPUCount;
+        //    BuildName = bass.Name;
+        //    BuildID = bass.BuildID;
+        //    OwnerID = bass.OwnerID;
+        //    CaseID = bass.Case.CaseID;
+        //    MBID = bass.MB.MBID;
+        //    CPUID = bass.CPU.CPUID;
+        //    PSUID = bass.PSU.PSUID;
+        //    GPUID = bass.GPU.GPUID;
+        //    PSUID = bass.PSU.PSUID;
+        //    GPUCount = bass.GPUCount;
 
-        }
+        //}
 
         public Build(string name)
         {
