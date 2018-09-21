@@ -86,6 +86,7 @@ namespace GC_Final.Controllers
         
         private ActionResult _Verify(string buildName, string motherboard_id, string gpu_id, string cpu_id, string ram_id, string psu_id, string case_id, string monitor_id, string pci_id, string hard_id, string optical_id, bool c)
         {
+            bool OVERRIDE = false;
             Entities ORM = new Entities();
             Build temp = new Build();
             temp.BuildName = buildName;
@@ -122,7 +123,8 @@ namespace GC_Final.Controllers
             _od.ODID = optical_id;
             _od.OpticalDriver = ORM.OpticalDrivers.Find(optical_id);
             List<string[]> flags = temp.GetCompat();
-            if (flags[0][0] == "End" && c)
+            OVERRIDE = true;    //Comment this out to re-enable validation before creation.
+            if ((flags[0][0] == "End" || OVERRIDE) && c)
             {
                 ORM.Builds.Add(temp);
                 ORM.SaveChanges();

@@ -405,7 +405,7 @@ namespace GC_Final.Controllers
     
     public partial class ZincParseController : ApiController
     {
-        private static string[] FormFactors = new string[]
+        private  string[] FormFactors = new string[]
         {
             "at",
             "baby at",
@@ -418,7 +418,7 @@ namespace GC_Final.Controllers
             "form factor"
         };
 
-        private static int SafeNextIndex(int index, int collectionLength)
+        private  int SafeNextIndex(int index, int collectionLength)
         {
             if (index < collectionLength)
             {
@@ -427,7 +427,7 @@ namespace GC_Final.Controllers
             return collectionLength - 1;
         }
 
-        public static int[] GetMaxScreenResolution(string Data)
+        public int[] GetMaxScreenResolution(string Data)
         {
             int MaxResX;
             int MaxResY;
@@ -442,7 +442,7 @@ namespace GC_Final.Controllers
         }
 
 
-        public static int[] GetMaxScreenResolution(string[] Data)
+        public int[] GetMaxScreenResolution(string[] Data)
         {
             try
             {
@@ -464,13 +464,13 @@ namespace GC_Final.Controllers
 
         }
 
-        public static string GetSocketType(string Data)
+        public string GetSocketType(string Data)
         {
             string _out = "";
             return _out + Regex.Match(Data, @"[PpLl][Gg][Aa] \d+").Value;
         }
 
-        public static string GetSocketType(string[] Data)
+        public string GetSocketType(string[] Data)
         {
             try
             {
@@ -489,44 +489,9 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public static string GetFormFactor(string Data)
+        public string GetFormFactor(string Data)
         {
             string _FFDetails = "";
-            #region commented
-            /*if (Data.ToLower().Contains("at") || Data.ToLower().Contains("at."))
-            {
-                _FFDetails = Regex.Match("AT", @"( )[Aa][Tt]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("baby") && Data.ToLower().Contains("at"))
-            {
-                _FFDetails = Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("atx"))
-            {
-                _FFDetails = Regex.Match("ATX", @"( )?[Aa][Tt][Xx]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("mini") && Data.ToLower().Contains("atx"))
-            {
-                _FFDetails = Regex.Match("Mini ATX", @"( )?[Mm][Ii][Nn][Ii] [Aa][Tt][Xx]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("micro") && Data.ToLower().Contains("atx"))
-            {
-                _FFDetails = Regex.Match("Micro ATX", @"( )?[M][Ii][Cc][Rr][Oo] [A][T][X]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("flex") && Data.ToLower().Contains("atx"))
-            {
-                _FFDetails = Regex.Match("Flex ATX", @"( )?[Ff][Ll][Ee][Xx] [Aa][Tt][Xx]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("lpx"))
-            {
-                _FFDetails = Regex.Match("LPX", @"( )?[Ll][Pp][Xx]( |.)?").Value;
-            }
-            if (Data.ToLower().Contains("nlx"))
-            {
-                _FFDetails = Regex.Match("NLX", @"( )?[Nn][Ll][Xx]( |.)?").Value;
-            }*/
-            #endregion
-
             string[] _data = Data.Split(' ');
             int j = 0;
             for (int i = 0; i < _data.Length; i++)
@@ -571,7 +536,7 @@ namespace GC_Final.Controllers
             return _FFDetails;
         }
 
-        public static string GetFormFactor(string[] Data)
+        public string GetFormFactor(string[] Data)
         {
             foreach (string s in Data)
             {
@@ -587,49 +552,47 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public static string GetChipset(string Data)
+        public string GetChipset(string[] Data)
         {
-            string[] _dataArray = { Data };
-            return GetChipset(_dataArray);
-        }
-
-        public static string GetChipset(string[] Data)
-        {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("chipset"))
+                if (s.ToLower().Contains("chipset"))
                 {
-                    return Regex.Match(Data[i], @"([A-Za-z]+)?( )([A-Za-z]+)?\d+( )?([A-Za-z]+)?").Value;
-                }
-
-            }
-
-            return null;
-
-        }
-
-        public static string GetRAMType(string Data)
-        {
-            string[] _dataArray = { Data };
-            return GetRAMType(_dataArray);
-        }
-
-        public static string GetRAMType(string[] Data)
-        {
-
-            for (int i = 0; i < Data.Length; i++)
-            {
-                if (Data[i].ToLower().Contains("ddr2") || Data[i].ToLower().Contains("ddr3") || Data[i].ToLower().Contains("ddr3 ecc") || Data[i].ToLower().Contains("ddr4") || Data[i].ToLower().Contains("ddr4 ecc"))
-                {
-                    return Regex.Match(Data[i], @"(\b(ddr2|ddr3|ddr4)\b)?(.)?(\b(ecc)\b)?").Value;
+                    return GetChipset(s);
                 }
             }
-
             return null;
-
+        }
+        public string GetChipset(string Data)
+        {
+            if (Data.ToLower().Contains("chipset"))
+            {
+                return Regex.Match(Data.ToUpper(), @"[A-Z]{0,2}\d+-?[A-Z]{0,2}").Value;
+            }
+            return null;
         }
 
-        public static byte GetRAMSlots(string[] Data)
+        public string GetRAMType(string[] Data)
+        {
+            foreach (string s in Data)
+            {
+                if (Regex.IsMatch(s.ToLower(), @"ddr\d"))
+                {
+                    return GetRAMType(s);
+                }
+            }
+            return null;
+        }
+        public string GetRAMType(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"ddr\d"))
+            {
+                return $"DDR{Regex.Match(Regex.Match(Data.ToLower(), @"ddr\d").Value, @"\d").Value}";
+            }
+            return null;
+        }
+
+        public byte GetRAMSlots(string[] Data)
         {
             int Index = -1;
             for (int i = 0; i < Data.Length; i++)
@@ -648,41 +611,52 @@ namespace GC_Final.Controllers
 
         }
 
-        public static int GetPowerSupply(string Data)
+        public int GetPowerSupply(string Data)
         {
             int PowerSupply = int.Parse(Regex.Match(Regex.Match(Data, @"\d+W").Value, @"\d+").Value);
             return PowerSupply;
         }
 
-        public static double GetCPU_Speed(string[] Data)
+        public float GetCPU_Speed(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("ghz"))
+                if (Regex.IsMatch(s.ToLower(), @"\d+\.\d+( )?ghz"))
                 {
-                    double CPU_Speed = double.Parse(Regex.Match(Data[i], @"\d+( )?GHz").Value);
-                    return CPU_Speed;
+                    return GetCPU_Speed(s);
                 }
             }
-
+            return 0;
+        }
+        public float GetCPU_Speed(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"\d+\.\d+( )?ghz"))
+            {
+                return float.Parse(Regex.Match(Regex.Match(Data.ToLower(), @"\d+\.\d+( )?ghz").Value, @"\d+\.\d+").Value);
+            }
             return 0;
         }
 
-        public static byte GetSATA_Slots(string[] Data)
+        public byte GetSATA_Slots(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("sata"))
+                if (Regex.IsMatch(s.ToLower(), @"sata"))
                 {
-                    byte SATA_Slots = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\( )?\dx").Value, @"\d").Value);
-                    return SATA_Slots;
+                    return GetSATA_Slots(s);
                 }
             }
-
-            return 0;
+            return 6;
         }
 
-        public static byte GetPCI_Slots(string[] Data)
+        public byte GetSATA_Slots(string Data)
+        {
+            //This will do something eventually.
+
+            return 6;
+        }
+
+        public byte GetPCI_Slots(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -770,92 +744,108 @@ namespace GC_Final.Controllers
                     return byte.Parse(Regex.Match(Data.ToLower(), @"\d(-| )?way").Value);
                 }
             }
-            return 0;
+            return 2;
         }
 
-        public static string GetHardDrive_Type(string[] Data)
+        public string GetHardDrive_Type(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("hdd"))
+                if (Regex.IsMatch(s.ToLower(), @"(ssd|sshd|hdd)"))
                 {
-                    return "HDD";
-                }
-                else if (Data[i].ToLower().Contains("sshd"))
-                {
-                    return "SSHD";
-                }
-                else if (Data[i].ToLower().Contains("ssd"))
-                {
-                    return "SSD";
+                    return GetHardDrive_Type(s);
                 }
             }
-
             return null;
         }
 
-        public static string GetHardDrive_Size(string[] Data)
+        public string GetHardDrive_Type(string Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (Regex.IsMatch(Data.ToLower(), @"(ssd|sshd|hdd)"))
             {
-                if (Data[i].ToLower().Contains("2.5\""))
-                {
-                    return "2.5";
-                }
-                else if (Data[i].ToLower().Contains("3.5\""))
-                {
-                    return "3.5";
-                }
-                else if (Data[i].ToLower().Contains("msata"))
-                {
-                    return "mSATA";
-                }
+                return Regex.Match(Data.ToLower(), @"(ssd|sshd|hdd)").Value;
             }
-
             return null;
         }
 
-        public static int GetHardDrive_ReadSpeed(string[] Data)
+        public bool GetHardDrive_Size(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("read"))
+                if (Regex.IsMatch(s.ToLower(), "(2" + @"\." + "5(-| )?(\"|inch)|3" + @"\." + "5(-| )?(\")|(three(-| )?(point(five|5)|and(-| )a(-| )half) inch)|(two(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
                 {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
-                    return Speeds;
-                }
-                else if (Data[i].ToLower().Contains("gb/s"))
-                {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
-                    Speeds *= 1024;
-                    return Speeds;
+                    return GetHardDrive_Size(s);
                 }
             }
+            return false;
+        }
 
+        public bool GetHardDrive_Size(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), "(2" + @"\." + "5(-| )?(\"|inch)|(two(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
+            {
+                return false;
+            }
+            else if (Regex.IsMatch(Data.ToLower(), "3" + @"\." + "5(-| )?(\")|(three(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int GetOpticalDrive_ReadSpeed(string[] Data)
+        {
+            foreach (string s in Data)
+            {
+                if (Regex.IsMatch(s.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+                {
+                    return GetOpticalDrive_ReadSpeed(s);
+                }
+            }
+            return 0;
+        }
+        public int GetOpticalDrive_ReadSpeed(string Data)      //Convert to MB/s or GB/s
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+            {
+                int _ = 0;
+                foreach (Match m in Regex.Matches(Data.ToLower(), @"\d+x"))
+                {
+                    int __ = int.Parse(Regex.Match(m.Value, @"\d").Value);
+                    _ = _ < __ ? __ : _;
+                    return _;
+                }
+            }
             return 0;
         }
 
-        public static int GetHardDrive_WriteSpeed(string[] Data)
+        public int GetOpticalDrive_WriteSpeed(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("write"))
+                if (Regex.IsMatch(s.ToLower(), @"(write(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
                 {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
-                    return Speeds;
-                }
-                else if (Data[i].ToLower().Contains("gb/s"))
-                {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
-                    Speeds *= 1024;
-                    return Speeds;
+                    return GetOpticalDrive_WriteSpeed(s);
                 }
             }
-
+            return 0;
+        }
+        public int GetOpticalDrive_WriteSpeed(string Data)     //Also convert this
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"(write(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+            {
+                int _ = 0;
+                foreach (Match m in Regex.Matches(Data.ToLower(), @"\d+x"))
+                {
+                    int __ = int.Parse(Regex.Match(m.Value, @"\d").Value);
+                    _ = _ < __ ? __ : _;
+                    return _;
+                }
+            }
             return 0;
         }
 
-        public static string GetOpticalDrive_Types(string[] Data)
+        public string GetOpticalDrive_Types(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -880,7 +870,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public static int GetOpticalDrive_ReadSpead(string[] Data)
+        public int GetOpticalDrive_ReadSpead(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -900,7 +890,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public static int GetOpticalDrive_WriteSpeed(string[] Data)
+        public int GetOpticalDrive_WriteSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
