@@ -9,19 +9,20 @@ using System.Text.RegularExpressions;
 
 namespace GC_Final.Controllers
 {
-
-    public class PartDetails
+    #region PartDetails
+    /*
+    public static class PartDetails
     {
 
-        public string Name { set; get; }
-        public string ProductID { set; get; }
-        public string Desc { set; get; }
-        public string Brand { set; get; }
-        public double Price { set { Price = value / 100; } get { return Price; } }
-        public string Stars { set; get; }
-        public string Manufacturer { set; get; }
+        public static string Name { set; get; }
+        public static string ProductID { set; get; }
+        public static string Desc { set; get; }
+        public static string Brand { set; get; }
+        public static double Price { set { Price = value / 100; } get { return Price; } }
+        public static string Stars { set; get; }
+        public static string Manufacturer { set; get; }
 
-        public PartDetails()
+        public static PartDetails()
         {
             Name = "";
             ProductID = "";
@@ -34,13 +35,13 @@ namespace GC_Final.Controllers
 
     }
 
-    public class PartBag
+    public static class PartBag
     {
-        private List<PartDetails> _Bag;
+        private static List<PartDetails> _Bag;
 
-        public int Count { get { return _Bag.Count; } }
-        public List<PartDetails> AsList { get { return _Bag; } }
-        public Dictionary<string, int> Quantities {
+        public static int Count { get { return _Bag.Count; } }
+        public static List<PartDetails> AsList { get { return _Bag; } }
+        public static Dictionary<string, int> Quantities {
             get
             {
                 Dictionary<string, int> _out = new Dictionary<string, int>();
@@ -61,41 +62,41 @@ namespace GC_Final.Controllers
             }
         }
 
-        public void Add(PartDetails part)
+        public static void Add(PartDetails part)
         {
             _Bag.Add(part);
         }
         //Add method to add by ID
-        public void Remove(PartDetails part)
+        public static void Remove(PartDetails part)
         {
             _Bag.Remove(part);
         }
-        public List<PartDetails> ToList()
+        public static List<PartDetails> ToList()
         {
             return _Bag;
         }
     }
 
-    public class BuildDetails
+    public static class BuildDetails
     {
         
-        public string Name { set; get; }
-        public string BuildID { set; get; }
-        public string OwnerID { set; get; }
-        public CaseDetails Case { set; get; }
-        public MotherBoardDetails MB { set; get; }
-        public CPUDetails CPU { set; get; }
-        public GPUDetails GPU { set; get; }
-        public byte GPUCount { set; get; }
-        public PSUDetails PSU { set; get; }
-        public PartBag RAM { set; get; }
-        public PartBag Monitor { set; get; }
-        public PartBag OD { set; get; }
-        public PartBag HD { set; get; }
-        public PartBag Peripherals { set; get; }
-        public PartBag PCI { set; get; }
+        public static string Name { set; get; }
+        public static string BuildID { set; get; }
+        public static string OwnerID { set; get; }
+        public static CaseDetails Case { set; get; }
+        public static MotherBoardDetails MB { set; get; }
+        public static CPUDetails CPU { set; get; }
+        public static GPUDetails GPU { set; get; }
+        public static byte GPUCount { set; get; }
+        public static PSUDetails PSU { set; get; }
+        public static PartBag RAM { set; get; }
+        public static PartBag Monitor { set; get; }
+        public static PartBag OD { set; get; }
+        public static PartBag HD { set; get; }
+        public static PartBag Peripherals { set; get; }
+        public static PartBag PCI { set; get; }
         /*
-        public Dictionary<string, string> CheckCompatability()
+        public static Dictionary<string, string> CheckCompatability()
         {
             Dictionary<string, string> Flags = new Dictionary<string, string>();
 
@@ -149,8 +150,8 @@ namespace GC_Final.Controllers
             return Flags;
         }
         */
-
-        public BuildDetails()
+        /*
+        public static BuildDetails()
         {
 
             Name = "";
@@ -170,7 +171,7 @@ namespace GC_Final.Controllers
 
         }
 
-        public BuildDetails(Build bass)
+        public static BuildDetails(Build bass)
         {
 
             Entities ORM = new Entities();
@@ -218,20 +219,20 @@ namespace GC_Final.Controllers
 
     }
 
-    public class CaseDetails : PartDetails
+    public static class CaseDetails : PartDetails
     {
 
-        public string CaseID { set; get; }
-        public string PID;
-        public int Size;
-        public int Dimensions;
-        public byte PortCount;
-        public string Drives;
-        public bool SSDSupport;
-        public string Ports;
-        public string Style;
+        public static string CaseID { set; get; }
+        public static string PID;
+        public static int Size;
+        public static int Dimensions;
+        public static byte PortCount;
+        public static string Drives;
+        public static bool SSDSupport;
+        public static string Ports;
+        public static string Style;
 
-        public CaseDetails() : base()
+        public static CaseDetails() : base()
         {
             CaseID = "";
             PID = "";
@@ -244,26 +245,26 @@ namespace GC_Final.Controllers
             Style = "";
         }
 
-        public CaseDetails(PCCase bass)
+        public static CaseDetails(PCCase bass)
         {
 
         }
 
     }
 
-    public class MotherBoardDetails : PartDetails
+    public static class MotherBoardDetails : PartDetails
     {
         
-        public string MBID { set; get; }
-        public string PID { set; get; }
-        public string Socket { set; get; }
-        public string Chipset { set; get; }
-        public byte RAMSlots { set; get; }
-        public byte SLI { set; get; }
-        public byte XFIRE { set; get; }
-        public string FormFactor { set; get; }
+        public static string MBID { set; get; }
+        public static string PID { set; get; }
+        public static string Socket { set; get; }
+        public static string Chipset { set; get; }
+        public static byte RAMSlots { set; get; }
+        public static byte SLI { set; get; }
+        public static byte XFIRE { set; get; }
+        public static string FormFactor { set; get; }
 
-        public MotherBoardDetails() : base()
+        public static MotherBoardDetails() : base()
         {
             MBID = "";
             PID = "";
@@ -276,27 +277,27 @@ namespace GC_Final.Controllers
 
         }
 
-        public MotherBoardDetails(Motherboard bass)
+        public static MotherBoardDetails(Motherboard bass)
         {
 
         }
 
     }
 
-    public class CPUDetails : PartDetails
+    public static class CPUDetails : PartDetails
     {
 
-        public string CPUID { set; get; }
-        public string PID { set; get; }
-        public string Cache { set; get; }
-        public string Socket { set; get; }
-        public int Wattage { set { Wattage = Convert.ToInt32(value); } get { return Wattage; } }
-        public bool Fan { set; get; }
-        public byte Threads { set { Threads = Convert.ToByte(value); } get { return Threads; } }
-        public string ProcessingUnits { set; get; }
-        public double Speed { set { Speed = Convert.ToDouble(value); } get { return Speed; } }
+        public static string CPUID { set; get; }
+        public static string PID { set; get; }
+        public static string Cache { set; get; }
+        public static string Socket { set; get; }
+        public static int Wattage { set { Wattage = Convert.ToInt32(value); } get { return Wattage; } }
+        public static bool Fan { set; get; }
+        public static byte Threads { set { Threads = Convert.ToByte(value); } get { return Threads; } }
+        public static string ProcessingUnits { set; get; }
+        public static double Speed { set { Speed = Convert.ToDouble(value); } get { return Speed; } }
 
-        public CPUDetails() : base()
+        public static CPUDetails() : base()
         {
 
             CPUID = "";
@@ -310,100 +311,122 @@ namespace GC_Final.Controllers
 
         }
 
-        public CPUDetails(CPU bass)
+        public static CPUDetails(CPU bass)
         {
 
         }
 
     }
 
-    public class PSUDetails
+    public static class PSUDetails
     {
-        public string PSUID;
-        public string PID;
-        public string PowerSource;
-        public string Dimensions;
-        public int Wattage;
+        public static string PSUID;
+        public static string PID;
+        public static string PowerSource;
+        public static string Dimensions;
+        public static int Wattage;
 
-        public PSUDetails() : base()
+        public static PSUDetails() : base()
         {
 
         }
 
-        public PSUDetails(PSU bass)
+        public static PSUDetails(PSU bass)
         {
 
         }
 
     }
 
-    public class GPUDetails : PartDetails
+    public static class GPUDetails : PartDetails
     {
-        public string GPUID;
+        public static string GPUID;
 
-        public GPUDetails(GPU bass)
+        public static GPUDetails(GPU bass)
         {
 
         }
 
-        public GPUDetails() : base()
+        public static GPUDetails() : base()
         {
             GPUID = "";
         }
     }
 
-    public class RAMDetails : PartDetails
+    public static class RAMDetails : PartDetails
     {
-        public RAMDetails(RAM bass)
+        public static RAMDetails(RAM bass)
         {
 
         }
     }
 
-    public class ODDetails : PartDetails
+    public static class ODDetails : PartDetails
     {
-        public ODDetails(OpticalDriver bass)
+        public static ODDetails(OpticalDriver bass)
         {
 
         }
     }
 
-    public class HDDetails : PartDetails
+    public static class HDDetails : PartDetails
     {
-        public string HDID;
+        public static string HDID;
 
-        public HDDetails(HardDrive bass)
+        public static HDDetails(HardDrive bass)
         {
 
         }
     }
 
-    public class MonitorDetails : PartDetails
+    public static class MonitorDetails : PartDetails
     {
-        public MonitorDetails(Monitor bass)
-        {
-            
-        }
-    }
-
-    public class PeripheralDetails : PartDetails
-    {
-        public PeripheralDetails(Peripheral bass)
-        {
-
-        }
-    }
-
-    public class PCIDetails : PartDetails
-    {
-        public PCIDetails(PCICard bass)
+        public static MonitorDetails(Monitor bass)
         {
             
         }
     }
 
+    public static class PeripheralDetails : PartDetails
+    {
+        public static PeripheralDetails(Peripheral bass)
+        {
+
+        }
+    }
+
+    public static class PCIDetails : PartDetails
+    {
+        public static PCIDetails(PCICard bass)
+        {
+            
+        }
+    }*/
+    #endregion
+    
     public partial class ZincParseController : ApiController
     {
+        private static  string[] FormFactors = new string[]
+        {
+            "at",
+            "baby at",
+            "atx",
+            "mini atx",
+            "micro atx",
+            "flex atx",
+            "lpx",
+            "nlx",
+            "form factor"
+        };
+
+        private static  int SafeNextIndex(int index, int collectionLength)
+        {
+            if (index < collectionLength)
+            {
+                return index;
+            }
+            return collectionLength - 1;
+        }
 
         public static int[] GetMaxScreenResolution(string Data)
         {
@@ -469,107 +492,105 @@ namespace GC_Final.Controllers
 
         public static string GetFormFactor(string Data)
         {
-            string[] _dataArray = { Data };
-            return GetFormFactor(_dataArray);
+            string _FFDetails = "";
+            string[] _data = Data.Split(' ');
+            int j = 0;
+            for (int i = 0; i < _data.Length; i++)
+            {
+                if (_data[i].ToLower().Contains("at") && !_data[j].ToLower().Contains("baby"))
+                {
+                    _FFDetails += "AT,";
+                }
+                else if (_data[i].ToLower().Contains("baby") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("at"))
+                {
+                    _FFDetails += "Baby AT,";
+                }
+                else if (Regex.IsMatch(_data[i], @"[Aa][Tt][Xx]") && !(_data[j].ToLower().Contains("mini") || _data[j].ToLower().Contains("micro") || _data[j].ToLower().Contains("flex")))
+                {
+                    _FFDetails += "ATX,";
+                }
+                else if (_data[i].ToLower().Contains("mini") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Mini ATX,";
+                }
+                else if (_data[i].ToLower().Contains("micro") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Micro ATX,";
+                }
+                else if (_data[i].ToLower().Contains("flex") && _data[SafeNextIndex(i + 1, _data.Length)].ToLower().Contains("atx"))
+                {
+                    _FFDetails += "Flex ATX,";
+                }
+                else if (_data[i].ToLower().Contains("lpx"))
+                {
+                    _FFDetails += "LPX,";
+                }
+                else if (_data[i].ToLower().Contains("nlx"))
+                {
+                    _FFDetails += "NLX,";
+                }
+            }
+            if (_FFDetails != "")
+            {
+                _FFDetails = _FFDetails.Substring(0, _FFDetails.Length - 1);
+            }
+            return _FFDetails;
         }
 
         public static string GetFormFactor(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("form factor"))
+                foreach (string ff in FormFactors)
                 {
-                    string _FFDetails = "";
-
-                    if (Data[i].ToLower().Contains("at") || Data[i].ToLower().Contains("at."))
+                    if (s.ToLower().Contains(ff))
                     {
-                        _FFDetails = Regex.Match("AT", @"( )[Aa][Tt]( |.)?").Value;
+                        return GetFormFactor(s);
                     }
-
-                    if (Data[i].ToLower().Contains("baby") && Data[i].ToLower().Contains("at"))
-                    {
-                        _FFDetails = Regex.Match("Baby AT", @"( )?[Bb][Aa][Bb][Yy] [Aa][Tt]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("ATX", @"( )?[Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("mini") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Mini ATX", @"( )?[Mm][Ii][Nn][Ii] [Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("micro") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Micro ATX", @"( )?[M][Ii][Cc][Rr][Oo] [A][T][X]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("flex") && Data[i].ToLower().Contains("atx"))
-                    {
-                        _FFDetails = Regex.Match("Flex ATX", @"( )?[Ff][Ll][Ee][Xx] [Aa][Tt][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("lpx"))
-                    {
-                        _FFDetails = Regex.Match("LPX", @"( )?[Ll][Pp][Xx]( |.)?").Value;
-                    }
-
-                    if (Data[i].ToLower().Contains("nlx"))
-                    {
-                        _FFDetails = Regex.Match("NLX", @"( )?[Nn][Ll][Xx]( |.)?").Value;
-                    }
-
-                    return _FFDetails;
-
                 }
-
             }
 
             return null;
-        }
-
-        public static string GetChipset(string Data)
-        {
-            string[] _dataArray = { Data };
-            return GetChipset(_dataArray);
         }
 
         public static string GetChipset(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("chipset"))
+                if (s.ToLower().Contains("chipset"))
                 {
-                    return Regex.Match(Data[i], @"([A-Za-z]+)?( )([A-Za-z]+)?\d+( )?([A-Za-z]+)?").Value;
+                    return GetChipset(s);
                 }
-
             }
-
             return null;
-
         }
-
-        public static string GetRAMType(string Data)
+        public static string GetChipset(string Data)
         {
-            string[] _dataArray = { Data };
-            return GetRAMType(_dataArray);
+            if (Data.ToLower().Contains("chipset"))
+            {
+                return Regex.Match(Data.ToUpper(), @"[A-Z]{0,2}\d+-?[A-Z]{0,2}").Value;
+            }
+            return null;
         }
 
         public static string GetRAMType(string[] Data)
         {
-
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("ddr2") || Data[i].ToLower().Contains("ddr3") || Data[i].ToLower().Contains("ddr3 ecc") || Data[i].ToLower().Contains("ddr4") || Data[i].ToLower().Contains("ddr4 ecc"))
+                if (Regex.IsMatch(s.ToLower(), @"ddr\d"))
                 {
-                    return Regex.Match(Data[i], @"(\b(ddr2|ddr3|ddr4)\b)?(.)?(\b(ecc)\b)?").Value;
+                    return GetRAMType(s);
                 }
             }
-
             return null;
-
+        }
+        public static string GetRAMType(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"ddr\d"))
+            {
+                return $"DDR{Regex.Match(Regex.Match(Data.ToLower(), @"ddr\d").Value, @"\d").Value}";
+            }
+            return null;
         }
 
         public static byte GetRAMSlots(string[] Data)
@@ -597,32 +618,43 @@ namespace GC_Final.Controllers
             return PowerSupply;
         }
 
-        public static double GetCPU_Speed(string[] Data)
+        public static float GetCPU_Speed(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("ghz"))
+                if (Regex.IsMatch(s.ToLower(), @"\d+\.\d+( )?ghz"))
                 {
-                    double CPU_Speed = double.Parse(Regex.Match(Data[i], @"\d+( )?GHz").Value);
-                    return CPU_Speed;
+                    return GetCPU_Speed(s);
                 }
             }
-
+            return 0;
+        }
+        public static float GetCPU_Speed(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"\d+\.\d+( )?ghz"))
+            {
+                return float.Parse(Regex.Match(Regex.Match(Data.ToLower(), @"\d+\.\d+( )?ghz").Value, @"\d+\.\d+").Value);
+            }
             return 0;
         }
 
         public static byte GetSATA_Slots(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("sata"))
+                if (Regex.IsMatch(s.ToLower(), @"sata"))
                 {
-                    byte SATA_Slots = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\( )?\dx").Value, @"\d").Value);
-                    return SATA_Slots;
+                    return GetSATA_Slots(s);
                 }
             }
+            return 6;
+        }
 
-            return 0;
+        public static byte GetSATA_Slots(string Data)
+        {
+            //This will do something eventually.
+
+            return 6;
         }
 
         public static byte GetPCI_Slots(string[] Data)
@@ -644,162 +676,173 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public static byte MultiGPU_Limit(string[] Data)
+        public static byte GetMultiGPULimit(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("gpu"))
+                if (s.ToLower().Contains("sli"))
                 {
-                    byte GPU_Limit = byte.Parse(Regex.Match(Data[i], @"\d").Value);
+                    return GetMultiGPULimit(s);
+                }
+                else if (Regex.IsMatch(s.ToLower(), @"^(cross|x)(-| )?fire$"))
+                {
+                    return GetMultiGPULimit(s);
                 }
             }
-
             return 0;
         }
 
-        public static byte Crossfire_Limit(string[] Data)
+        public static byte GetMultiGPULimit(string Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (Data.ToLower().Contains("sli"))
             {
-                if (Data[i].ToLower().Contains("crossfire"))
-                {
-                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
-                    {
-                        if (Data[i].ToLower().Contains("two"))
-                        {
-                            return 2;
-                        }
-                        else if (Data[i].ToLower().Contains("three"))
-                        {
-                            return 3;
-                        }
-                        else if (Data[i].ToLower().Contains("four"))
-                        {
-                            return 4;
-                        }
-                    }
-
-                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
-                    return Limit;
-                    
-                }
-                
+                return GetMultiGPULimit(Data, false);
             }
-
+            else if (Regex.IsMatch(Data.ToLower(), @"(cross|x)(-| )?fire"))
+            {
+                return GetMultiGPULimit(Data, true);
+            }
             return 0;
         }
 
-        public static byte SLI_Limit(string[] Data)
+        private static byte GetMultiGPULimit(string Data, bool SOX)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (SOX)    //Crossfire
             {
-                if (Data[i].ToLower().Contains("sli"))
+                if (Regex.IsMatch(Data.ToLower(), @"two(-| )?way"))
                 {
-                    if (Regex.IsMatch(Data[i], @"([tT]wo|[tT]hree|[fF]our)(-| )?[wW]ay"))
-                    {
-                        if (Data[i].ToLower().Contains("two"))
-                        {
-                            return 2;
-                        }
-                        else if (Data[i].ToLower().Contains("three"))
-                        {
-                            return 3;
-                        }
-                        else if (Data[i].ToLower().Contains("four"))
-                        {
-                            return 4;
-                        }
-                    }
-
-                    byte Limit = byte.Parse(Regex.Match(Regex.Match(Data[i], @"\d(-| )?[Ww]ay").Value, @"\d").Value);
-                    return Limit;
-
+                    return 2;
                 }
-
+                else if (Regex.IsMatch(Data.ToLower(), @"three(-| )?way"))
+                {
+                    return 3;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"four(-| )?way"))
+                {
+                    return 4;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"\d(-| )?way"))
+                {
+                    return byte.Parse(Regex.Match(Data.ToLower(), @"\d(-| )?way").Value);
+                }
             }
-
-            return 0;
+            else        //SLI
+            {
+                if (Regex.IsMatch(Data.ToLower(), @"two(-| )?way"))
+                {
+                    return 2;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"three(-| )?way"))
+                {
+                    return 3;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"four(-| )?way"))
+                {
+                    return 4;
+                }
+                else if (Regex.IsMatch(Data.ToLower(), @"\d(-| )?way"))
+                {
+                    return byte.Parse(Regex.Match(Data.ToLower(), @"\d(-| )?way").Value);
+                }
+            }
+            return 2;
         }
 
         public static string GetHardDrive_Type(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("hdd"))
+                if (Regex.IsMatch(s.ToLower(), @"(ssd|sshd|hdd)"))
                 {
-                    return "HDD";
-                }
-                else if (Data[i].ToLower().Contains("sshd"))
-                {
-                    return "SSHD";
-                }
-                else if (Data[i].ToLower().Contains("ssd"))
-                {
-                    return "SSD";
+                    return GetHardDrive_Type(s);
                 }
             }
-
             return null;
         }
 
-        public static string GetHardDrive_Size(string[] Data)
+        public static string GetHardDrive_Type(string Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            if (Regex.IsMatch(Data.ToLower(), @"(ssd|sshd|hdd)"))
             {
-                if (Data[i].ToLower().Contains("2.5\""))
-                {
-                    return "2.5";
-                }
-                else if (Data[i].ToLower().Contains("3.5\""))
-                {
-                    return "3.5";
-                }
-                else if (Data[i].ToLower().Contains("msata"))
-                {
-                    return "mSATA";
-                }
+                return Regex.Match(Data.ToLower(), @"(ssd|sshd|hdd)").Value;
             }
-
             return null;
         }
 
-        public static int GetHardDrive_ReadSpeed(string[] Data)
+        public static bool GetHardDrive_Size(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("read"))
+                if (Regex.IsMatch(s.ToLower(), "(2" + @"\." + "5(-| )?(\"|inch)|3" + @"\." + "5(-| )?(\")|(three(-| )?(point(five|5)|and(-| )a(-| )half) inch)|(two(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
                 {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
-                    return Speeds;
-                }
-                else if (Data[i].ToLower().Contains("gb/s"))
-                {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
-                    Speeds *= 1024;
-                    return Speeds;
+                    return GetHardDrive_Size(s);
                 }
             }
+            return false;
+        }
 
+        public static bool GetHardDrive_Size(string Data)
+        {
+            if (Regex.IsMatch(Data.ToLower(), "(2" + @"\." + "5(-| )?(\"|inch)|(two(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
+            {
+                return false;
+            }
+            else if (Regex.IsMatch(Data.ToLower(), "3" + @"\." + "5(-| )?(\")|(three(-| )?(point(five|5)|and(-| )a(-| )half) inch)"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static int GetOpticalDrive_ReadSpead(string[] Data)     //omegaLuL speAd
+        {
+            foreach (string s in Data)
+            {
+                if (Regex.IsMatch(s.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+                {
+                    return GetOpticalDrive_ReadSpead(s);
+                }
+            }
+            return 0;
+        }
+        public static int GetOpticalDrive_ReadSpead(string Data)      //Convert to MB/s or GB/s
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"(read(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+            {
+                int _ = 0;
+                foreach (Match m in Regex.Matches(Data.ToLower(), @"\d+x"))
+                {
+                    int __ = int.Parse(Regex.Match(m.Value, @"\d").Value);
+                    _ = _ < __ ? __ : _;
+                    return _;
+                }
+            }
             return 0;
         }
 
-        public static int GetHardDrive_WriteSpeed(string[] Data)
+        public static int GetOpticalDrive_WriteSpeed(string[] Data)
         {
-            for (int i = 0; i < Data.Length; i++)
+            foreach (string s in Data)
             {
-                if (Data[i].ToLower().Contains("write"))
+                if (Regex.IsMatch(s.ToLower(), @"(write(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
                 {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Mm][Bb]/[Ss]").Value);
-                    return Speeds;
-                }
-                else if (Data[i].ToLower().Contains("gb/s"))
-                {
-                    int Speeds = int.Parse(Regex.Match(Data[i], @"\d+( )?[Gg][Bb]/[Ss]").Value);
-                    Speeds *= 1024;
-                    return Speeds;
+                    return GetOpticalDrive_WriteSpeed(s);
                 }
             }
-
+            return 0;
+        }
+        public static int GetOpticalDrive_WriteSpeed(string Data)     //Also convert this
+        {
+            if (Regex.IsMatch(Data.ToLower(), @"(write(-| )speed)(:| )((bd(-| )r( )?\d+x)|(dvd(-| )r( )?\d+x)|(cd(-| )r( )?\d+x))+"))
+            {
+                int _ = 0;
+                foreach (Match m in Regex.Matches(Data.ToLower(), @"\d+x"))
+                {
+                    int __ = int.Parse(Regex.Match(m.Value, @"\d").Value);
+                    _ = _ < __ ? __ : _;
+                    return _;
+                }
+            }
             return 0;
         }
 
@@ -828,7 +871,7 @@ namespace GC_Final.Controllers
             return null;
         }
 
-        public static int GetOpticalDrive_ReadSpead(string[] Data)
+        public static int GetHardDrive_ReadSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {
@@ -848,7 +891,7 @@ namespace GC_Final.Controllers
             return 0;
         }
 
-        public static int GetOpticalDrive_WriteSpeed(string[] Data)
+        public static int GetHardDrive_WriteSpeed(string[] Data)
         {
             for (int i = 0; i < Data.Length; i++)
             {

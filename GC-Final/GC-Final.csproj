@@ -215,6 +215,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VerifyController.cs" />
     <Compile Include="Controllers\ZincParseController.cs" />
@@ -223,6 +224,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>DAPSAppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Build.cs">
       <DependentUpon>DAPSAppModel.tt</DependentUpon>
     </Compile>
@@ -390,10 +394,10 @@
     <Content Include="Views\Parts\MoreParts.cshtml" />
     <Content Include="Views\Parts\MoreDetails.cshtml" />
     <Content Include="Views\Home\Testing.cshtml" />
+    <Content Include="Views\Builds\Display2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BuildsExtra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

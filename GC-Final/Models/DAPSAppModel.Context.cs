@@ -43,5 +43,6 @@ namespace GC_Final.Models
         public virtual DbSet<Peripheral> Peripherals { get; set; }
         public virtual DbSet<PSU> PSUs { get; set; }
         public virtual DbSet<RAM> RAMs { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

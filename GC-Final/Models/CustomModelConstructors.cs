@@ -127,6 +127,7 @@ namespace GC_Final.Models
             Stars = 0.0F;
             ImageLink = " ";
             Manufacturer = " ";
+            Name = name;
         }
     }
 
@@ -516,7 +517,7 @@ namespace GC_Final.Models
             {
                 if (Motherboard.RAMType != _ram[i].RAMType)
                 {
-                    _out.Add(new string[] { $"RAM Type Error{i}", $"Your RAM selection in index {i + 1} does not match the motherboard's type." });
+                    _out.Add(new string[] { $"RAM Type Error {i + 1}", $"Your RAM selection in index {i + 1} does not match the motherboard's type." });
                 }
             }
             //MB and GPU(s)
@@ -574,25 +575,26 @@ namespace GC_Final.Models
             {
                 _out.Add(new string[] { "Brown", "Your PC does not have enough power, use a better PSU (Very Fatal)." });
             }
+            _out.Add(new string[] { "End", "End" });
 
             return _out;
         }
 
-        public Build(Controllers.BuildDetails bass)
-        {
+        //public Build(Controllers.BuildDetails bass)
+        //{
 
-            BuildName = bass.Name;
-            BuildID = bass.BuildID;
-            OwnerID = bass.OwnerID;
-            CaseID = bass.Case.CaseID;
-            MBID = bass.MB.MBID;
-            CPUID = bass.CPU.CPUID;
-            PSUID = bass.PSU.PSUID;
-            GPUID = bass.GPU.GPUID;
-            PSUID = bass.PSU.PSUID;
-            GPUCount = bass.GPUCount;
+        //    BuildName = bass.Name;
+        //    BuildID = bass.BuildID;
+        //    OwnerID = bass.OwnerID;
+        //    CaseID = bass.Case.CaseID;
+        //    MBID = bass.MB.MBID;
+        //    CPUID = bass.CPU.CPUID;
+        //    PSUID = bass.PSU.PSUID;
+        //    GPUID = bass.GPU.GPUID;
+        //    PSUID = bass.PSU.PSUID;
+        //    GPUCount = bass.GPUCount;
 
-        }
+        //}
 
         public Build(string name)
         {

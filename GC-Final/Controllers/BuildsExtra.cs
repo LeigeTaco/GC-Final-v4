@@ -30,6 +30,9 @@ namespace GC_Final.Controllers
             ViewBag.HardDrives = ORM.HardDrives;
             ViewBag.OpticalDrivers = ORM.OpticalDrivers;
             ViewBag.PCICards = ORM.PCICards;
+            List<string[]> _saveMe = new List<string[]>();
+            _saveMe.Add(new string[] { "End", "End" });
+            ViewBag.Flags = _saveMe;
 
             return View();
         }
@@ -83,6 +86,7 @@ namespace GC_Final.Controllers
         
         private ActionResult _Verify(string buildName, string motherboard_id, string gpu_id, string cpu_id, string ram_id, string psu_id, string case_id, string monitor_id, string pci_id, string hard_id, string optical_id, bool c)
         {
+            bool OVERRIDE = false;
             Entities ORM = new Entities();
             Build temp = new Build();
             temp.BuildName = buildName;
@@ -119,28 +123,64 @@ namespace GC_Final.Controllers
             _od.ODID = optical_id;
             _od.OpticalDriver = ORM.OpticalDrivers.Find(optical_id);
             List<string[]> flags = temp.GetCompat();
-            //if (flags == null && c)
-            //{
+            OVERRIDE = true;    //Comment this out to re-enable validation before creation.
+            if ((flags[0][0] == "End" || OVERRIDE) && c)
+            {
                 ORM.Builds.Add(temp);
                 ORM.SaveChanges();
-                return RedirectToAction("Display", "Builds", new { id = temp.BuildID});
-            //}
-
+                return RedirectToAction("Display", "Builds", new { id = temp.BuildID });
+            }
+            ViewBag.Flags = flags;
             return _Create(temp, User.Identity.GetUserId());
         }
 
-
-        public ActionResult Display(string id)
+        private int _displayLimit(int count)
         {
-            Entities ORM = new Entities();
-            ViewBag.Build = ORM.Builds.Find(id);
-            if (ViewBag.Build != null)
+            if (count < 15)
             {
-                return View();
+                return count % 15;
             }
-            return View("Error");
+            else
+            {
+                return 15;
+            }
         }
 
+        [AllowAnonymous]
+        private ActionResult _Display()
+        {
+            Entities ORM = new Entities();
+            Random R = new Random();
+            Build[] arr = ORM.Builds.ToArray();
+            List<Build> _arr = new List<Build>();
+            for (int i = 0; i < _displayLimit(arr.Length); i++)
+            {
+                _arr.Add(arr[R.Next(arr.Length)]);
+            }
+            ViewBag.UserBuilds = _arr.ToArray();
+            return View("Display2");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Display(string id)
+        {
+            if (id != null)
+            {
+                Entities ORM = new Entities();
+                ViewBag.Build = ORM.Builds.Find(id);
+                if (ViewBag.Build != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Error", new { error = "Invalid Build ID" });
+            }
+            else
+            {
+                return _Display();
+            }
+        }
+
+        [AllowAnonymous]
         [RequireParameter("buildName")]
         public ActionResult Display(string buildName, string motherboard_id, string gpu_id, string cpu_id, string ram_id, string psu_id, string case_id, string monitor_id, string pci_id, string hard_id, string optical_id, bool c)
         {

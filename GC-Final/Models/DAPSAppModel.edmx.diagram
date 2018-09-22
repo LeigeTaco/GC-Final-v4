@@ -40,6 +40,8 @@
         <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsRAM_Builds" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsPeripherals_Peripherals" ManuallyRouted="false" />
         <AssociationConnector Association="DAPSFinalDBModel.FK_BuildsRAM_RAM" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DAPSFinalDBModel.AspNetUser" Width="1.5" PointX="0.75" PointY="2.75" />
+        <AssociationConnector Association="DAPSFinalDBModel.FK_Builds_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
